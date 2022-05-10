@@ -26,7 +26,7 @@
             <div class="d-flex">
                 <input formControlName="description" required type="text" class="form-control" id="description"
                     placeholder="Description">
-                <button [disabled]="submitForm.invalid" type="submit" class="btn btn-outline-secondary">+</button>
+
             </div>
             <div *ngIf="submitForm.get('description')?.dirty && submitForm.get('description')?.errors"
                 class="alert alert-danger" role="alert">
@@ -60,6 +60,7 @@
                 Ajouter une date
             </div>
         </div>
+        <button [disabled]="submitForm.invalid" type="submit" class="btn btn-outline-secondary">Ajouter</button>
 
         <br>
     </form>

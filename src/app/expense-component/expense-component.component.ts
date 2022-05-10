@@ -36,7 +36,7 @@ export class ExpenseComponentComponent {
   createForm(): void {
     this.submitForm = this.fb.group({
       description: ['', Validators.required],
-      montant: [0, [Validators.required, Validators.pattern("^[0-9]+[0-9]*$")]],
+      montant: [0, [Validators.required, Validators.pattern("^[0-9-.]+[0-9]*$")]],
       date: [Date.now, Validators.required]
     });
 
