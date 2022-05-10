@@ -10,7 +10,8 @@ import { FirstComponent } from './components/first/first.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    FirstComponent
+    FirstComponent,
+
   ],
   imports: [
     BrowserModule,
