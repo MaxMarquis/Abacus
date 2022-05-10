@@ -21,8 +21,8 @@ const routes: Routes = [
   { path: 'aide', component: AideComponent },
   { path: 'deconnexion', component: DeconnexionComponent },
   { path: 'calendrier', component: CalendrierComponent},
-  { path: 'Depenses', component: ExpenseComponentComponent},
-  { path: 'Revenus', component: IncomeComponentComponent},
+  { path: 'depenses', component: ExpenseComponentComponent},
+  { path: 'revenus', component: IncomeComponentComponent},
   { path: 'calendrier', component: CalendrierComponent},
 ];
 
