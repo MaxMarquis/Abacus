@@ -23,7 +23,6 @@ const routes: Routes = [
   { path: 'calendrier', component: CalendrierComponent},
   { path: 'Depenses', component: ExpenseComponentComponent},
   { path: 'Revenus', component: IncomeComponentComponent},
-
   { path: 'calendrier', component: CalendrierComponent},
 ];
 
