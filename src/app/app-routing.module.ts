@@ -8,6 +8,8 @@ import { TableauDeBordComponent } from './components/tableau-de-bord/tableau-de-
 import { AideComponent } from './components/aide/aide.component';
 import { DeconnexionComponent } from './components/deconnexion/deconnexion.component';
 import { CalendrierComponent } from './components/calendrier/calendrier.component';
+import { ExpenseComponentComponent } from './expense-component/expense-component.component';
+import { IncomeComponentComponent } from './income-component/income-component.component';
 
 
 const routes: Routes = [
@@ -18,6 +20,9 @@ const routes: Routes = [
   { path: 'tableauDeBord', component: TableauDeBordComponent },
   { path: 'aide', component: AideComponent },
   { path: 'deconnexion', component: DeconnexionComponent },
+  { path: 'calendrier', component: CalendrierComponent},
+  { path: 'Depenses', component: ExpenseComponentComponent},
+  { path: 'Revenus', component: IncomeComponentComponent},
   { path: 'calendrier', component: CalendrierComponent},
 ];
 

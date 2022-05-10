@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { StorageServiceService } from './services/storage-service.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './views/home/home.component';
@@ -12,6 +16,8 @@ import { TableauDeBordComponent } from './components/tableau-de-bord/tableau-de-
 import { AideComponent } from './components/aide/aide.component';
 import { DeconnexionComponent } from './components/deconnexion/deconnexion.component';
 import { CalendrierComponent } from './components/calendrier/calendrier.component';
+import { ExpenseComponentComponent } from './expense-component/expense-component.component';
+import { IncomeComponentComponent } from './income-component/income-component.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +30,19 @@ import { CalendrierComponent } from './components/calendrier/calendrier.componen
     TableauDeBordComponent,
     AideComponent,
     DeconnexionComponent,
-    CalendrierComponent
+    CalendrierComponent,
+    ExpenseComponentComponent,
+    IncomeComponentComponent,
+
+
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [StorageServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
