@@ -2,9 +2,12 @@ import { v4 as uuid } from 'uuid';
 
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { environment } from 'src/environments/environment';
 import { Details } from '../interface/details';
 import { StorageServiceService } from '../services/storage-service.service';
+
 
 
 @Component({
@@ -22,7 +25,7 @@ export class IncomeComponentComponent {
   balance: number = 0;
   incomeList: Details[] = [];
 
-  constructor(private fb: FormBuilder, private storageService: StorageServiceService) {
+  constructor(private fb: FormBuilder, private storageService: StorageServiceService, private modalService: NgbModal) {
     this.createForm();
     this.storageService.incomeList.subscribe(value => {
       this.incomeList = value;
@@ -57,4 +60,9 @@ export class IncomeComponentComponent {
     this.incomeList.push(this.details);
     this.feedbackFormDirective.resetForm();
   }
+
+  openCalculatorModal(content: any) {
+    this.modalService.open(content);
+  }
 }
+
