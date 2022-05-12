@@ -1,4 +1,5 @@
 import { Component} from '@angular/core';
+import copy from 'copy-text-to-clipboard';
 
 @Component({
   selector: 'app-calculatrice',
@@ -43,9 +44,9 @@ input:string = '';
     let pos:number;
     console.log(this.input)
     pos=this.input.toString().lastIndexOf("+")
-    if (this.input.toString().lastIndexOf("-") > pos) pos=this.input.lastIndexOf("-")
-    if (this.input.toString().lastIndexOf("*") > pos) pos=this.input.lastIndexOf("*")
-    if (this.input.toString().lastIndexOf("/") > pos) pos=this.input.lastIndexOf("/")
+    if (this.input.toString().lastIndexOf("-") > pos) pos=this.input.lastIndexOf("-");
+    if (this.input.toString().lastIndexOf("*") > pos) pos=this.input.lastIndexOf("*");
+    if (this.input.toString().lastIndexOf("/") > pos) pos=this.input.lastIndexOf("/");
     console.log('Last '+this.input.substr(pos+1))
     return this.input.substr(pos+1)
   }
@@ -100,4 +101,7 @@ input:string = '';
     if (this.input=="0") this.input="";
   }
 
+  copyResult() {
+    copy(this.result.toString());
+  }
 }

@@ -1,14 +1,18 @@
 <div class="container-fluid">
-  <div class="jumbotron col-sm-4 p-2 m-0 bg-inverse">
-    <h1 class="text-center">Calculatrice</h1>
-    <div class="input-group input-group-sm col-sm-12 m-0 p-0">
+  <div class="jumbotron col-sm-12 p-2 m-0 bg-inverse">
+    <button class="btn btn-dark col-sm-3" type="button" (click)="copyResult()">
+  COPIER
+    </button>
+
+
+    <div class="input-group input-group-sm col-sm-12 mt-2 p-1">
       <div class="col-sm-12 form-control text-lg-right" type="text">
-        {{ input }}
+        {{ input ? input : '&nbsp;' }}
       </div>
     </div>
 
-    <div class="input-group input-group-sm col-sm-12 m-0 p-0">
-      <div class="form-control text-sm-right" type="text">{{ result }}</div>
+    <div class="input-group input-group-sm col-sm-12 my-2 p-1">
+      <div class="form-control text-sm-right" type="text">{{ result ? result : '&nbsp;'}}</div>
     </div>
 
     <div class="col-sm-12 p-1 m-0">
