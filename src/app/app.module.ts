@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClipboardModule } from 'ngx-clipboard';
+import { NgChartsModule } from 'ng2-charts';
 
 import { StorageServiceService } from './services/storage-service.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +21,7 @@ import { DeconnexionComponent } from './components/deconnexion/deconnexion.compo
 import { CalendrierComponent } from './components/calendrier/calendrier.component';
 import { ExpenseComponentComponent } from './expense-component/expense-component.component';
 import { IncomeComponentComponent } from './income-component/income-component.component';
+import { ChartComponent } from './components/chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -35,9 +37,7 @@ import { IncomeComponentComponent } from './income-component/income-component.co
     CalendrierComponent,
     ExpenseComponentComponent,
     IncomeComponentComponent,
-    
-
-
+    ChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,8 +46,9 @@ import { IncomeComponentComponent } from './income-component/income-component.co
     AppRoutingModule,
     NgbModule,
     ClipboardModule,
+    NgChartsModule,
   ],
   providers: [StorageServiceService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
