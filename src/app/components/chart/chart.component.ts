@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ChartData, ChartEvent, ChartType } from 'chart.js';
+import { Details } from 'src/app/interface/details';
+import { StorageServiceService } from 'src/app/services/storage-service.service';
 
 @Component({
   selector: 'app-chart',
@@ -10,23 +12,29 @@ export class ChartComponent implements OnInit {
   @Input() height = '25';
   @Input() width = '25';
 
+  public expenseList: Details[] = [];
+  public doughnutChartLabels: string[] = [];
+
+  constructor(private storageService: StorageServiceService) {
+    this.storageService.expenseList.subscribe((res) => {
+      this.expenseList = res;
+    });
+  }
+
+  // this.doughnutChartData.datasets.push(x.montant)
+
   ngOnInit(): void {
-    console.log(`Mon height ${this.height} et mon width ${this.width}`);
+    console.log(this.doughnutChartData.datasets);
+    this.expenseList.map((x) => {
+      this.doughnutChartLabels.push(x.description);
+      this.doughnutChartData.datasets[0].data.push(x.montant);
+    });
   }
 
   // Doughnut
-  public doughnutChartLabels: string[] = [
-    'Download Sales',
-    'In-Store Sales',
-    'Mail-Order Sales',
-  ];
   public doughnutChartData: ChartData<'doughnut'> = {
     labels: this.doughnutChartLabels,
-    datasets: [
-      { data: [350, 450, 100] },
-      { data: [50, 150, 120] },
-      { data: [250, 130, 70] },
-    ],
+    datasets: [{ data: [] }],
   };
   public doughnutChartType: ChartType = 'doughnut';
 
