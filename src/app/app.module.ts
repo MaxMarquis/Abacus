@@ -11,7 +11,6 @@ import { StorageServiceService } from './services/storage-service.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './views/home/home.component';
-import { FirstComponent } from './components/first/first.component';
 import { CalculatriceComponent } from './components/calculatrice/calculatrice.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RapportsComponent } from './components/rapports/rapports.component';
@@ -27,7 +26,6 @@ import { ChartComponent } from './components/chart/chart.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    FirstComponent,
     CalculatriceComponent,
     NavbarComponent,
     RapportsComponent,
