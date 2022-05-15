@@ -7,12 +7,12 @@ import { environment } from 'src/environments/environment';
 import { Details } from '../interface/details';
 import { StorageServiceService } from '../services/storage-service.service';
 
-
 @Component({
   selector: 'app-expense-component',
   templateUrl: './expense-component.component.html',
   styleUrls: ['./expense-component.component.sass']
 })
+
 export class ExpenseComponentComponent {
   @ViewChild('fform') feedbackFormDirective: any;
   submitForm!: FormGroup;
@@ -27,12 +27,10 @@ export class ExpenseComponentComponent {
     this.createForm();
     this.storageService.expenseList.subscribe(value => {
       this.expenseList = value;
-    }
-    );
+    });
     this.storageService.balanceValue.subscribe(value => {
       this.balance = value;
-    }
-    );
+    });
   }
 
   createForm(): void {
@@ -41,9 +39,7 @@ export class ExpenseComponentComponent {
       montant: [0, [Validators.required, Validators.pattern("^[0-9-.]+[0-9]*$")]],
       date: [Date.now, Validators.required]
     });
-
   }
-
 
   onSubmit(): void {
     this.details = this.submitForm.value;
@@ -58,6 +54,7 @@ export class ExpenseComponentComponent {
 
     this.expenseList.push(this.details);
     this.feedbackFormDirective.resetForm();
+    location.reload(); // Pour reload le graphique
   }
 
   openCalculatorModal(content: any) {

@@ -8,13 +8,12 @@ import { environment } from 'src/environments/environment';
 import { Details } from '../interface/details';
 import { StorageServiceService } from '../services/storage-service.service';
 
-
-
 @Component({
   selector: 'app-income-component',
   templateUrl: './income-component.component.html',
   styleUrls: ['./income-component.component.sass']
 })
+
 export class IncomeComponentComponent {
   @ViewChild('fform') feedbackFormDirective: any;
   submitForm!: FormGroup;
@@ -41,10 +40,7 @@ export class IncomeComponentComponent {
       montant: [0, [Validators.required, Validators.pattern("^[0-9-.]+[0-9-.]*$")]],
       date: [Date.now, Validators.required]
     });
-
   }
-
-
 
   onSubmit(): void {
     this.details = this.submitForm.value;
@@ -59,10 +55,11 @@ export class IncomeComponentComponent {
 
     this.incomeList.push(this.details);
     this.feedbackFormDirective.resetForm();
+
+    location.reload(); // Pour reload le graphique
   }
 
   openCalculatorModal(content: any) {
     this.modalService.open(content);
   }
 }
-
