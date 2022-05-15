@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule } from '@angular/forms';
@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClipboardModule } from 'ngx-clipboard';
 import { NgChartsModule } from 'ng2-charts';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import { StorageServiceService } from './services/storage-service.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -45,8 +46,10 @@ import { ChartsComponent } from './components/charts/charts.component';
     NgbModule,
     ClipboardModule,
     NgChartsModule,
+    MatDatepickerModule,
   ],
   providers: [StorageServiceService],
   bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
 })
 export class AppModule { }
