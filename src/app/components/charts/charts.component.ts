@@ -3,12 +3,12 @@ import { ChartData, ChartType } from 'chart.js';
 import { Details } from 'src/app/interface/details';
 
 @Component({
-  selector: 'app-chart',
-  templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.sass'],
+  selector: 'app-charts',
+  templateUrl: './charts.component.html',
+  styleUrls: ['./charts.component.sass'],
 })
 
-export class ChartComponent implements OnInit {
+export class ChartsComponent implements OnInit {
   // Récupère les props afin de personnaliser le graphique
   @Input() height = '25';
   @Input() width = '25';
