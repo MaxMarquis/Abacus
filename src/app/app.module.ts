@@ -20,7 +20,7 @@ import { DeconnexionComponent } from './components/deconnexion/deconnexion.compo
 import { CalendrierComponent } from './components/calendrier/calendrier.component';
 import { ExpenseComponentComponent } from './expense-component/expense-component.component';
 import { IncomeComponentComponent } from './income-component/income-component.component';
-import { ChartComponent } from './components/chart/chart.component';
+import { ChartsComponent } from './components/charts/charts.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import { ChartComponent } from './components/chart/chart.component';
     CalendrierComponent,
     ExpenseComponentComponent,
     IncomeComponentComponent,
-    ChartComponent,
+    ChartsComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,4 +49,4 @@ import { ChartComponent } from './components/chart/chart.component';
   providers: [StorageServiceService],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
