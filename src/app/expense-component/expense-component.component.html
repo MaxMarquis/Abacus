@@ -26,7 +26,6 @@
             <div class="d-flex">
                 <input formControlName="description" required type="text" class="form-control" id="description"
                     placeholder="Description">
-
             </div>
             <div *ngIf="submitForm.get('description')?.dirty && submitForm.get('description')?.errors"
                 class="alert alert-danger" role="alert">
@@ -41,13 +40,14 @@
             <div class="d-flex">
                 <input type="number" min="1" step="1" formControlName="montant" required class="form-control"
                     id="montant" placeholder="Montant">
-                    <button type="button" (click)="openCalculatorModal(content)"><i class="fa-solid fa-calculator"></i></button>
+                <button type="button" (click)="openCalculatorModal(content)">
+                    <i class="fa-solid fa-calculator"></i>
+                </button>
             </div>
             <div *ngIf="submitForm.get('montant')?.dirty && submitForm.get('montant')?.errors"
                 class="alert alert-danger" role="alert">
                 Ajouter un montant
             </div>
-
         </div>
 
         <br>
@@ -63,7 +63,6 @@
             </div>
         </div>
         <button [disabled]="submitForm.invalid" type="submit" class="btn btn-outline-secondary">Ajouter</button>
-
         <br>
     </form>
 
@@ -88,12 +87,15 @@
     <!-- Calc Modal -->
     <ng-template #content let-modal>
         <div class="modal-header">
-          <h4 class="modal-title">Calculator</h4>
-          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+            <h4 class="modal-title">Calculator</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
         </div>
         <div class="modal-body">
-          <app-calculatrice></app-calculatrice>
+            <app-calculatrice></app-calculatrice>
         </div>
     </ng-template>
 
 </div>
+
+<!-- Graphique Doughnut  -->
+<app-chart height="20" width="20" [dataList]="expenseList"></app-chart>
