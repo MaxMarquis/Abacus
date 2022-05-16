@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Details } from 'src/app/interface/details';
 
 @Component({
   selector: 'app-tableau-de-bord',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tableau-de-bord.component.sass']
 })
 export class TableauDeBordComponent implements OnInit {
+    expenseList: Details[] = [];
+
+  
 
   constructor() { }
 

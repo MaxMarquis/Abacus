@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ExpenseComponentComponent } from './expense-component/expense-component.component';
 import { IncomeComponentComponent } from './income-component/income-component.component';
 import { HomeComponent } from './views/home/home.component';
+import { SommaireComponent } from './components/sommaire/sommaire.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'calendrier', component: CalendrierComponent },
   { path: 'login', component: LoginComponent },
   { path: 'depenses', component: ExpenseComponentComponent },
+  { path: 'sommaire', component: SommaireComponent },
   { path: 'revenus', component: IncomeComponentComponent },
 ];
 

@@ -21,6 +21,7 @@ import { CalendrierComponent } from './components/calendrier/calendrier.componen
 import { ExpenseComponentComponent } from './expense-component/expense-component.component';
 import { IncomeComponentComponent } from './income-component/income-component.component';
 import { ChartsComponent } from './components/charts/charts.component';
+import { SommaireComponent } from './components/sommaire/sommaire.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 
@@ -39,6 +40,7 @@ import { LoginComponent } from './components/login/login.component';
     ExpenseComponentComponent,
     IncomeComponentComponent,
     ChartsComponent,
+    SommaireComponent,
   ],
   imports: [
     BrowserModule,
