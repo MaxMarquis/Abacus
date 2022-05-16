@@ -1,6 +1,6 @@
 {
-  "name": "Stage1029",
-  "version": "1.0.0",
+  "name": "abacus",
+  "version": "1.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
