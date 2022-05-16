@@ -22,6 +22,8 @@ import { ExpenseComponentComponent } from './expense-component/expense-component
 import { IncomeComponentComponent } from './income-component/income-component.component';
 import { ChartsComponent } from './components/charts/charts.component';
 import { SommaireComponent } from './components/sommaire/sommaire.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { SommaireComponent } from './components/sommaire/sommaire.component';
     AideComponent,
     DeconnexionComponent,
     CalendrierComponent,
+    LoginComponent,
     ExpenseComponentComponent,
     IncomeComponentComponent,
     ChartsComponent,
@@ -41,9 +44,10 @@ import { SommaireComponent } from './components/sommaire/sommaire.component';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    AppRoutingModule,
     NgbModule,
     ClipboardModule,
     NgChartsModule,
@@ -51,4 +55,4 @@ import { SommaireComponent } from './components/sommaire/sommaire.component';
   providers: [StorageServiceService],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

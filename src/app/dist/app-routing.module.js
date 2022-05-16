@@ -16,6 +16,7 @@ var tableau_de_bord_component_1 = require("./components/tableau-de-bord/tableau-
 var aide_component_1 = require("./components/aide/aide.component");
 var deconnexion_component_1 = require("./components/deconnexion/deconnexion.component");
 var calendrier_component_1 = require("./components/calendrier/calendrier.component");
+var login_component_1 = require("./components/login/login.component");
 var expense_component_component_1 = require("./expense-component/expense-component.component");
 var income_component_component_1 = require("./income-component/income-component.component");
 var home_component_1 = require("./views/home/home.component");
@@ -29,10 +30,10 @@ var routes = [
     { path: 'aide', component: aide_component_1.AideComponent },
     { path: 'deconnexion', component: deconnexion_component_1.DeconnexionComponent },
     { path: 'calendrier', component: calendrier_component_1.CalendrierComponent },
+    { path: 'login', component: login_component_1.LoginComponent },
     { path: 'depenses', component: expense_component_component_1.ExpenseComponentComponent },
     { path: 'sommaire', component: sommaire_component_1.SommaireComponent },
     { path: 'revenus', component: income_component_component_1.IncomeComponentComponent },
-    { path: 'calendrier', component: calendrier_component_1.CalendrierComponent },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
