@@ -3,4 +3,5 @@ export class Details {
     description!: string;
     montant!: number;
     date!: Date;
+    isIncome: boolean = false;
 }
