@@ -18,11 +18,11 @@ import { TableauDeBordComponent } from './components/tableau-de-bord/tableau-de-
 import { AideComponent } from './components/aide/aide.component';
 import { DeconnexionComponent } from './components/deconnexion/deconnexion.component';
 import { CalendrierComponent } from './components/calendrier/calendrier.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './login/login.component';
 import { ExpenseComponentComponent } from './expense-component/expense-component.component';
 import { IncomeComponentComponent } from './income-component/income-component.component';
 import { ChartsComponent } from './components/charts/charts.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -35,15 +35,15 @@ import { ChartsComponent } from './components/charts/charts.component';
     AideComponent,
     DeconnexionComponent,
     CalendrierComponent,
-    LoginComponent
+    LoginComponent,
+    ExpenseComponentComponent,
+    IncomeComponentComponent,
+    ChartsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ExpenseComponentComponent,
-    IncomeComponentComponent,
-    ChartsComponent,
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
@@ -53,4 +53,4 @@ import { ChartsComponent } from './components/charts/charts.component';
   providers: [StorageServiceService],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

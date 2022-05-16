@@ -7,22 +7,14 @@
           Se connecter
         </p>
         <!-- Formulaire d'accès -->
-        <form >
-          <form>
-            <label>Nom utilisateur</label>
-            <input
-              matInput
-              type="text" id="username" name="username" #username   required
-            />
-          </form>
-
-          <form>
-            <label>Email utilisateur</label>
-            <input
-              matInput type="text" id="email" name="email" #email  required  pattern=[exemple@serveur.domaine]
-            />
-          </form>
-          <button  type="submit" (click)="valider(username.value, email.value)">
+        <form>
+          <label>Nom utilisateur</label>
+          <input matInput type="text" id="username" name="username" #username required />
+          <br>
+          <label>Email utilisateur</label>
+          <input matInput type="text" id="email" name="email" #email required pattern=[exemple@serveur.domaine] />
+          <br>
+          <button type="submit" (click)="valider(username.value, email.value)">
             Connecer
           </button>
         </form>
