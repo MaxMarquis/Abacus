@@ -21,6 +21,7 @@ import { CalendrierComponent } from './components/calendrier/calendrier.componen
 import { ExpenseComponentComponent } from './expense-component/expense-component.component';
 import { IncomeComponentComponent } from './income-component/income-component.component';
 import { ChartsComponent } from './components/charts/charts.component';
+import { SommaireComponent } from './components/sommaire/sommaire.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ChartsComponent } from './components/charts/charts.component';
     ExpenseComponentComponent,
     IncomeComponentComponent,
     ChartsComponent,
+    SommaireComponent,
   ],
   imports: [
     BrowserModule,

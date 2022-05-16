@@ -62,4 +62,10 @@ export class IncomeComponentComponent {
   openCalculatorModal(content: any) {
     this.modalService.open(content);
   }
+deleteIncome(id:number){  
+  this.incomeList = this.incomeList.filter((v , i) => i !==id);  
+  
+  
+}  
+  
 }

@@ -10,6 +10,7 @@ import { CalendrierComponent } from './components/calendrier/calendrier.componen
 import { ExpenseComponentComponent } from './expense-component/expense-component.component';
 import { IncomeComponentComponent } from './income-component/income-component.component';
 import { HomeComponent } from './views/home/home.component';
+import { SommaireComponent } from './components/sommaire/sommaire.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'deconnexion', component: DeconnexionComponent },
   { path: 'calendrier', component: CalendrierComponent },
   { path: 'depenses', component: ExpenseComponentComponent },
+  { path: 'sommaire', component: SommaireComponent },
   { path: 'revenus', component: IncomeComponentComponent },
   { path: 'calendrier', component: CalendrierComponent },
 ];

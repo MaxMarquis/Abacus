@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { StorageServiceService } from 'src/app/services/storage-service.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.sass']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
+    balance: number = 0;
 
-  constructor() { }
+  constructor(private storageService: StorageServiceService) { 
 
-  ngOnInit(): void {
+    this.storageService.balanceValue.subscribe(value => {
+      this.balance = value;
+    });
+  
   }
 
-}
+  }
+
+
+
