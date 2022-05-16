@@ -1,9 +1,8 @@
-
 <div class="container">
-<a [routerLink]="['/depenses']"> <button class="btn btn-danger m-2">Dépenses</button></a>
-<a [routerLink]="['/revenus']"> <button class="btn btn-success m-2">Revenus</button></a>
+  <a [routerLink]="['/depenses']"> <button class="btn btn-danger m-2">Dépenses</button></a>
+  <a [routerLink]="['/revenus']"> <button class="btn btn-success m-2">Revenus</button></a>
 
-<table class="table table-striped">
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">Description</th>
@@ -11,7 +10,14 @@
         <th scope="col">Date</th>
       </tr>
     </thead>
-
+    <tbody>
+      <tr *ngFor="let item of incomeExpenseList"
+        [ngClass]="item.isIncome ? 'text-success font-weight-bold' : 'text-danger font-weight-bold'">
+        <td>{{item.description}}</td>
+        <td>{{item.montant}}</td>
+        <td>{{item.date}}</td>
+      </tr>
+    </tbody>
   </table>
 
 </div>

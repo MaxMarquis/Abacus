@@ -15,11 +15,13 @@ export class StorageServiceService {
   balanceValue: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   incomeList: BehaviorSubject<Details[]> = new BehaviorSubject<Details[]>([]);
   expenseList: BehaviorSubject<Details[]> = new BehaviorSubject<Details[]>([]);
+  incomeExpenseList: BehaviorSubject<Details[]> = new BehaviorSubject<Details[]>([]);
 
   constructor() {
     this.getBalance();
     this.incomeList.next(this.getIncomeList());
     this.expenseList.next(this.getExpenseList());
+    this.incomeExpenseList.next(this.getIncomeExpenseList());
   }
 
   getIncomeList(): Details[] {
@@ -59,9 +61,11 @@ export class StorageServiceService {
 
   addIncome(income: Details): void {
     let incomeList = this.getIncomeList();
+    income.isIncome = true;
     incomeList.push(income);
     localStorage.setItem(this.storageIncomeKey, JSON.stringify(incomeList));
     this.balanceValue.next(this.getBalance());
+    this.incomeExpenseList.next(this.getIncomeExpenseList());
   }
 
   addExpense(expense: Details): void {
@@ -69,6 +73,17 @@ export class StorageServiceService {
     expenseList.push(expense);
     localStorage.setItem(this.storageExpenseKey, JSON.stringify(expenseList));
     this.balanceValue.next(this.getBalance());
+    this.incomeExpenseList.next(this.getIncomeExpenseList());
+  }
+
+  getIncomeExpenseList(): Details[] {
+    let incomeList = this.getIncomeList();
+    let expenseList = this.getExpenseList();
+    let incomeExpenseList = incomeList.concat(expenseList);
+    incomeExpenseList.sort((a: Details, b: Details) => {
+      return new Date(a.date).getTime() - new Date(b.date).getTime();
+    });
+    return incomeExpenseList;
   }
 
 
