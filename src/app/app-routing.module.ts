@@ -8,6 +8,7 @@ import { TableauDeBordComponent } from './components/tableau-de-bord/tableau-de-
 import { AideComponent } from './components/aide/aide.component';
 import { DeconnexionComponent } from './components/deconnexion/deconnexion.component';
 import { CalendrierComponent } from './components/calendrier/calendrier.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'aide', component: AideComponent },
   { path: 'deconnexion', component: DeconnexionComponent },
   { path: 'calendrier', component: CalendrierComponent},
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
