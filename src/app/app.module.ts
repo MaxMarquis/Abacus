@@ -24,6 +24,11 @@ import { ChartsComponent } from './components/charts/charts.component';
 import { SommaireComponent } from './components/sommaire/sommaire.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
+import { SommaireDepensesComponent } from './views/sommaire-depenses/sommaire-depenses.component';
+import { SommaireRevenusComponent } from './views/sommaire-revenus/sommaire-revenus.component';
+import { AjoutDepenseComponent } from './views/ajout-depense/ajout-depense.component';
+import { AjoutRevenuComponent } from './views/ajout-revenu/ajout-revenu.component';
+import { LogoutComponent } from './views/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +47,11 @@ import { LoginComponent } from './components/login/login.component';
     IncomeComponentComponent,
     ChartsComponent,
     SommaireComponent,
+    SommaireDepensesComponent,
+    SommaireRevenusComponent,
+    AjoutDepenseComponent,
+    AjoutRevenuComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
