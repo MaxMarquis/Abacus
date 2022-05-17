@@ -5,7 +5,7 @@ import { StorageServiceService } from 'src/app/services/storage-service.service'
 @Component({
   selector: 'app-sommaire',
   templateUrl: './sommaire.component.html',
-  styleUrls: ['./sommaire.component.scss']
+  styleUrls: ['./sommaire.component.sass']
 })
 export class SommaireComponent implements OnInit {
   incomeExpenseList: Details[] = [];
