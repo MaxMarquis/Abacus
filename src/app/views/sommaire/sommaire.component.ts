@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Details } from 'src/app/interface/details';
+import { StorageServiceService } from 'src/app/services/storage-service.service';
 
 @Component({
   selector: 'app-sommaire',
@@ -7,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SommaireComponent implements OnInit {
 
-  constructor() { }
+  incomeExpenseList: Details[] = [];
 
+  constructor(private storageService: StorageServiceService) {
+    this.storageService.incomeExpenseList.subscribe(value => {
+      this.incomeExpenseList = value;
+    });
+  }
   ngOnInit(): void {
   }
 
