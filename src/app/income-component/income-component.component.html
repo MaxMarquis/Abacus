@@ -1,0 +1,105 @@
+<h5>Income Component</h5>
+
+<div class="container p-2 border border-secondary rounded">
+  <div class="jumbotron jumbotron-fluid bg-light">
+    <div class="container rounded">
+      <h1>Balance</h1>
+      <div class="divider p-1 bg-dark"></div>
+      <div class="d-flex flex-row-reverse">
+        <h4 class="pt-1">{{ balance | currency }}</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <h4>AJOUTER UN REVENU</h4>
+    <div class="divider p-1 bg-dark"></div>
+  </div>
+
+  <br />
+
+  <form novalidate #fform="ngForm" [formGroup]="submitForm" (ngSubmit)="onSubmit()">
+    <br />
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <div class="d-flex">
+        <input formControlName="description" required type="text" class="form-control" id="description"
+          placeholder="Description" />
+      </div>
+      <div *ngIf="
+          submitForm.get('description')?.dirty &&
+          submitForm.get('description')?.errors
+        " class="alert alert-danger" role="alert">
+        Ajouter une description
+      </div>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+      <label for="montant">Montant</label>
+      <div class="d-flex">
+        <input type="number" min="1" step="1" formControlName="montant" required class="form-control" id="montant"
+          placeholder="Montant" />
+        <button type="button" (click)="openCalculatorModal(content)">
+          <i class="fa-solid fa-calculator"></i>
+        </button>
+      </div>
+      <div *ngIf="
+          submitForm.get('montant')?.dirty && submitForm.get('montant')?.errors
+        " class="alert alert-danger" role="alert">
+        Ajouter un montant
+      </div>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+      <label for="date">Date</label>
+      <div class="d-flex">
+        <input formControlName="date" required type="date" class="form-control" id="date" placeholder="Date" />
+      </div>
+      <div *ngIf="submitForm.get('date')?.dirty && submitForm.get('date')?.errors" class="alert alert-danger"
+        role="alert">
+        Ajouter une date
+      </div>
+    </div>
+
+    <button [disabled]="submitForm.invalid" type="submit" class="btn btn-outline-secondary">
+      Ajouter
+    </button>
+    <br />
+  </form>
+
+  <br />
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Description</th>
+        <th scope="col">Montant</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let income of incomeList">
+        <td>{{ income.description }}</td>
+        <td>{{ income.montant | currency }}</td>
+        <td>{{ income.date }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Calc Modal -->
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+      <app-calculatrice></app-calculatrice>
+    </div>
+  </ng-template>
+</div>
+
+<!-- Graphique Doughnut  -->
+<app-charts height="20" width="20" [dataList]="incomeList"></app-charts>
