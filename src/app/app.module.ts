@@ -29,6 +29,7 @@ import { LoginComponent } from './components/login/login.component';
   declarations: [
     AppComponent,
     HomeComponent,
+    TableauDeBordComponent,
     CalculatriceComponent,
     NavbarComponent,
     RapportsComponent,
@@ -55,4 +56,4 @@ import { LoginComponent } from './components/login/login.component';
   providers: [StorageServiceService],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
