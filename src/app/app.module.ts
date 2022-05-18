@@ -57,7 +57,7 @@ import { ChartsComponent } from './components/charts/charts.component';
   ],
 
   providers: [StorageServiceService, 
-    {provide : MAT_DATE_LOCALE, useValue : "fr-FR"},
+    {provide : MAT_DATE_LOCALE, useValue : "fr-FR"}, /* POUR METTRE LES DATEPICKER EN FRANÇAIS */
     { provide: DateAdapter,
       useClass : MomentDateAdapter,
       deps : [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
