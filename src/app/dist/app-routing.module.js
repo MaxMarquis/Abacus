@@ -9,31 +9,28 @@ exports.__esModule = true;
 exports.AppRoutingModule = void 0;
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var calculatrice_component_1 = require("./components/calculatrice/calculatrice.component");
-var navbar_component_1 = require("./components/navbar/navbar.component");
-var rapports_component_1 = require("./components/rapports/rapports.component");
-var tableau_de_bord_component_1 = require("./components/tableau-de-bord/tableau-de-bord.component");
-var aide_component_1 = require("./components/aide/aide.component");
-var deconnexion_component_1 = require("./components/deconnexion/deconnexion.component");
 var calendrier_component_1 = require("./components/calendrier/calendrier.component");
-var login_component_1 = require("./components/login/login.component");
-var expense_component_component_1 = require("./expense-component/expense-component.component");
-var income_component_component_1 = require("./income-component/income-component.component");
-var home_component_1 = require("./views/home/home.component");
-var sommaire_component_1 = require("./components/sommaire/sommaire.component");
+var calculatrice_component_1 = require("./components/calculatrice/calculatrice.component");
+// Pages
+var authentification_component_1 = require("./views/authentification/authentification.component");
+var deconnexion_component_1 = require("./views/deconnexion/deconnexion.component");
+var tableau_de_bord_component_1 = require("./views/tableau-de-bord/tableau-de-bord.component");
+var sommaire_component_1 = require("./views/sommaire/sommaire.component");
+var sommaire_depenses_component_1 = require("./views/sommaire-depenses/sommaire-depenses.component");
+var sommaire_revenus_component_1 = require("./views/sommaire-revenus/sommaire-revenus.component");
+var ajout_depense_component_1 = require("./views/ajout-depense/ajout-depense.component");
+var ajout_revenu_component_1 = require("./views/ajout-revenu/ajout-revenu.component");
 var routes = [
-    { path: '', component: home_component_1.HomeComponent },
-    { path: 'calculatrice', component: calculatrice_component_1.CalculatriceComponent },
-    { path: 'navbar', component: navbar_component_1.NavbarComponent },
-    { path: 'rapports', component: rapports_component_1.RapportsComponent },
+    { path: '', component: authentification_component_1.AuthentificationComponent },
     { path: 'tableauDeBord', component: tableau_de_bord_component_1.TableauDeBordComponent },
-    { path: 'aide', component: aide_component_1.AideComponent },
-    { path: 'deconnexion', component: deconnexion_component_1.DeconnexionComponent },
-    { path: 'calendrier', component: calendrier_component_1.CalendrierComponent },
-    { path: 'login', component: login_component_1.LoginComponent },
-    { path: 'depenses', component: expense_component_component_1.ExpenseComponentComponent },
     { path: 'sommaire', component: sommaire_component_1.SommaireComponent },
-    { path: 'revenus', component: income_component_component_1.IncomeComponentComponent },
+    { path: 'depenses-ajout', component: ajout_depense_component_1.AjoutDepenseComponent },
+    { path: 'depenses', component: sommaire_depenses_component_1.SommaireDepensesComponent },
+    { path: 'revenus-ajout', component: ajout_revenu_component_1.AjoutRevenuComponent },
+    { path: 'revenus', component: sommaire_revenus_component_1.SommaireRevenusComponent },
+    { path: 'calendrier', component: calendrier_component_1.CalendrierComponent },
+    { path: 'calculatrice', component: calculatrice_component_1.CalculatriceComponent },
+    { path: 'deconnexion', component: deconnexion_component_1.DeconnexionComponent },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {

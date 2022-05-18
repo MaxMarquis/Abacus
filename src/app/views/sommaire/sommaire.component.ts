@@ -8,6 +8,7 @@ import { StorageServiceService } from 'src/app/services/storage-service.service'
   styleUrls: ['./sommaire.component.sass']
 })
 export class SommaireComponent implements OnInit {
+
   incomeExpenseList: Details[] = [];
 
   constructor(private storageService: StorageServiceService) {
@@ -15,7 +16,6 @@ export class SommaireComponent implements OnInit {
       this.incomeExpenseList = value;
     });
   }
-
   ngOnInit(): void {
   }
 
