@@ -1,20 +1,17 @@
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { v4 as uuid } from 'uuid';
-
-import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { Details } from 'src/app/interface/details';
+import { StorageServiceService } from 'src/app/services/storage-service.service';
 import { environment } from 'src/environments/environment';
-import { Details } from '../interface/details';
-import { StorageServiceService } from '../services/storage-service.service';
 
 @Component({
-  selector: 'app-income-component',
-  templateUrl: './income-component.component.html',
-  styleUrls: ['./income-component.component.sass']
+  selector: 'app-ajout-depense',
+  templateUrl: './ajout-depense.component.html',
+  styleUrls: ['./ajout-depense.component.sass']
 })
-
-export class IncomeComponentComponent {
+export class AjoutDepenseComponent {
   @ViewChild('fform') feedbackFormDirective: any;
   submitForm!: FormGroup;
   details!: Details;
@@ -22,12 +19,12 @@ export class IncomeComponentComponent {
   storageIncomeKey: string = environment.storageIncomeKey;
   storageExpenseKey: string = environment.storageExpenseKey;
   balance: number = 0;
-  incomeList: Details[] = [];
+  expenseList: Details[] = [];
 
   constructor(private fb: FormBuilder, private storageService: StorageServiceService, private modalService: NgbModal) {
     this.createForm();
-    this.storageService.incomeList.subscribe(value => {
-      this.incomeList = value;
+    this.storageService.expenseList.subscribe(value => {
+      this.expenseList = value;
     });
     this.storageService.balanceValue.subscribe(value => {
       this.balance = value;
@@ -37,7 +34,7 @@ export class IncomeComponentComponent {
   createForm(): void {
     this.submitForm = this.fb.group({
       description: ['', Validators.required],
-      montant: [0, [Validators.required, Validators.pattern("^[0-9-.]+[0-9-.]*$")]],
+      montant: [0, [Validators.required, Validators.pattern("^[0-9-.]+[0-9]*$")]],
       date: [Date.now, Validators.required]
     });
   }
@@ -45,7 +42,7 @@ export class IncomeComponentComponent {
   onSubmit(): void {
     this.details = this.submitForm.value;
     this.details.id = uuid();
-    this.storageService.addIncome(this.details);
+    this.storageService.addExpense(this.details);
 
     this.submitForm.reset({
       description: '',
@@ -53,19 +50,12 @@ export class IncomeComponentComponent {
       date: new Date()
     });
 
-    this.incomeList.push(this.details);
+    this.expenseList.push(this.details);
     this.feedbackFormDirective.resetForm();
-
     location.reload(); // Pour reload le graphique
   }
 
   openCalculatorModal(content: any) {
     this.modalService.open(content);
   }
-  deleteIncome(id: number) {
-    this.incomeList = this.incomeList.filter((v, i) => i !== id);
-
-
-  }
-
 }

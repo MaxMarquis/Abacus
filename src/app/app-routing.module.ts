@@ -1,32 +1,35 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CalculatriceComponent } from './components/calculatrice/calculatrice.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { RapportsComponent } from './components/rapports/rapports.component';
-import { TableauDeBordComponent } from './components/tableau-de-bord/tableau-de-bord.component';
-import { AideComponent } from './components/aide/aide.component';
-import { DeconnexionComponent } from './components/deconnexion/deconnexion.component';
+
 import { CalendrierComponent } from './components/calendrier/calendrier.component';
-import { ExpenseComponentComponent } from './expense-component/expense-component.component';
-import { IncomeComponentComponent } from './income-component/income-component.component';
-import { HomeComponent } from './views/home/home.component';
+import { CalculatriceComponent } from './components/calculatrice/calculatrice.component';
+
+// Pages
+import { AuthentificationComponent } from './views/authentification/authentification.component';
+import { DeconnexionComponent } from './views/deconnexion/deconnexion.component';
+import { TableauDeBordComponent } from './views/tableau-de-bord/tableau-de-bord.component';
+import { SommaireComponent } from './views/sommaire/sommaire.component';
+import { SommaireDepensesComponent } from './views/sommaire-depenses/sommaire-depenses.component';
+import { SommaireRevenusComponent } from './views/sommaire-revenus/sommaire-revenus.component';
+import { AjoutDepenseComponent } from './views/ajout-depense/ajout-depense.component';
+import { AjoutRevenuComponent } from './views/ajout-revenu/ajout-revenu.component';
+
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'calculatrice', component: CalculatriceComponent },
-  { path: 'navbar', component: NavbarComponent },
-  { path: 'rapports', component: RapportsComponent },
+  { path: '', component: AuthentificationComponent },
   { path: 'tableauDeBord', component: TableauDeBordComponent },
-  { path: 'aide', component: AideComponent },
+  { path: 'sommaire', component: SommaireComponent },
+  { path: 'depenses-ajout', component: AjoutDepenseComponent },
+  { path: 'depenses', component: SommaireDepensesComponent },
+  { path: 'revenus-ajout', component: AjoutRevenuComponent },
+  { path: 'revenus', component: SommaireRevenusComponent },
+  { path: 'calendrier', component: CalendrierComponent },
+  { path: 'calculatrice', component: CalculatriceComponent },
   { path: 'deconnexion', component: DeconnexionComponent },
-  { path: 'calendrier', component: CalendrierComponent },
-  { path: 'depenses', component: ExpenseComponentComponent },
-  { path: 'revenus', component: IncomeComponentComponent },
-  { path: 'calendrier', component: CalendrierComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

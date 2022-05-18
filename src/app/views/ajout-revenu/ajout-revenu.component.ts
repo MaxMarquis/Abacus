@@ -5,16 +5,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { environment } from 'src/environments/environment';
-import { Details } from '../interface/details';
-import { StorageServiceService } from '../services/storage-service.service';
+import { Details } from 'src/app/interface/details';
+import { StorageServiceService } from 'src/app/services/storage-service.service';
 
 @Component({
-  selector: 'app-income-component',
-  templateUrl: './income-component.component.html',
-  styleUrls: ['./income-component.component.sass']
+  selector: 'app-ajout-revenu',
+  templateUrl: './ajout-revenu.component.html',
+  styleUrls: ['./ajout-revenu.component.sass']
 })
 
-export class IncomeComponentComponent {
+export class AjoutRevenuComponent {
   @ViewChild('fform') feedbackFormDirective: any;
   submitForm!: FormGroup;
   details!: Details;
@@ -64,8 +64,6 @@ export class IncomeComponentComponent {
   }
   deleteIncome(id: number) {
     this.incomeList = this.incomeList.filter((v, i) => i !== id);
-
-
   }
 
 }
