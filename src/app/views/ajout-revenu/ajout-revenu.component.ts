@@ -33,7 +33,7 @@ export class AjoutRevenuComponent {
       this.balance = value;
     });
   }
-
+  
   createForm(): void {
     this.submitForm = this.fb.group({
       description: ['', Validators.required],
