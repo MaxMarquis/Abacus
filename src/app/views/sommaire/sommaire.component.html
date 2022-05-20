@@ -1,11 +1,15 @@
 <div class="container">
+
+
   <a [routerLink]="['/depenses']"> <button class="btn btn-danger m-2">Dépenses</button></a>
   <a [routerLink]="['/revenus']"> <button class="btn btn-success m-2">Revenus</button></a>
+
+  <h1>Sommaire des transactions</h1>
 
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">Description</th>
+        <th scope="col">Catégorie</th>
         <th scope="col">Montant</th>
         <th scope="col">Date</th>
       </tr>
@@ -19,5 +23,8 @@
       </tr>
     </tbody>
   </table>
+
+      <!--RETOUR TABLEAU DE BORD -->
+      <button routerLink="/tableauDeBord">RETOUR AU TABLEAU DE BORD </button>
 
 </div>
