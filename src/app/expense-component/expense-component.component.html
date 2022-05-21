@@ -14,7 +14,8 @@
       <!-- categorie -->
       <label for="description">Catégorie</label>
       <div class="d-flex">
-        <input formControlName="description" required type="text" class="form-control" id="description" placeholder="Inscrire une catégorie de dépense" />
+        <input formControlName="description" required type="text" class="form-control" id="description"
+          placeholder="Inscrire une catégorie de dépense" />
       </div>
       <div *ngIf="
           submitForm.get('description')?.dirty &&
@@ -27,12 +28,14 @@
     <div class="form-group">
       <label for="montant">Montant</label>
       <div class="d-flex">
-        <input type="number" min="1" step="1" formControlName="montant" required class="form-control" id="montant" placeholder="Montant" />
+        <input type="number" min="1" step="1" formControlName="montant" required class="form-control" id="montant"
+          placeholder="Montant" />
         <button type="button" (click)="openCalculatorModal(content)">
           <i class="fa-solid fa-calculator"></i>
         </button>
       </div>
-      <div *ngIf=" submitForm.get('montant')?.dirty && submitForm.get('montant')?.errors " class="alert alert-danger" role="alert"> Ajouter un montant </div>
+      <div *ngIf=" submitForm.get('montant')?.dirty && submitForm.get('montant')?.errors " class="alert alert-danger"
+        role="alert"> Ajouter un montant </div>
     </div>
 
 
@@ -43,7 +46,8 @@
       <div class="d-flex">
         <input formControlName="date" required type="date" class="form-control" id="date" placeholder="Date" />
       </div>
-      <div *ngIf="submitForm.get('date')?.dirty && submitForm.get('date')?.errors" class="alert alert-danger" role="alert"> Ajouter une date </div>
+      <div *ngIf="submitForm.get('date')?.dirty && submitForm.get('date')?.errors" class="alert alert-danger"
+        role="alert"> Ajouter une date </div>
     </div>
     <!-- button validation - ajout -->
     <button [disabled]="submitForm.invalid" type="submit" class="btn btn-outline-secondary"> + Ajouter </button>
@@ -67,7 +71,7 @@
         <td>{{ expense.description }}</td>
         <td>{{ expense.montant | currency }}</td>
         <td>{{ expense.date }}</td>
-        <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+        <td><i class="fa fa-trash" aria-hidden="true" (click)="removeExpense(expense)"></i></td>
       </tr>
     </tbody>
   </table>

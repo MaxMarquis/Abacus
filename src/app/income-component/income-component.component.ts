@@ -34,6 +34,11 @@ export class IncomeComponentComponent {
     });
   }
 
+  // Delete Income
+  removeIncome(d: Details): void {
+    this.storageService.removeIncome(d);
+  }
+
   createForm(): void {
     this.submitForm = this.fb.group({
       description: ['', Validators.required],
@@ -53,10 +58,9 @@ export class IncomeComponentComponent {
       date: new Date()
     });
 
-    this.incomeList.push(this.details);
     this.feedbackFormDirective.resetForm();
 
-    location.reload(); // Pour reload le graphique
+    // location.reload(); // Pour reload le graphique
   }
 
   openCalculatorModal(content: any) {
