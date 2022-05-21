@@ -33,6 +33,11 @@ export class ExpenseComponentComponent {
     });
   }
 
+  // Delete Expense
+  removeExpense(d: Details): void {
+    this.storageService.removeExpense(d);
+  }
+
   createForm(): void {
     this.submitForm = this.fb.group({
       description: ['', Validators.required],
@@ -52,9 +57,8 @@ export class ExpenseComponentComponent {
       date: new Date()
     });
 
-    this.expenseList.push(this.details);
     this.feedbackFormDirective.resetForm();
-    location.reload(); // Pour reload le graphique
+    // location.reload(); // Pour reload le graphique
   }
 
   openCalculatorModal(content: any) {

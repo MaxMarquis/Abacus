@@ -18,13 +18,13 @@
       <tr *ngFor="let item of incomeExpenseList"
         [ngClass]="item.isIncome ? 'text-success font-weight-bold' : 'text-danger font-weight-bold'">
         <td>{{item.description}}</td>
-        <td>{{item.montant}}</td>
+        <td>{{item.montant | currency}}</td>
         <td>{{item.date}}</td>
       </tr>
     </tbody>
   </table>
 
-      <!--RETOUR TABLEAU DE BORD -->
-      <button routerLink="/tableauDeBord">RETOUR AU TABLEAU DE BORD </button>
+  <!--RETOUR TABLEAU DE BORD -->
+  <button routerLink="/tableauDeBord">RETOUR AU TABLEAU DE BORD </button>
 
 </div>
