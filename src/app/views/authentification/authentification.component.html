@@ -1,27 +1,39 @@
-<div>
+
   <main class="row">
     <section class="col-12 col-md-6 d-flex align-items-center">
       <div class="col-md-8 offset-md-1">
         <img src="https://via.placeholder.com/150" alt="placeholder">
-        <!-- Formulaire d'accès -->
+
+        <!-- FORMULAIRE DE CONNEXION -->
         <form>
+
+          <!-- adresse courriel -->
           <label>Adresse courriel</label>
           <input matInput type="text" id="email" name="email" #email required pattern=[exemple@serveur.domaine] />
           <br>
+
+          <!-- mot de passe -->
           <label>Mot de passe</label>
           <input matInput type="password" id="password" name="password" #password required />
           <br>
+
+          <!-- case à cocher -->
           <input type="checkbox" name="remember" id="remember">
           <label for="remember">Mémoriser le mot de passe</label>
           <br>
+
+          <!-- button validation -->
           <button type="submit" (click)="valider(password.value, email.value)">
             <span>Se Connecter</span>
           </button>
         </form>
+
+        <!-- /FORMULAIRE DE CONNEXION -->
         <a href="#">Vous n'avez pas de compte ?</a>
         <br>
         <a href="#">Mot de passe oublié ?</a>
       </div>
     </section>
+    <!-- /CONTENU PRINCIPAL -->
+
   </main>
-</div>
