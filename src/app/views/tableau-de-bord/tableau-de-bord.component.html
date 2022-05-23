@@ -1,13 +1,16 @@
 <!--  balance  -->
-<h1 class=" container pt-1">BALANCE {{ balance | currency }}</h1>
+<app-balance></app-balance>
 
 <!-- NAVBAR en attendant  -->
 <app-navbar></app-navbar>
 
 <!-- !  Boutons revenus / dépense -->
-<button routerLink="/revenus-ajout">AJOUT REVENU</button>
-<button routerLink="/depenses-ajout">AJOUT DÉPENSE</button>
-
+<a [routerLink]="['/depenses']">
+  <button class="btn btn-danger m-2">Dépenses</button>
+</a>
+<a [routerLink]="['/revenus']">
+  <button class="btn btn-success m-2">Revenus</button>
+</a>
 
 <h1>Portrait global</h1>
 

@@ -1,0 +1,9 @@
+.balance {
+  background-color: black;
+  color: white;
+  width: 350px;
+  height: 150px;
+  margin-top: 15px;
+  border-radius: 15%;
+  padding: 20px 0;
+}
