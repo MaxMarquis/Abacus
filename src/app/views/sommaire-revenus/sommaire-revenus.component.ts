@@ -10,16 +10,14 @@ import { StorageServiceService } from 'src/app/services/storage-service.service'
 export class SommaireRevenusComponent implements OnInit {
 
   incomeList: Details[] = [];
-  balance: number = 0;
+
 
   constructor(private storageService: StorageServiceService) {
     this.storageService.incomeList.subscribe(value => {
       
       this.incomeList = value;
     });
-    this.storageService.balanceValue.subscribe(value => {
-      this.balance = value;
-    });
+
   }
 
     // Delete Income

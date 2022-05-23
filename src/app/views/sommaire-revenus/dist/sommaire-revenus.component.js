@@ -13,12 +13,8 @@ var SommaireRevenusComponent = /** @class */ (function () {
         var _this = this;
         this.storageService = storageService;
         this.incomeList = [];
-        this.balance = 0;
         this.storageService.incomeList.subscribe(function (value) {
             _this.incomeList = value;
-        });
-        this.storageService.balanceValue.subscribe(function (value) {
-            _this.balance = value;
         });
     }
     // Delete Income
