@@ -6,13 +6,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.IncomeComponentComponent = void 0;
+exports.ExpenseComponentComponent = void 0;
 var uuid_1 = require("uuid");
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var environment_1 = require("src/environments/environment");
-var IncomeComponentComponent = /** @class */ (function () {
-    function IncomeComponentComponent(fb, storageService, modalService) {
+var ExpenseComponentComponent = /** @class */ (function () {
+    function ExpenseComponentComponent(fb, storageService, modalService) {
         var _this = this;
         this.fb = fb;
         this.storageService = storageService;
@@ -21,35 +21,36 @@ var IncomeComponentComponent = /** @class */ (function () {
         this.storageIncomeKey = environment_1.environment.storageIncomeKey;
         this.storageExpenseKey = environment_1.environment.storageExpenseKey;
         this.balance = 0;
-        this.incomeList = [];
+        this.expenseList = [];
         this.createForm();
-        this.storageService.incomeList.subscribe(function (value) {
-            _this.incomeList = value;
+        this.storageService.expenseList.subscribe(function (value) {
+            _this.expenseList = value;
         });
         this.storageService.balanceValue.subscribe(function (value) {
             _this.balance = value;
         });
     }
-    // Delete Income
-    IncomeComponentComponent.prototype.removeIncome = function (d) {
-        if (confirm('Voulez vous supprimer votre revenu ?')) {
-            this.storageService.removeIncome(d);
+    // Delete Expense
+    ExpenseComponentComponent.prototype.removeExpense = function (d) {
+        if (confirm('Voulez vous supprimer cette dépense ?')) {
+            this.storageService.removeExpense(d);
+            (d);
         }
         else {
             console.log('ne pas supprimer');
         }
     };
-    IncomeComponentComponent.prototype.createForm = function () {
+    ExpenseComponentComponent.prototype.createForm = function () {
         this.submitForm = this.fb.group({
             description: ['', forms_1.Validators.required],
-            montant: [0, [forms_1.Validators.required, forms_1.Validators.pattern("^[0-9-.]+[0-9-.]*$")]],
+            montant: [0, [forms_1.Validators.required, forms_1.Validators.pattern("^[0-9-.]+[0-9]*$")]],
             date: [Date.now, forms_1.Validators.required]
         });
     };
-    IncomeComponentComponent.prototype.onSubmit = function () {
+    ExpenseComponentComponent.prototype.onSubmit = function () {
         this.details = this.submitForm.value;
         this.details.id = uuid_1.v4();
-        this.storageService.addIncome(this.details);
+        this.storageService.addExpense(this.details);
         this.submitForm.reset({
             description: '',
             montant: 0,
@@ -58,23 +59,19 @@ var IncomeComponentComponent = /** @class */ (function () {
         this.feedbackFormDirective.resetForm();
         // location.reload(); // Pour reload le graphique
     };
-    IncomeComponentComponent.prototype.openCalculatorModal = function (content) {
+    ExpenseComponentComponent.prototype.openCalculatorModal = function (content) {
         this.modalService.open(content);
-    };
-    IncomeComponentComponent.prototype.deleteIncome = function (id) {
-        this.incomeList = this.incomeList.filter(function (v, i) { return i !== id; });
-        alert("suppression");
     };
     __decorate([
         core_1.ViewChild('fform')
-    ], IncomeComponentComponent.prototype, "feedbackFormDirective");
-    IncomeComponentComponent = __decorate([
+    ], ExpenseComponentComponent.prototype, "feedbackFormDirective");
+    ExpenseComponentComponent = __decorate([
         core_1.Component({
-            selector: 'app-income-component',
-            templateUrl: './income-component.component.html',
-            styleUrls: ['./income-component.component.sass']
+            selector: 'app-expense-component',
+            templateUrl: './expense-component.component.html',
+            styleUrls: ['./expense-component.component.sass']
         })
-    ], IncomeComponentComponent);
-    return IncomeComponentComponent;
+    ], ExpenseComponentComponent);
+    return ExpenseComponentComponent;
 }());
-exports.IncomeComponentComponent = IncomeComponentComponent;
+exports.ExpenseComponentComponent = ExpenseComponentComponent;
