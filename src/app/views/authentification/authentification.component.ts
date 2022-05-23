@@ -16,7 +16,7 @@ export class AuthentificationComponent implements OnInit {
     if ((password === '')&&(email === "")){
       alert('Il faut entrer votre Email et votre mot de passe pour vous connecter');
     } else if (email === '') {
-      alert('le champs Email ne doit etre vide');
+      alert('le champs Email ne doit pas etre vide');
     } 
     else if (password === '') {
       alert('Vous devez entrer le mot de passe ou alors le mot de passe est incorrect ');
