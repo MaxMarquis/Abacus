@@ -6,7 +6,7 @@
         <!-- Formulaire d'accès -->
         <form>
           <label>Adresse courriel</label>
-          <input matInput type="text" id="email" name="email" #email required pattern=[exemple@serveur.domaine] />
+          <input matInput type="text" id="email" name="email" #email required pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" placeholder="exemple@message.com"/>
           <br>
           <label>Mot de passe</label>
           <input matInput type="password" id="password" name="password" #password required />
