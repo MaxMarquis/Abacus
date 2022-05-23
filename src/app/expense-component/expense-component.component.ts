@@ -35,7 +35,12 @@ export class ExpenseComponentComponent {
 
   // Delete Expense
   removeExpense(d: Details): void {
-    this.storageService.removeExpense(d);
+    if (confirm('Voulez vous supprimer cette dépense ?')) {
+      this.storageService.removeExpense(d);(d);
+    } else {
+     console.log('ne pas supprimer');
+    }
+    
   }
 
   createForm(): void {

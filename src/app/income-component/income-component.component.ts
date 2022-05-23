@@ -36,7 +36,12 @@ export class IncomeComponentComponent {
 
   // Delete Income
   removeIncome(d: Details): void {
-    this.storageService.removeIncome(d);
+    if (confirm('Voulez vous supprimer votre revenu ?')) {
+      this.storageService.removeIncome(d);
+    } else {
+     console.log('ne pas supprimer');
+    }
+    
   }
 
   createForm(): void {
@@ -67,9 +72,11 @@ export class IncomeComponentComponent {
     this.modalService.open(content);
   }
   deleteIncome(id: number) {
+
     this.incomeList = this.incomeList.filter((v, i) => i !== id);
 
-
+    alert("suppression");
+    
   }
 
 }
