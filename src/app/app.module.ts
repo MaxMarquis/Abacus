@@ -27,6 +27,7 @@ import { SommaireDepensesComponent } from './views/sommaire-depenses/sommaire-de
 import { SommaireRevenusComponent } from './views/sommaire-revenus/sommaire-revenus.component';
 import { AjoutDepenseComponent } from './views/ajout-depense/ajout-depense.component';
 import { AjoutRevenuComponent } from './views/ajout-revenu/ajout-revenu.component';
+import { BalanceComponent } from './components/balance/balance.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { AjoutRevenuComponent } from './views/ajout-revenu/ajout-revenu.componen
     SommaireRevenusComponent,
     AjoutDepenseComponent,
     AjoutRevenuComponent,
+    BalanceComponent,
   ],
   imports: [
     BrowserModule,
