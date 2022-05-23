@@ -14,10 +14,26 @@ var SommaireRevenusComponent = /** @class */ (function () {
         this.storageService = storageService;
         this.incomeList = [];
         this.balance = 0;
-        this.storageService.incomeExpenseList.subscribe(function (value) {
+        this.storageService.incomeList.subscribe(function (value) {
             _this.incomeList = value;
         });
+        this.storageService.balanceValue.subscribe(function (value) {
+            _this.balance = value;
+        });
     }
+    // Delete Income
+    SommaireRevenusComponent.prototype.removeIncome = function (d) {
+        if (confirm('Voulez vous supprimer votre revenu ?')) {
+            this.storageService.removeIncome(d);
+        }
+        else {
+            console.log('ne pas supprimer');
+        }
+        location.reload(); // Pour reload le graphique
+    };
+    SommaireRevenusComponent.prototype.deleteIncome = function (id) {
+        this.incomeList = this.incomeList.filter(function (v, i) { return i !== id; });
+    };
     SommaireRevenusComponent.prototype.ngOnInit = function () {
     };
     SommaireRevenusComponent = __decorate([

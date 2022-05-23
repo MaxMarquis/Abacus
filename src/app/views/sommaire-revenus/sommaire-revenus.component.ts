@@ -13,10 +13,31 @@ export class SommaireRevenusComponent implements OnInit {
   balance: number = 0;
 
   constructor(private storageService: StorageServiceService) {
-    this.storageService.incomeExpenseList.subscribe(value => {
+    this.storageService.incomeList.subscribe(value => {
+      
       this.incomeList = value;
     });
+    this.storageService.balanceValue.subscribe(value => {
+      this.balance = value;
+    });
   }
-  ngOnInit(): void {
-  }
+
+    // Delete Income
+    removeIncome(d: Details): void {
+      if (confirm('Voulez vous supprimer votre revenu ?')) {
+        this.storageService.removeIncome(d);
+      } else {
+       console.log('ne pas supprimer');
+      }
+
+      location.reload(); // Pour reload le graphique
+      
+    }
+    deleteIncome(id: number) {
+
+      this.incomeList = this.incomeList.filter((v, i) => i !== id);
+      
+    }
+    ngOnInit(): void {
+    }
 }
