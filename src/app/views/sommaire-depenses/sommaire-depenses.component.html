@@ -11,9 +11,26 @@
     
       <h1>Sommaire des dépenses</h1>
 
-      <!--* SELECT POUR LA PÉRIODE DÉSIRÉE-->
-      <input type="select" name="periode" id="periode-depense" placeholder="Choisir la période désirée">
+  <div ngbDropdown class="d-inline-block">
+    <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Choisir la période désirée</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      <button ngbDropdownItem>Janvier</button>
+      <button ngbDropdownItem>Février</button>
+      <button ngbDropdownItem>Mars</button>
+      <button ngbDropdownItem>Avril</button>
+      <button ngbDropdownItem>Mai</button>
+      <button ngbDropdownItem>Juin</button>
+      <button ngbDropdownItem>Juillet</button>
+      <button ngbDropdownItem>Août</button>
+      <button ngbDropdownItem>Septembre</button>
+      <button ngbDropdownItem>Octobre</button>
+      <button ngbDropdownItem>Novembre</button>
+      <button ngbDropdownItem>Décembre</button>
+    </div>
+    <i class="fa-solid fa-calendar-days"></i>
       <section>
+          
+
         <h2>Dépenses</h2>
         <!--graphique des revenus-->
         <app-charts height="20" width="20" [dataList]="expenseList"></app-charts>
@@ -43,4 +60,4 @@
     
     
       <!--RETOUR TABLEAU DE BORD -->
-      <button routerLink="/tableauDeBord">RETOUR AU TABLEAU DE BORD </button>
+      <button class="btn btn-primary" routerLink="/tableauDeBord">RETOUR AU TABLEAU DE BORD</button>
