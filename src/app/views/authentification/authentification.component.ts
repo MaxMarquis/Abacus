@@ -13,30 +13,20 @@ export class AuthentificationComponent implements OnInit {
   ngOnInit(): void { }
 
   valider(password: string, email: string) {
-    if (email === '')  {
-      alert('les champs "Email" et "Mot de passe" ne doivent pas etre vides');
-      return
+    if (email === '' || password === '') {
+      return alert('Les champs "Email" et "Mot de passe" ne doivent pas être vides');
     }
-    if(email){
-      this.validateEmail(email);
-    } 
-    if (password === '') {
-      alert('Vous devez entrer un mot de passe aussi!!!');
-    }
-    else {
-      this.router.navigateByUrl('/tableauDeBord')
+    if (this.validateEmail(email)) {
+      this.router.navigateByUrl('/tableauDeBord');
     }
   }
 
   validateEmail(email: string) {
     var format = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (email.match(format)){
-      return (true);
+    if (!email.match(format)) {
+      return alert("L'adresse Email est incorrect. le format doit est : 'NomEmail@serveurmessagerie.domaine' !");
     }
-    else {
-      alert("L'adresse Email est incorrect. le format doit est : 'NomEmail@serveurmessagerie.domaine' !");
-      return
-    }
+    return true
   }
 }
 
