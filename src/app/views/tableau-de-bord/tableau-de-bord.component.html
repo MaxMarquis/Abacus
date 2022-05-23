@@ -1,46 +1,41 @@
 <!--  balance  -->
 <app-balance></app-balance>
-
 <!-- NAVBAR en attendant  -->
 <app-navbar></app-navbar>
 
-<!-- !  Boutons revenus / dépense -->
-<a [routerLink]="['/depenses']">
-  <button class="btn btn-danger m-2">Dépenses</button>
-</a>
-<a [routerLink]="['/revenus']">
-  <button class="btn btn-success m-2">Revenus</button>
-</a>
+<div class="container">
+	<!-- !  Boutons revenus / dépense -->
+	<a [routerLink]="['/depenses']">
+		<button class="btn btn-danger m-2">Dépenses</button>
+	</a>
+	<a [routerLink]="['/revenus']">
+		<button class="btn btn-success m-2">Revenus</button>
+	</a>
 
-<h1>Portrait global</h1>
-
-<!-- Portait des dépenses-->
-<section>
-
-  <h2>Portrait des dépenses</h2>
-
-  <!--graphique PORTRAIT-DEPENSES-->
-  <app-charts height="20" width="20" [dataList]="expenseList"></app-charts>
-
-  <!-- * LIEN VERS SOMMAIRE -->
-  <button><a routerLink="/depenses">Sommaire</a></button>
-
-</section>
+	<h1>Portrait global</h1>
+	<!-- Portait des dépenses-->
 
 
-<!-- Portait des revenus-->
-<section>
 
-  <h2>Portrait des revenus</h2>
-
-  <!--graphique PORTRAIT-REVENUS-->
-  <app-charts height="20" width="20" [dataList]="incomeList"></app-charts>
-
-  <!-- * LIEN VERS SOMMAIRE REVENUS -->
-  <button><a routerLink="/revenus">Sommaire</a></button>
-
-</section>
+	<section>
+		<h2>Portrait des dépenses</h2>
+		<!--graphique PORTRAIT-DEPENSES-->
+		<app-charts height="20" width="20" [dataList]="expenseList"></app-charts>
+		<!-- * LIEN VERS SOMMAIRE -->
+		<button class="btn btn-danger" routerLink="/depenses">SOMMAIRE</button>
+	</section>
 
 
-<!-- * LIEN VERS SOMMAIRE COMPLET -->
-<button routerLink="/sommaire">SOMMAIRE COMPLET DES DÉPENSES ET REVENUS</button>
+	<!-- Portait des revenus-->
+	<section>
+		<h2>Portrait des revenus</h2>
+		<!--graphique PORTRAIT-REVENUS-->
+		<app-charts height="20" width="20" [dataList]="incomeList"></app-charts>
+		<!-- * LIEN VERS SOMMAIRE REVENUS -->
+    <button class="btn btn-success" routerLink="/revenus">SOMMAIRE</button>
+	</section>
+
+
+	<!-- * LIEN VERS SOMMAIRE COMPLET -->
+	<button class="btn btn-primary" routerLink="/sommaire">SOMMAIRE COMPLET DES DÉPENSES ET REVENUS</button>
+</div>
