@@ -47,7 +47,9 @@ export class AjoutDepenseComponent {
     this.submitForm.reset({
       description: '',
       montant: 0,
-      date: new Date()
+      date: new Date(),
+      if : alert("Dépense ajoutée")
+
     });
 
     this.expenseList.push(this.details);

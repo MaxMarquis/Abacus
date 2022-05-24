@@ -50,7 +50,8 @@ export class AjoutRevenuComponent {
     this.submitForm.reset({
       description: '',
       montant: 0,
-      date: new Date()
+      date: new Date(),
+      if : alert("revenu ajouté")
     });
 
     this.incomeList.push(this.details);

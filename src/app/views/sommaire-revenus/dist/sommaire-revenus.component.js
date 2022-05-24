@@ -19,7 +19,7 @@ var SommaireRevenusComponent = /** @class */ (function () {
     }
     // Delete Income
     SommaireRevenusComponent.prototype.removeIncome = function (d) {
-        if (confirm('Voulez vous supprimer votre revenu ?')) {
+        if (confirm('Êtes-vous sur de vouloir supprimer cette donnée ?')) {
             this.storageService.removeIncome(d);
         }
         else {

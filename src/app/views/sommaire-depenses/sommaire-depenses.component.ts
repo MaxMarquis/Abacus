@@ -23,7 +23,7 @@ export class SommaireDepensesComponent implements OnInit  {
 
     // Delete Expense
     removeExpense(d: Details): void {
-      if (confirm('Voulez vous supprimer votre dépense ?')) {
+      if (confirm('Êtes-vous sur de vouloir supprimer cette donnée ?')) {
         this.storageService.removeExpense(d);
       } else {
        console.log('ne pas supprimer');
