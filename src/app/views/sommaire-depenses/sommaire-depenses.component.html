@@ -1,1 +1,63 @@
-<app-expense-component></app-expense-component>
+<div class="container">
+    <!--  balance  -->
+    <app-balance></app-balance>
+    
+      <a [routerLink]="['/revenus-ajout']">
+        <button class="btn btn-success m-2">AJOUT REVENU</button>
+      </a>
+      <a [routerLink]="['/depenses-ajout']">
+        <button class="btn btn-danger m-2">AJOUT DÉPENSE</button>
+      </a>
+    
+      <h1>Sommaire des dépenses</h1>
+
+  <div ngbDropdown class="d-inline-block">
+    <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Choisir la période désirée</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      <button ngbDropdownItem>Janvier</button>
+      <button ngbDropdownItem>Février</button>
+      <button ngbDropdownItem>Mars</button>
+      <button ngbDropdownItem>Avril</button>
+      <button ngbDropdownItem>Mai</button>
+      <button ngbDropdownItem>Juin</button>
+      <button ngbDropdownItem>Juillet</button>
+      <button ngbDropdownItem>Août</button>
+      <button ngbDropdownItem>Septembre</button>
+      <button ngbDropdownItem>Octobre</button>
+      <button ngbDropdownItem>Novembre</button>
+      <button ngbDropdownItem>Décembre</button>
+    </div>
+    <i class="fa-solid fa-calendar-days"></i>
+      <section>
+          
+
+        <h2>Dépenses</h2>
+        <!--graphique des revenus-->
+        <app-charts height="20" width="20" [dataList]="expenseList"></app-charts>
+      </section>
+    
+      <!-- Tableau du sommaires des dépenses -->
+      <section>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Catégorie</th>
+              <th scope="col">Montant</th>
+              <th scope="col">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let expense of expenseList">
+              <td class="d-none">{{ expense.id }}</td>
+              <td>{{ expense.description }}</td>
+              <td>{{ expense.montant | currency }}</td>
+              <td>{{ expense.date }}</td>
+              <td><i class="fa fa-trash" aria-hidden="true" (click)="removeExpense(expense)"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    
+    
+      <!--RETOUR TABLEAU DE BORD -->
+      <button class="btn btn-primary" routerLink="/tableauDeBord">RETOUR AU TABLEAU DE BORD</button>

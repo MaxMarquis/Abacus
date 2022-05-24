@@ -34,6 +34,16 @@ export class IncomeComponentComponent {
     });
   }
 
+  // Delete Income
+  removeIncome(d: Details): void {
+    if (confirm('Voulez vous supprimer votre revenu ?')) {
+      this.storageService.removeIncome(d);
+    } else {
+     console.log('ne pas supprimer');
+    }
+    
+  }
+
   createForm(): void {
     this.submitForm = this.fb.group({
       description: ['', Validators.required],
@@ -53,19 +63,20 @@ export class IncomeComponentComponent {
       date: new Date()
     });
 
-    this.incomeList.push(this.details);
     this.feedbackFormDirective.resetForm();
 
-    location.reload(); // Pour reload le graphique
+    // location.reload(); // Pour reload le graphique
   }
 
   openCalculatorModal(content: any) {
     this.modalService.open(content);
   }
   deleteIncome(id: number) {
+
     this.incomeList = this.incomeList.filter((v, i) => i !== id);
 
-
+    alert("suppression");
+    
   }
 
 }

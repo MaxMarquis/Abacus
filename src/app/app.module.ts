@@ -30,7 +30,11 @@ import { SommaireDepensesComponent } from './views/sommaire-depenses/sommaire-de
 import { SommaireRevenusComponent } from './views/sommaire-revenus/sommaire-revenus.component';
 import { AjoutDepenseComponent } from './views/ajout-depense/ajout-depense.component';
 import { AjoutRevenuComponent } from './views/ajout-revenu/ajout-revenu.component';
+<<<<<<< HEAD
 import { CalendrierSommaireComponent } from './components/calendrier-sommaire/calendrier-sommaire.component';
+=======
+import { BalanceComponent } from './components/balance/balance.component';
+>>>>>>> 9ce2214dcf3424c9d0411636a66b3a3d4c66e6e9
 
 
 @NgModule({
@@ -50,7 +54,11 @@ import { CalendrierSommaireComponent } from './components/calendrier-sommaire/ca
     SommaireRevenusComponent,
     AjoutDepenseComponent,
     AjoutRevenuComponent,
+<<<<<<< HEAD
     CalendrierSommaireComponent,
+=======
+    BalanceComponent,
+>>>>>>> 9ce2214dcf3424c9d0411636a66b3a3d4c66e6e9
   ],
   imports: [
     BrowserModule,

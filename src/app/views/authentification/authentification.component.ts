@@ -12,14 +12,21 @@ export class AuthentificationComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  valider(firstname: string, email: string) {
-    if (firstname === '') {
-      alert('le champs Nom utilisateur ne doit pas etre vide ');
-    } else if (email === '') {
-      alert('le champs Email ne doit etre vide');
-    } else {
-      this.router.navigateByUrl('/tableauDeBord')
+  valider(password: string, email: string) {
+    if (email === '' || password === '') {
+      return alert('Les champs "Email" et "Mot de passe" ne doivent pas être vides');
     }
+    if (this.validateEmail(email)) {
+      this.router.navigateByUrl('/tableauDeBord');
+    }
+  }
+
+  validateEmail(email: string) {
+    var format = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!email.match(format)) {
+      return alert("L'adresse Email est incorrect. le format doit est : 'NomEmail@serveurmessagerie.domaine' !");
+    }
+    return true
   }
 }
 

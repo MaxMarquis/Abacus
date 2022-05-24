@@ -6,19 +6,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.NavbarComponent = void 0;
+exports.BalanceComponent = void 0;
 var core_1 = require("@angular/core");
-var NavbarComponent = /** @class */ (function () {
-    function NavbarComponent() {
+var BalanceComponent = /** @class */ (function () {
+    function BalanceComponent(storageService) {
+        var _this = this;
+        this.storageService = storageService;
         this.balance = 0;
+        this.storageService.balanceValue.subscribe(function (value) {
+            _this.balance = value;
+        });
     }
-    NavbarComponent = __decorate([
+    BalanceComponent = __decorate([
         core_1.Component({
-            selector: 'app-navbar',
-            templateUrl: './navbar.component.html',
-            styleUrls: ['./navbar.component.sass']
+            selector: 'app-balance',
+            templateUrl: './balance.component.html',
+            styleUrls: ['./balance.component.sass']
         })
-    ], NavbarComponent);
-    return NavbarComponent;
+    ], BalanceComponent);
+    return BalanceComponent;
 }());
-exports.NavbarComponent = NavbarComponent;
+exports.BalanceComponent = BalanceComponent;
