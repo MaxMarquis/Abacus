@@ -1,16 +1,13 @@
 import { Component } from '@angular/core';
-import {NgbDate, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
-
+import { NgbDate, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-calendrier',
   templateUrl: './calendrier.component.html',
   styleUrls: ['./calendrier.component.sass'],
-  
+
 })
-
 export class CalendrierComponent {
-
   hoveredDate: NgbDate | null = null;
 
   fromDate: NgbDate;
