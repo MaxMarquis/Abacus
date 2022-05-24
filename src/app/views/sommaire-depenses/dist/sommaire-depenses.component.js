@@ -19,7 +19,7 @@ var SommaireDepensesComponent = /** @class */ (function () {
     }
     // Delete Expense
     SommaireDepensesComponent.prototype.removeExpense = function (d) {
-        if (confirm('Voulez vous supprimer votre dépense ?')) {
+        if (confirm('Êtes-vous sur de vouloir supprimer cette donnée ?')) {
             this.storageService.removeExpense(d);
         }
         else {
