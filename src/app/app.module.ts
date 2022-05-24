@@ -7,7 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClipboardModule } from 'ngx-clipboard';
 import { NgChartsModule } from 'ng2-charts';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { DateAdapter, MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE,MatRippleModule } from '@angular/material/core';
+import { DateAdapter, MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatRippleModule } from '@angular/material/core';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { StorageServiceService } from './services/storage-service.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,8 +18,8 @@ import { CalendrierComponent } from './components/calendrier/calendrier.componen
 import { ExpenseComponentComponent } from './expense-component/expense-component.component';
 import { IncomeComponentComponent } from './income-component/income-component.component';
 import { ChartsComponent } from './components/charts/charts.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 import { AuthentificationComponent } from './views/authentification/authentification.component';
@@ -30,11 +30,8 @@ import { SommaireDepensesComponent } from './views/sommaire-depenses/sommaire-de
 import { SommaireRevenusComponent } from './views/sommaire-revenus/sommaire-revenus.component';
 import { AjoutDepenseComponent } from './views/ajout-depense/ajout-depense.component';
 import { AjoutRevenuComponent } from './views/ajout-revenu/ajout-revenu.component';
-<<<<<<< HEAD
 import { CalendrierSommaireComponent } from './components/calendrier-sommaire/calendrier-sommaire.component';
-=======
 import { BalanceComponent } from './components/balance/balance.component';
->>>>>>> 9ce2214dcf3424c9d0411636a66b3a3d4c66e6e9
 
 
 @NgModule({
@@ -54,11 +51,8 @@ import { BalanceComponent } from './components/balance/balance.component';
     SommaireRevenusComponent,
     AjoutDepenseComponent,
     AjoutRevenuComponent,
-<<<<<<< HEAD
     CalendrierSommaireComponent,
-=======
     BalanceComponent,
->>>>>>> 9ce2214dcf3424c9d0411636a66b3a3d4c66e6e9
   ],
   imports: [
     BrowserModule,
@@ -70,11 +64,11 @@ import { BalanceComponent } from './components/balance/balance.component';
     ClipboardModule,
     NgChartsModule,
     MatDatepickerModule,
-    MatNativeDateModule, 
-    MatFormFieldModule, 
+    MatNativeDateModule,
+    MatFormFieldModule,
     MatInputModule,
     MatRippleModule,
-      
+
   ],
 
   providers: [StorageServiceService,
