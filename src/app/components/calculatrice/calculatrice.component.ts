@@ -104,7 +104,7 @@ input:string = '';
   copyResult() {
      copy(this.result.toString());
 
-        alert("Vous pouvez maintenant coller");
+        alert("Montant copié");
 
         
   }

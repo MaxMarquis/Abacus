@@ -22,7 +22,7 @@ export class SommaireRevenusComponent implements OnInit {
 
     // Delete Income
     removeIncome(d: Details): void {
-      if (confirm('Voulez vous supprimer votre revenu ?')) {
+      if (confirm('Êtes-vous sur de vouloir supprimer cette donnée ?')) {
         this.storageService.removeIncome(d);
       } else {
        console.log('ne pas supprimer');
