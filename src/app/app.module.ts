@@ -28,6 +28,7 @@ import { SommaireRevenusComponent } from './views/sommaire-revenus/sommaire-reve
 import { AjoutDepenseComponent } from './views/ajout-depense/ajout-depense.component';
 import { AjoutRevenuComponent } from './views/ajout-revenu/ajout-revenu.component';
 import { BalanceComponent } from './components/balance/balance.component';
+import { SortByDatesPipe } from './filters/sort-by-dates.pipe';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { BalanceComponent } from './components/balance/balance.component';
     AjoutDepenseComponent,
     AjoutRevenuComponent,
     BalanceComponent,
+    SortByDatesPipe,
   ],
   imports: [
     BrowserModule,

@@ -7,36 +7,52 @@ import { StorageServiceService } from 'src/app/services/storage-service.service'
   templateUrl: './sommaire-depenses.component.html',
   styleUrls: ['./sommaire-depenses.component.sass']
 })
-export class SommaireDepensesComponent implements OnInit  {
+export class SommaireDepensesComponent implements OnInit {
 
+  
 
   expenseList: Details[] = [];
-
+  dateOne?: Date;
+  dateTwo?: Date;
 
   constructor(private storageService: StorageServiceService) {
     this.storageService.expenseList.subscribe(value => {
-      
+
       this.expenseList = value;
     });
 
   }
 
-    // Delete Expense
-    removeExpense(d: Details): void {
-      if (confirm('Êtes-vous sur de vouloir supprimer cette donnée ?')) {
-        this.storageService.removeExpense(d);
-      } else {
-       console.log('ne pas supprimer');
-      }
+  // collapse fermé par default
+  
+  public isCollapsed = true;
 
-      location.reload(); // Pour reload le graphique
-      
-    }
-    deleteExpense(id: number) {
 
-      this.expenseList = this.expenseList.filter((v, i) => i !== id);
-      
+  doFilter(dateO: HTMLInputElement, dateT: HTMLInputElement): void {
+    this.dateOne = ((dateO.value.trim() == "") ? undefined : new Date(dateO.value));
+    this.dateTwo = ((dateT.value.trim() == "") ? undefined : new Date(dateT.value));
+  }
+
+  // Delete Expense
+  removeExpense(d: Details): void {
+    if (confirm('Êtes-vous sur de vouloir supprimer cette donnée ?')) {
+      this.storageService.removeExpense(d);
+    } else {
+      console.log('ne pas supprimer');
     }
-    ngOnInit(): void {
-    }
+
+    location.reload(); // Pour reload le graphique
+
+  }
+  deleteExpense(id: number) {
+
+    this.expenseList = this.expenseList.filter((v, i) => i !== id);
+
+  }
+
+
+  
+  ngOnInit(): void {
+  }
+
 }
