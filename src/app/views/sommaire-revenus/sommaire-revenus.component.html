@@ -21,8 +21,8 @@
 
   <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
         <div>
-          <input type="date" #dateO>
-          <input type="date" #dateT>
+          <input type="date" placeholder="Du" #dateO>
+          <input type="date" placeholder="Au" #dateT>
           <button class="m-1 btn btn-primary" (click)="doFilter(dateO, dateT)">Filtrer</button>
         </div>
       </div>
