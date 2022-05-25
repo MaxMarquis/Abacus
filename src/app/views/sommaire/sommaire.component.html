@@ -1,0 +1,31 @@
+<div class="container">
+<!--  balance  -->
+<app-balance></app-balance>
+
+  <a [routerLink]="['/depenses']"> <button class="btn btn-danger m-2">Dépenses</button></a>
+  <a [routerLink]="['/revenus']"> <button class="btn btn-success m-2">Revenus</button></a>
+
+  <h1>Sommaire des transactions</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">DESCRIPTION</th>
+        <th scope="col">MONTANT</th>
+        <th scope="col">DATE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of incomeExpenseList "
+        [ngClass]="item.isIncome ? 'text-success font-weight-bold' : 'text-danger font-weight-bold'">
+        <td>{{item.description}}</td>
+        <td>{{item.montant | currency}}</td>
+        <td>{{item.date}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!--RETOUR TABLEAU DE BORD -->
+  <button class="btn btn-primary" routerLink="/tableauDeBord">RETOUR AU TABLEAU DE BORD</button>
+
+</div>

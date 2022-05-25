@@ -31,4 +31,8 @@ export class ChartsComponent implements OnInit {
     datasets: [{ data: [] }],
   };
   public doughnutChartType: ChartType = 'doughnut';
+
+
 }
+
+

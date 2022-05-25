@@ -102,6 +102,10 @@ input:string = '';
   }
 
   copyResult() {
-    copy(this.result.toString());
+     copy(this.result.toString());
+
+        alert("Montant copié");
+
+        
   }
 }

@@ -30,6 +30,15 @@ var IncomeComponentComponent = /** @class */ (function () {
             _this.balance = value;
         });
     }
+    // Delete Income
+    IncomeComponentComponent.prototype.removeIncome = function (d) {
+        if (confirm('Voulez vous supprimer votre revenu ?')) {
+            this.storageService.removeIncome(d);
+        }
+        else {
+            console.log('ne pas supprimer');
+        }
+    };
     IncomeComponentComponent.prototype.createForm = function () {
         this.submitForm = this.fb.group({
             description: ['', forms_1.Validators.required],
@@ -46,15 +55,15 @@ var IncomeComponentComponent = /** @class */ (function () {
             montant: 0,
             date: new Date()
         });
-        this.incomeList.push(this.details);
         this.feedbackFormDirective.resetForm();
-        location.reload(); // Pour reload le graphique
+        // location.reload(); // Pour reload le graphique
     };
     IncomeComponentComponent.prototype.openCalculatorModal = function (content) {
         this.modalService.open(content);
     };
     IncomeComponentComponent.prototype.deleteIncome = function (id) {
         this.incomeList = this.incomeList.filter(function (v, i) { return i !== id; });
+        alert("suppression");
     };
     __decorate([
         core_1.ViewChild('fform')
