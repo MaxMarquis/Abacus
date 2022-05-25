@@ -10,32 +10,40 @@ import { StorageServiceService } from 'src/app/services/storage-service.service'
 export class SommaireRevenusComponent implements OnInit {
 
   incomeList: Details[] = [];
+  dateOne?: Date;
+  dateTwo?: Date;
 
 
   constructor(private storageService: StorageServiceService) {
     this.storageService.incomeList.subscribe(value => {
-      
+
       this.incomeList = value;
     });
 
   }
+  public isCollapsed = true;
 
-    // Delete Income
-    removeIncome(d: Details): void {
-      if (confirm('Êtes-vous sur de vouloir supprimer cette donnée ?')) {
-        this.storageService.removeIncome(d);
-      } else {
-       console.log('ne pas supprimer');
-      }
+  doFilter(dateO: HTMLInputElement, dateT: HTMLInputElement): void {
+    this.dateOne = ((dateO.value.trim() == "") ? undefined : new Date(dateO.value));
+    this.dateTwo = ((dateT.value.trim() == "") ? undefined : new Date(dateT.value));
+  }
 
-      location.reload(); // Pour reload le graphique
-      
+  // Delete Income
+  removeIncome(d: Details): void {
+    if (confirm('Êtes-vous sur de vouloir supprimer cette donnée ?')) {
+      this.storageService.removeIncome(d);
+    } else {
+      console.log('ne pas supprimer');
     }
-    deleteIncome(id: number) {
 
-      this.incomeList = this.incomeList.filter((v, i) => i !== id);
-      
-    }
-    ngOnInit(): void {
-    }
+    location.reload(); // Pour reload le graphique
+
+  }
+
+  deleteIncome(id: number) {
+    this.incomeList = this.incomeList.filter((v, i) => i !== id);
+  }
+
+  ngOnInit(): void {
+  }
 }
