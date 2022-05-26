@@ -1,41 +1,40 @@
-<!-- ! ici la balance  -->
-<h1 class="container pt-1">BALANCE {{ balance | currency }}</h1>
+<!--  balance  -->
+<app-balance></app-balance>
+<app-header></app-header>
 
-<!-- ? J'ai ajouté la navbar ici, car je ne savais pas trop ou elle allait aller -->
-<app-navbar></app-navbar>
+<div class="container">
+	<!-- !  Boutons revenus / dépense -->
+	<a [routerLink]="['/revenus']">
+		<button class="btn btn-success m-2">Ajout Revenu</button>
+	</a>
+	<a [routerLink]="['/depenses']">
+		<button class="btn btn-danger m-2">Ajout Dépense</button>
+	</a>
 
-<!-- !  ici sera mis les deux boutons -->
-<button routerLink="/revenus-ajout">AJOUT REVENU</button>
-<button routerLink="/depenses-ajout">AJOUT DÉPENSE</button>
+	<h1>Portrait global</h1>
 
-<h1>Portrait global</h1>
+	<!-- Portait des dépenses-->
+	<section>
+		<h2>Portrait des dépenses</h2>
+		<!--graphique PORTRAIT-DEPENSES-->
+		<app-charts height="20" width="20" [dataList]="expenseList"></app-charts>
+		<!-- * LIEN VERS SOMMAIRE -->
+		<button class="btn btn-danger" routerLink="/depenses">SOMMAIRE</button>
+	</section>
 
-<!-- Portait des dépenses-->
-<section>
-  <h2>Portrait des dépenses</h2>
+	<!-- Portait des revenus-->
+	<section>
+		<h2>Portrait des revenus</h2>
+		<!--graphique PORTRAIT-REVENUS-->
+		<app-charts height="20" width="20" [dataList]="incomeList"></app-charts>
+		<!-- * LIEN VERS SOMMAIRE REVENUS -->
+		<button class="btn btn-success" routerLink="/revenus">SOMMAIRE</button>
+	</section>
 
-  <!--TODO Importer le graphique PORTRAIT-DEPENSES-->
-  <app-charts height="20" width="20" [dataList]="expenseList"></app-charts>
+	<!-- * LIEN VERS SOMMAIRE COMPLET -->
+	<button class="btn btn-primary" routerLink="/sommaire">SOMMAIRE COMPLET DES DÉPENSES ET REVENUS</button>
+</div>
 
-  <!--TODO route le bouton SOMMAIRE pour au composant SOMMAIRE-REVENUS -->
-  <!-- * SOMMAIRE -->
-  <a routerLink="/depenses">Sommaire</a>
-</section>
-
-<!-- Portait des revenus-->
-<section>
-  <h2>Portrait des revenus</h2>
-
-  <!--TODO Importer le graphique PORTRAIT-REVENUS-->
-  <app-charts height="20" width="20" [dataList]="incomeList"></app-charts>
-
-  <!--TODO route le bouton SOMMAIRE pour au composant SOMMAIRE-DEPENSES -->
-  <!-- * SOMMAIRE -->
-  <a routerLink="/revenus">Sommaire</a>
-</section>
-
-<!--TODO IMPORTER LE BOUTON SOMMAIRE COMPLET DES DÉPENSES ET REVENUS-->
-<br /><br />
 <!-- AFFICHER LE COMPOSANT FOOTER -->
 <app-footer></app-footer>
 <!-- FIN DU COMPOSANT FOOTER -->

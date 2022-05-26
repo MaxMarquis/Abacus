@@ -9,13 +9,8 @@ exports.__esModule = true;
 exports.NavbarComponent = void 0;
 var core_1 = require("@angular/core");
 var NavbarComponent = /** @class */ (function () {
-    function NavbarComponent(storageService) {
-        var _this = this;
-        this.storageService = storageService;
+    function NavbarComponent() {
         this.balance = 0;
-        this.storageService.balanceValue.subscribe(function (value) {
-            _this.balance = value;
-        });
     }
     NavbarComponent = __decorate([
         core_1.Component({

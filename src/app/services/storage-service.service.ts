@@ -47,6 +47,7 @@ export class StorageServiceService {
     let expense = 0;
     let incomeList = this.getIncomeList();
     let expenseList = this.getExpenseList();
+
     incomeList.forEach((element: Details) => {
       income += element.montant;
     }
@@ -55,7 +56,9 @@ export class StorageServiceService {
       expense += element.montant;
     }
     );
-    this.balanceValue.next(income - expense);
+
+    let value = (income - expense);
+    this.balanceValue.next(value);
     return income - expense;
   }
 
@@ -64,6 +67,8 @@ export class StorageServiceService {
     income.isIncome = true;
     incomeList.push(income);
     localStorage.setItem(this.storageIncomeKey, JSON.stringify(incomeList));
+
+    this.incomeList.next(incomeList);
     this.balanceValue.next(this.getBalance());
     this.incomeExpenseList.next(this.getIncomeExpenseList());
   }
@@ -72,6 +77,8 @@ export class StorageServiceService {
     let expenseList = this.getExpenseList();
     expenseList.push(expense);
     localStorage.setItem(this.storageExpenseKey, JSON.stringify(expenseList));
+
+    this.expenseList.next(expenseList);
     this.balanceValue.next(this.getBalance());
     this.incomeExpenseList.next(this.getIncomeExpenseList());
   }
@@ -90,33 +97,51 @@ export class StorageServiceService {
 
   removeIncome(income: Details): void {
     let incomeList = this.getIncomeList();
-    let index = incomeList.indexOf(income);
-    if (index > -1) {
-      incomeList.splice(index, 1);
-    }
+
+    incomeList.filter((element: Details) => {
+      if (element.id === income.id) {
+        incomeList.splice(incomeList.indexOf(element), 1);
+      }
+    });
+
+    this.incomeList.next(incomeList);
     localStorage.setItem(this.storageIncomeKey, JSON.stringify(incomeList));
+
+    console.log("Remove Income.....");
+
     this.balanceValue.next(this.getBalance());
+    this.incomeExpenseList.next(this.getIncomeExpenseList());
   }
 
   removeExpense(expense: Details): void {
     let expenseList = this.getExpenseList();
-    let index = expenseList.indexOf(expense);
-    if (index > -1) {
-      expenseList.splice(index, 1);
-    }
+
+    expenseList.filter((element: Details) => {
+      if (element.id === expense.id) {
+        expenseList.splice(expenseList.indexOf(element), 1);
+      }
+    });
+
+    this.expenseList.next(expenseList);
     localStorage.setItem(this.storageExpenseKey, JSON.stringify(expenseList));
+
+
     this.balanceValue.next(this.getBalance());
+    this.incomeExpenseList.next(this.getIncomeExpenseList());
   }
 
   clearIncome(): void {
     localStorage.removeItem(this.storageIncomeKey);
     this.incomeList.next([]);
     this.balanceValue.next(this.getBalance());
+    this.incomeExpenseList.next(this.getIncomeExpenseList());
   }
 
   clearExpense(): void {
     localStorage.removeItem(this.storageExpenseKey);
     this.expenseList.next([]);
     this.balanceValue.next(this.getBalance());
+    this.incomeExpenseList.next(this.getIncomeExpenseList());
   }
+
 }
