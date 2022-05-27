@@ -8,12 +8,12 @@
 <app-match-media-query mediaQuery="(max-width: 992px)">
   <div class="container">
     <!-- !  Boutons revenus / dépense -->
-    <a [routerLink]="['/depenses']">
-      <button class="btn btn-danger m-2">Dépenses</button>
-    </a>
-    <a [routerLink]="['/revenus']">
-      <button class="btn btn-success m-2">Revenus</button>
-    </a>
+    <a [routerLink]="['/revenus-ajout']">
+      <button class="btn btn-success m-2">AJOUT REVENU</button></a
+    >
+    <a [routerLink]="['/depenses-ajout']">
+      <button class="btn btn-danger m-2">AJOUT DÉPENSE</button></a
+    >
 
     <h1>Portrait global</h1>
     <!-- Portait des dépenses-->
@@ -56,4 +56,3 @@
     <app-footer></app-footer>
   </div>
 </app-match-media-query>
-
