@@ -13,7 +13,6 @@ import { StorageServiceService } from './services/storage-service.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CalculatriceComponent } from './components/calculatrice/calculatrice.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { CalendrierComponent } from './components/calendrier/calendrier.component';
 import { ExpenseComponentComponent } from './expense-component/expense-component.component';
 import { IncomeComponentComponent } from './income-component/income-component.component';
@@ -35,13 +34,13 @@ import { FooterComponent } from './footer/footer.component';
 import { CalendrierSommaireComponent } from './components/calendrier-sommaire/calendrier-sommaire.component';
 import { BalanceComponent } from './components/balance/balance.component';
 import { SortByDatesPipe } from './filters/sort-by-dates.pipe';
+import { MatchMediaQueryComponent } from './components/match-media-query/match-media-query.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CalculatriceComponent,
-    NavbarComponent,
     CalendrierComponent,
     ExpenseComponentComponent,
     IncomeComponentComponent,
@@ -59,6 +58,7 @@ import { SortByDatesPipe } from './filters/sort-by-dates.pipe';
     CalendrierSommaireComponent,
     BalanceComponent,
     SortByDatesPipe,
+    MatchMediaQueryComponent,
   ],
   imports: [
     BrowserModule,
