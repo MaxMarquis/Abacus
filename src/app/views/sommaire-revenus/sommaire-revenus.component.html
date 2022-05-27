@@ -3,7 +3,7 @@
     <!--  balance  -->
     <app-balance></app-balance>
     <!-- NAVBAR en attendant  -->
-    <app-navbar></app-navbar>
+    <app-header></app-header>
 
     <a [routerLink]="['/revenus-ajout']">
       <button class="btn btn-success m-2">AJOUT REVENU</button>
@@ -13,6 +13,7 @@
     </a>
     <h1>Sommaire des revenus</h1>
   </app-match-media-query>
+
   <app-match-media-query mediaQuery="(min-width: 992px)">
     <ngb-accordion #acc="ngbAccordion">
       <ngb-panel title="Sommaire des revenus">

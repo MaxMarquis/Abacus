@@ -1,28 +1,29 @@
-<div class="container">
+<app-match-media-query mediaQuery="(max-width: 992px)">
+  <!--  balance  -->
+  <app-balance></app-balance>
+  <!-- NAVBAR en attendant  -->
+  <app-header></app-header>
+</app-match-media-query>
+
+<body>
+  <h1>Ajouter une dépense</h1>
   <app-match-media-query mediaQuery="(max-width: 992px)">
-    <!--  balance  -->
-    <app-balance></app-balance>
-    <!-- NAVBAR en attendant  -->
-    <app-navbar></app-navbar>
+    <section>
+      <h2>Dépense</h2>
+      <!--graphique des dépenses-->
+      <app-charts height="20" width="20" [dataList]="expenseList"></app-charts>
+    </section>
   </app-match-media-query>
 
-  <section>
-    <h2>Ajouter une dépense</h2>
-    <!-- Graphique des dépenses-->
-    <app-match-media-query mediaQuery="(max-width: 992px)">
-      <app-charts height="20" width="20" [dataList]="expenseList"></app-charts>
-    </app-match-media-query>
-  </section>
-
-  <!-- FORMULAIRE AJOUT DÉPENSES -->
+  <!-- FORMULAIRE AJOUT REVENU -->
   <form
     novalidate
     #fform="ngForm"
     [formGroup]="submitForm"
     (ngSubmit)="onSubmit()"
   >
+    <!-- categorie -->
     <div class="form-group">
-      <!-- categorie -->
       <label for="description">Catégorie</label>
       <div class="d-flex">
         <input
@@ -42,7 +43,7 @@
         class="alert alert-danger"
         role="alert"
       >
-        Ajouter une catégorie de dépense
+        Inscrire une catégorie de revenu
       </div>
     </div>
 
@@ -60,6 +61,8 @@
           id="montant"
           placeholder="Montant"
         />
+
+        <!-- bouton pour la calculatrice -->
         <button type="button" (click)="openCalculatorModal(content)">
           <i class="fa-solid fa-calculator"></i>
         </button>
@@ -96,39 +99,29 @@
         Ajouter une date
       </div>
     </div>
-    <!-- button validation - ajout -->
+    <!-- button validation -->
+
     <button
       [disabled]="submitForm.invalid"
       type="submit"
       class="btn btn-outline-secondary"
     >
-      + Ajouter
+      +Ajouter
     </button>
   </form>
-</div>
 
-<!-- SOMMAIRE COMPLET DES DÉPENSES ET REVENUS-->
-
-<!-- RETOUR SOMMAIRE COMPLET DES DÉPENSES / REVENUS  -->
-<app-match-media-query mediaQuery="(max-width: 992px)">
-  <button routerLink="/sommaire">
-    SOMMAIRE COMPLET DES DÉPENSES ET REVENUS
-  </button>
-
-  <!-- RETOUR TABLEAU DE BORD -->
-  <button routerLink="/tableauDeBord">RETOUR AU TABLEAU DE BORD</button>
-</app-match-media-query>
-<!-- Calc Modal -->
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <button
-      type="button"
-      class="btn-close"
-      aria-label="Close"
-      (click)="modal.dismiss()"
-    ></button>
-  </div>
-  <div class="modal-body">
-    <app-calculatrice></app-calculatrice>
-  </div>
-</ng-template>
+  <!-- Calc Modal -->
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modal.dismiss()"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <app-calculatrice></app-calculatrice>
+    </div>
+  </ng-template>
+</body>

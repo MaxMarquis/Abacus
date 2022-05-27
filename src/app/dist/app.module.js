@@ -22,7 +22,6 @@ var storage_service_service_1 = require("./services/storage-service.service");
 var app_routing_module_1 = require("./app-routing.module");
 var app_component_1 = require("./app.component");
 var calculatrice_component_1 = require("./components/calculatrice/calculatrice.component");
-var navbar_component_1 = require("./components/navbar/navbar.component");
 var calendrier_component_1 = require("./components/calendrier/calendrier.component");
 var expense_component_component_1 = require("./expense-component/expense-component.component");
 var income_component_component_1 = require("./income-component/income-component.component");
@@ -37,6 +36,8 @@ var sommaire_depenses_component_1 = require("./views/sommaire-depenses/sommaire-
 var sommaire_revenus_component_1 = require("./views/sommaire-revenus/sommaire-revenus.component");
 var ajout_depense_component_1 = require("./views/ajout-depense/ajout-depense.component");
 var ajout_revenu_component_1 = require("./views/ajout-revenu/ajout-revenu.component");
+var header_component_1 = require("./header/header.component");
+var footer_component_1 = require("./footer/footer.component");
 var calendrier_sommaire_component_1 = require("./components/calendrier-sommaire/calendrier-sommaire.component");
 var balance_component_1 = require("./components/balance/balance.component");
 var sort_by_dates_pipe_1 = require("./filters/sort-by-dates.pipe");
@@ -49,7 +50,6 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 app_component_1.AppComponent,
                 calculatrice_component_1.CalculatriceComponent,
-                navbar_component_1.NavbarComponent,
                 calendrier_component_1.CalendrierComponent,
                 expense_component_component_1.ExpenseComponentComponent,
                 income_component_component_1.IncomeComponentComponent,
@@ -62,6 +62,8 @@ var AppModule = /** @class */ (function () {
                 sommaire_revenus_component_1.SommaireRevenusComponent,
                 ajout_depense_component_1.AjoutDepenseComponent,
                 ajout_revenu_component_1.AjoutRevenuComponent,
+                header_component_1.HeaderComponent,
+                footer_component_1.FooterComponent,
                 calendrier_sommaire_component_1.CalendrierSommaireComponent,
                 balance_component_1.BalanceComponent,
                 sort_by_dates_pipe_1.SortByDatesPipe,

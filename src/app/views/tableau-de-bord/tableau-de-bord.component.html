@@ -2,7 +2,7 @@
 <app-balance></app-balance>
 <!-- NAVBAR en attendant  -->
 <app-match-media-query mediaQuery="(max-width: 992px)">
-  <app-navbar></app-navbar>
+  <app-header></app-header>
 </app-match-media-query>
 
 <app-match-media-query mediaQuery="(max-width: 992px)">
@@ -53,5 +53,6 @@
     <app-sommaire-revenus></app-sommaire-revenus>
     <app-charts height="20" width="20" [dataList]="incomeList"></app-charts>
     <app-charts height="20" width="20" [dataList]="expenseList"></app-charts>
+    <app-footer></app-footer>
   </div>
 </app-match-media-query>
