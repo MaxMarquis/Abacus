@@ -1,30 +1,39 @@
-<div>
+<div class="authen vh-100">
   <main class="row">
-    <section class="col-12 col-md-6 d-flex align-items-center">
-      <div class="col-md-8 offset-md-1">
-        <img src="https://via.placeholder.com/150" alt="placeholder">
-        <!-- Formulaire d'accès -->
+    <section>
+      <!-- LOGO ABACUS ANIMÉ -->
+      <div class="col-12 center">
+        <img src="../../../assets/img/abacusAnime.svg" alt="Logo de l'application de gestion de budget ABAC|US créé et offert par le Cégep de Trois-Rivières">
+      </div>
+<!-- FORMULAIRE D'ACCÈS -->
+      <div class="col-8 offset-2">
         <form>
-          <label>Adresse courriel</label>
-          <input matInput type="email" id="email" name="email" #email required
+          <!-- ADRESSE COURRIEL -->
+          <label>Adresse courriel</label><br>
+          <input class="input100" matInput type="email" id="email" name="email" #email required
             pattern="(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}"
-            placeholder="exemple@domaine.com" autocomplete="username" />
+            placeholder="Inscrire votre adresse courriel" autocomplete="username" />
           <br>
-          <label>Mot de passe</label>
-          <input matInput type="password" id="password" name="password" #password required
-            autocomplete="current-password" />
+          <!-- MOT DE PASSE -->
+          <label>Mot de passe</label><br>
+          <input class="input100" matInput type="password" id="password" name="password" #password required
+          placeholder="Inscire votre mot de passe" autocomplete="current-password" />
           <br>
-          <input type="checkbox" name="remember" id="remember">
+          <!-- MÉMORISER LE MOT DE PASSE -->
+          <input type="checkbox" name="remember" id="remember" class="me-2">
           <label for="remember">Mémoriser le mot de passe</label>
           <br>
+          <!-- BOUTON SOUMETTRE -->
           <button type="submit" (click)="valider(password.value, email.value)">
-            <span>Se Connecter</span>
+            <span>SE CONNECTER</span>
           </button>
         </form>
-        <a href="#">Vous n'avez pas de compte ?</a>
+        <!-- LIEN POUR CRÉATION DE COMPTE ET MOT DE PASSE OUBLIÉ -->
+        <a href="#">Vous n'avez pas de compte&thinsp;?</a>
         <br>
-        <a href="#">Mot de passe oublié ?</a>
+        <a href="#">Mot de passe oublié&thinsp;?</a>
       </div>
     </section>
   </main>
+  <div class="bordure"></div>
 </div>
