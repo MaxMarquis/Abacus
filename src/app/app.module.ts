@@ -30,6 +30,8 @@ import { SommaireDepensesComponent } from './views/sommaire-depenses/sommaire-de
 import { SommaireRevenusComponent } from './views/sommaire-revenus/sommaire-revenus.component';
 import { AjoutDepenseComponent } from './views/ajout-depense/ajout-depense.component';
 import { AjoutRevenuComponent } from './views/ajout-revenu/ajout-revenu.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 import { CalendrierSommaireComponent } from './components/calendrier-sommaire/calendrier-sommaire.component';
 import { BalanceComponent } from './components/balance/balance.component';
 import { SortByDatesPipe } from './filters/sort-by-dates.pipe';
@@ -53,6 +55,8 @@ import { MatchMediaQueryComponent } from './components/match-media-query/match-m
     SommaireRevenusComponent,
     AjoutDepenseComponent,
     AjoutRevenuComponent,
+    HeaderComponent,
+    FooterComponent,
     CalendrierSommaireComponent,
     BalanceComponent,
     SortByDatesPipe,
