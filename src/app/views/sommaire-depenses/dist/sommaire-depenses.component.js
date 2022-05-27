@@ -13,7 +13,7 @@ var SommaireDepensesComponent = /** @class */ (function () {
         var _this = this;
         this.storageService = storageService;
         this.expenseList = [];
-        // collapse fermé par default
+        // collapse fermé pour input dates
         this.isCollapsed = true;
         this.storageService.expenseList.subscribe(function (value) {
             _this.expenseList = value;

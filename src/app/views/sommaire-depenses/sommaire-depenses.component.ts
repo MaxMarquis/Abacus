@@ -9,8 +9,6 @@ import { StorageServiceService } from 'src/app/services/storage-service.service'
 })
 export class SommaireDepensesComponent implements OnInit {
 
-  
-
   expenseList: Details[] = [];
   dateOne?: Date;
   dateTwo?: Date;
@@ -23,7 +21,7 @@ export class SommaireDepensesComponent implements OnInit {
 
   }
 
-  // collapse fermé par default
+  // collapse fermé pour input dates
   
   public isCollapsed = true;
 
@@ -31,6 +29,8 @@ export class SommaireDepensesComponent implements OnInit {
   doFilter(dateO: HTMLInputElement, dateT: HTMLInputElement): void {
     this.dateOne = ((dateO.value.trim() == "") ? undefined : new Date(dateO.value));
     this.dateTwo = ((dateT.value.trim() == "") ? undefined : new Date(dateT.value));
+
+
   }
 
   // Delete Expense
@@ -44,14 +44,15 @@ export class SommaireDepensesComponent implements OnInit {
     location.reload(); // Pour reload le graphique
 
   }
+
+  
   deleteExpense(id: number) {
 
     this.expenseList = this.expenseList.filter((v, i) => i !== id);
 
   }
-
-
   
+ 
   ngOnInit(): void {
   }
 

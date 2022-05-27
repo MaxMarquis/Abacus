@@ -33,6 +33,7 @@ import { AjoutRevenuComponent } from './views/ajout-revenu/ajout-revenu.componen
 import { CalendrierSommaireComponent } from './components/calendrier-sommaire/calendrier-sommaire.component';
 import { BalanceComponent } from './components/balance/balance.component';
 import { SortByDatesPipe } from './filters/sort-by-dates.pipe';
+import { MatchMediaQueryComponent } from './components/match-media-query/match-media-query.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { SortByDatesPipe } from './filters/sort-by-dates.pipe';
     CalendrierSommaireComponent,
     BalanceComponent,
     SortByDatesPipe,
+    MatchMediaQueryComponent,
   ],
   imports: [
     BrowserModule,
