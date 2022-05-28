@@ -5,13 +5,8 @@
     <ngb-accordion #acc="ngbAccordion">
       <ngb-panel title="Sommaire des dépenses">
         <ng-template ngbPanelContent>
-          <button
-            type="button"
-            class="btn btn-outline-success"
-            (click)="collapse.toggle()"
-            [attr.aria-expanded]="!isCollapsed"
-            aria-controls="collapseExample"
-          >
+          <button type="button" class="btn btn-outline-success" (click)="collapse.toggle()"
+            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
             Choisir la période désirée
           </button>
 
@@ -19,10 +14,7 @@
             <div>
               <input type="date" placeholder="Du" #dateO />
               <input type="date" placeholder="Au" #dateT />
-              <button
-                class="m-1 btn btn-primary"
-                (click)="doFilter(dateO, dateT)"
-              >
+              <button class="m-1 btn btn-primary" (click)="doFilter(dateO, dateT)">
                 Filter
               </button>
             </div>
@@ -37,36 +29,28 @@
               </tr>
             </thead>
             <tbody>
-              <tr
-                *ngFor="
+              <tr *ngFor="
                   let expense of expenseList | sortByDates: dateOne:dateTwo
-                "
-              >
+                ">
                 <td class="d-none">{{ expense._id }}</td>
                 <td>{{ expense.description }}</td>
                 <td>{{ expense.montant | currency }}</td>
                 <td>{{ expense.date }}</td>
                 <td>
-                  <i
-                    class="fa fa-trash"
-                    aria-hidden="true"
-                    (click)="removeExpense(expense)"
-                  ></i>
+                  <i class="fa fa-trash" aria-hidden="true" (click)="removeExpense(expense)"></i>
                 </td>
               </tr>
             </tbody>
-          </table> </ng-template></ngb-panel></ngb-accordion
-  ></app-match-media-query>
+          </table>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </app-match-media-query>
 
   <app-match-media-query mediaQuery="(max-width: 992px)">
     <p>
-      <button
-        type="button"
-        class="btn-periode-depense"
-        (click)="collapse.toggle()"
-        [attr.aria-expanded]="!isCollapsed"
-        aria-controls="collapseExample"
-      >
+      <button type="button" class="btn-periode-depense" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
+        aria-controls="collapseExample">
         Choisir la période désirée
       </button>
     </p>
@@ -85,10 +69,10 @@
     <app-match-media-query mediaQuery="(max-width: 992px)">
       <i class="fa-solid fa-calendar-days"></i> -->
 
-        <h2>Dépenses</h2>
-        <!--graphique des revenus-->
-        <app-charts height="20" width="20" [dataDepense]="expenseList"></app-charts>
-    
+      <h2>Dépenses</h2>
+      <!--graphique des revenus-->
+      <app-charts height="20" width="20" [dataDepense]="expenseList"></app-charts>
+
       <!-- Tableau du sommaires des dépenses -->
       <h2>Dépenses</h2>
 
