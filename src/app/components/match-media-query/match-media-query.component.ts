@@ -6,12 +6,12 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./match-media-query.component.sass']
 })
 export class MatchMediaQueryComponent implements OnInit {
-  
+
   constructor() { }
   @Input() mediaQuery: string | null = null;
   DEFAULT_MEDIA_QUERY: string = "(min-width: 0px)";
   matches: boolean = false;
-  
+
   ngOnInit(): void {
     console.log(this.mediaQuery);
 

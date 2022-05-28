@@ -1,8 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ChartData, ChartType } from 'chart.js';
 import { Details } from 'src/app/interface/details';
-import { Revenu } from 'src/app/interface/revenu';
-import { Depense } from 'src/app/interface/depense';
 
 @Component({
   selector: 'app-charts',
@@ -11,49 +9,38 @@ import { Depense } from 'src/app/interface/depense';
 })
 
 export class ChartsComponent implements OnInit {
-  // Récupère les props afin de personnaliser le graphique
-  @Input() height = '25';
-  @Input() width = '25';
+  // Récupère les données à afficher
+  @Input() height = '40'
+  @Input() width = '40'
+  @Input() dataList: Details[] = [];
 
-  @Input() dataList: Details[] = []  // celle-ci peut ¸etre utilisée dans le cas ou on mettrai un graphique au sommaire des transactions/non applicable
-  @Input() dataRevenu: Revenu[] = [] // graphique du sommaire des revenus
-  @Input() datadepense: Depense[] = [] // graphique du sommaire des dépenses
-
-
-  constructor() { }
-
+  // Crée le tableau en appelant le composant
   ngOnInit(): void {
+    this.createChart(this.dataList)
+  }
+
+  // Met le tableau à jour lors que les données changent
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['dataList']) {
+      this.createChart(this.dataList)
+    }
+  }
+
+  createChart(dataList: any[]): any {
     // Récupère le data et envoie les descriptions dans doughnutChartLabels et les montants dans doughnutChartData
-    this.dataList.map((x) => {
+    dataList.map((x) => {
       this.doughnutChartLabels.push(x.description);
       this.doughnutChartData.datasets[0].data.push(x.montant);
     });
-
-    // * graphique pour les revenus
-    this.dataRevenu.map((y) => {
-      this.doughnutChartLabels.push(y.description);
-      this.doughnutChartData.datasets[0].data.push(y.montant);
-    });
-
-      // *graphique pour les dépenses
-    this.datadepense.map((z) => {
-      this.doughnutChartLabels.push(z.description);
-      this.doughnutChartData.datasets[0].data.push(z.montant);
-    });
   }
 
-
-
-  // Création du graphique style Doughnut
-  public doughnutChartLabels: String[] = [];
+  // Doughnut
+  public doughnutChartLabels: string[] = [];
   public doughnutChartData: ChartData<'doughnut'> = {
     labels: this.doughnutChartLabels,
-    datasets: [{ data: [] }],
+    datasets: [
+      { data: [] }
+    ]
   };
   public doughnutChartType: ChartType = 'doughnut';
-
-
-  
 }
-
-

@@ -23,41 +23,42 @@ export class AjoutRevenuComponent {
   balance: number = 0;
   incomeList: Revenu[] = [];
 
-  constructor(private canonicApiService: CanonicApiService, private modalService: NgbModal) {}
+  constructor(private canonicApiService: CanonicApiService, private modalService: NgbModal) { }
 
   // * fonction pour afficher la liste des revenus
   ngOnInit() {
     this.canonicApiService.getIncomeList().subscribe(
       (response: any) => {
         console.log(response);
-        this.revenu = response.data; 
+        this.revenu = response.data;
       },
       () => console.log('error')
     );
   }
 
   // * cette partie concerne l'ajout de revenu
-  @Input() revenu: Revenu = {_id:'', description:'', montant: 0, date: new Date, updatedAt: '', createdAt:'',}
-  @Output() majTableau = new EventEmitter() ;
+  @Input() revenu: Revenu = { _id: '', description: '', montant: 0, date: new Date, updatedAt: '', createdAt: '', }
+  @Output() majTableau = new EventEmitter();
 
   addIncome(): void {
     console.log(this.revenu);
     this.canonicApiService.addIncome(this.revenu).subscribe();
   }
-  
+
   onSave(addIncome: NgForm) {
     console.log(addIncome);
-    if(addIncome.valid) {
-      if(this.revenu._id != null && this.revenu._id != '') {
+    if (addIncome.valid) {
+      if (this.revenu._id != null && this.revenu._id != '') {
         this.canonicApiService.editIncome(this.revenu).subscribe(_ => { this.majTableau.emit() });
-      } 
+      }
       else {
         this.addIncome();
         alert('Revenu ajouté')
       }
     }
     this.incomeList.push(this.revenu);
-    location.reload(); // Pour reload le graphique
+    // Pour reload le graphique ** Normalement on n'a plus besoin du reload pour recharger le graphique mm
+    // location.reload(); 
 
   }
 
