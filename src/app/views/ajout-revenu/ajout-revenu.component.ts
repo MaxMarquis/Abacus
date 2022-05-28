@@ -61,4 +61,16 @@ export class AjoutRevenuComponent {
   deleteIncome(id: number) {
     this.incomeList = this.incomeList.filter((v, i) => i !== id);
   }
+
+  // Delete Income
+  removeIncome(revenu: Revenu): void {
+    if (confirm('Voulez vous supprimer ce revenu ?')) {
+      this.canonicApiService.removeIncome(revenu._id)
+        .subscribe(_result => this.incomeList = this.incomeList.filter(d => d !== revenu));
+    } else {
+      console.log('ne pas supprimer');
+    }
+    // Pour reload le graphique
+    location.reload();
+  }
 }

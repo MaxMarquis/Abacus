@@ -58,18 +58,42 @@
 
             <!-- * bouton action ajout -->
             <div>
-              <button matSuffix type="submit" mat-raised-button [disabled]="!addIncome.form.valid"
-                (click)="onSave(addIncome)">
-                <mat-icon>ajouter</mat-icon>
+              <button class="btn btn-success" matSuffix type="submit" mat-raised-button
+                [disabled]="!addIncome.form.valid" (click)="onSave(addIncome)">
+                <mat-icon>+ AJOUTER</mat-icon>
               </button>
             </div>
           </form>
 
-          <!-- SOMMAIRE COMPLET DES DÉPENSES ET REVENUS-->
+          <!-- SOMMAIRE COMPLET DES REVENUS-->
+          <section>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Catégorie</th>
+                  <th scope="col">Montant</th>
+                  <th scope="col">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let income of incomeList" [ngClass]="'text-success'">
+                  <td class="d-none">{{ income._id }}</td>
+                  <td>{{ income.description }}</td>
+                  <td>{{ income.montant | currency }}</td>
+                  <td>{{ income.date | date:'longDate':'undefined':'fr'}}</td>
+                  <td>
+                    <i class="fa fa-trash" aria-hidden="true" (click)="removeIncome(income)"></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+
           <!-- RETOUR SOMMAIRE COMPLET DES DÉPENSES / REVENUS  -->
-          <button routerLink="/sommaire">SOMMAIRE COMPLET DES DÉPENSES ET REVENUS</button>
+          <button class="btn btn-primary" routerLink="/sommaire">SOMMAIRE COMPLET DES DÉPENSES ET REVENUS</button>
           <!-- RETOUR TABLEAU DE BORD -->
-          <button routerLink="/tableauDeBord">RETOUR AU TABLEAU DE BORD </button>
+          <button class="btn btn-primary mt-5" routerLink="/tableauDeBord">RETOUR AU TABLEAU DE BORD </button>
 
           <!-- Calc Modal -->
           <ng-template #content let-modal>

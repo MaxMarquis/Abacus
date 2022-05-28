@@ -1,16 +1,6 @@
+<app-header></app-header>
 <div class="container">
   <app-match-media-query mediaQuery="(max-width: 992px)">
-    <!--  balance  -->
-    <app-balance></app-balance>
-    <!-- NAVBAR en attendant  -->
-    <app-header></app-header>
-
-    <a [routerLink]="['/revenus-ajout']">
-      <button class="btn btn-success m-2">AJOUT REVENU</button>
-    </a>
-    <a [routerLink]="['/depenses-ajout']">
-      <button class="btn btn-danger m-2">AJOUT DÉPENSE</button>
-    </a>
     <h1>Sommaire des revenus</h1>
   </app-match-media-query>
 
@@ -82,7 +72,7 @@
 
       <!--graphique des revenus-->
       <div *ngIf="incomeList">
-        <app-charts width="20" height="20" [dataList]="incomeList"></app-charts>
+        <app-charts width="20" height="20" [incomeList]="incomeList"></app-charts>
       </div>
     </app-match-media-query>
 
@@ -102,7 +92,7 @@
               <td class="d-none">{{ income._id }}</td>
               <td>{{ income.description }}</td>
               <td>{{ income.montant | currency }}</td>
-              <td>{{ income.date }}</td>
+              <td>{{ income.date | date:'longDate':'undefined':'fr'}}</td>
               <td>
                 <i class="fa fa-trash" aria-hidden="true" (click)="removeIncome(income)"></i>
               </td>

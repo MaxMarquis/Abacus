@@ -14,7 +14,7 @@
       <h2>Portrait des dépenses</h2>
       <!--graphique des dépenses-->
       <div *ngIf="expenseList">
-        <app-charts width="20" height="20" [dataList]="expenseList"></app-charts>
+        <app-charts width="20" height="20" [expenseList]="expenseList"></app-charts>
       </div>
       <!-- * LIEN VERS SOMMAIRE DÉPENSES -->
       <button class="btn btn-danger" routerLink="/depenses">SOMMAIRE</button>
@@ -25,7 +25,7 @@
       <h2>Portrait des revenus</h2>
       <!--graphique des revenus-->
       <div *ngIf="incomeList">
-        <app-charts width="20" height="20" [dataList]="incomeList"></app-charts>
+        <app-charts width="20" height="20" [incomeList]="incomeList"></app-charts>
       </div>
       <!-- * LIEN VERS SOMMAIRE REVENUS -->
       <button class="btn btn-success" routerLink="/revenus">SOMMAIRE</button>

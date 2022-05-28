@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CanonicApiService } from 'src/app/services/canonic-api.service';
 import { NgForm } from '@angular/forms';
 import { Depense } from 'src/app/interface/depense';
+import { Revenu } from 'src/app/interface/revenu';
 
 @Component({
   selector: 'app-ajout-depense',
@@ -62,5 +63,16 @@ export class AjoutDepenseComponent implements OnInit {
 
   deleteExpense(id: number) {
     this.expenseList = this.expenseList.filter((v, i) => i !== id);
+  }
+
+  removeExpense(revenu: Revenu): void {
+    if (confirm('Voulez vous supprimer cette dépense ?')) {
+      this.canonicApiService.removeExpense(revenu._id)
+        .subscribe(_result => this.expenseList = this.expenseList.filter(d => d !== revenu));
+    } else {
+      console.log('ne pas supprimer');
+    }
+    // Pour reload le graphique
+    location.reload();
   }
 }

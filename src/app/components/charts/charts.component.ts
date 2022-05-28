@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ChartData, ChartType } from 'chart.js';
+import { Depense } from 'src/app/interface/depense';
 import { Details } from 'src/app/interface/details';
+import { Revenu } from 'src/app/interface/revenu';
 
 @Component({
   selector: 'app-charts',
@@ -12,23 +14,31 @@ export class ChartsComponent implements OnInit {
   // Récupère les données à afficher
   @Input() height = '40'
   @Input() width = '40'
-  @Input() dataList: Details[] = [];
+  @Input() incomeList!: Revenu[];
+  @Input() expenseList!: Depense[];
 
-  // Crée le tableau en appelant le composant
+  // Crée le tableau en fonction des données recu
   ngOnInit(): void {
-    this.createChart(this.dataList)
+    if (this.incomeList) {
+      this.createChart(this.incomeList)
+    } else {
+      this.createChart(this.expenseList)
+    }
   }
 
   // Met le tableau à jour lors que les données changent
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['dataList']) {
-      this.createChart(this.dataList)
-    }
+    // if (changes['incomeList']) {
+    //   this.createChart(this.incomeList)
+    // }
+    // if (changes['expense']) {
+    //   this.createChart(this.expenseList)
+    // }
   }
 
-  createChart(dataList: any[]): any {
+  createChart(data: any[]): any {
     // Récupère le data et envoie les descriptions dans doughnutChartLabels et les montants dans doughnutChartData
-    dataList.map((x) => {
+    data.map((x) => {
       this.doughnutChartLabels.push(x.description);
       this.doughnutChartData.datasets[0].data.push(x.montant);
     });
