@@ -7,7 +7,7 @@
 // .....................
 // 1. FONT
 // .............................................................   
-$body-font: 'Open Sans', sans-serif
+$body-font: 'Poppins', sans-serif
 $button-font: 'Barlow Condensed', sans-serif
 // .....................
 // 2. VARIABLES DE COULEURS
@@ -20,6 +20,7 @@ $grisFonce: #a7a6a6
 
 $bleuBase: #215193
 $bleuHover: #031224
+$bleuBalance: #000043
 
 $rougeConnexion: #a0001f
 
@@ -48,5 +49,16 @@ $breakpoints: (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px,)
     border: 0
     background-color: $bg
     color: #fff
+    text-transform: uppercase
     &:hover
         background-color: $hover	
+
+// TITRES
+@mixin titre($color)
+    font-family: $button-font
+    font-size: 30px
+    color: $color
+    border-top: 8px double $color
+    border-bottom: 8px double $color
+    padding: 10px 0
+    text-transform: uppercase

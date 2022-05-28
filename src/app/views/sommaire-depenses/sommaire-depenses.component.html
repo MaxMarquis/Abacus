@@ -1,19 +1,7 @@
-<div class="container">
+<app-header></app-header>
+<main class="container">
   <app-match-media-query mediaQuery="(max-width: 992px)">
-    <!--  balance  -->
-    <app-balance></app-balance>
-    <!-- NAVBAR en attendant  -->
-    <app-header></app-header>
-
-    <a [routerLink]="['/revenus-ajout']">
-      <button class="btn btn-success m-2">AJOUT REVENU</button>
-    </a>
-    <a [routerLink]="['/depenses-ajout']">
-      <button class="btn btn-danger m-2">AJOUT DÉPENSE</button>
-    </a>
     <h1>Sommaire des dépenses</h1>
-  </app-match-media-query>
-  <app-match-media-query mediaQuery="(min-width: 992px)">
     <ngb-accordion #acc="ngbAccordion">
       <ngb-panel title="Sommaire des dépenses">
         <ng-template ngbPanelContent>
@@ -74,7 +62,7 @@
     <p>
       <button
         type="button"
-        class="btn btn-outline-success"
+        class="btn-periode-depense"
         (click)="collapse.toggle()"
         [attr.aria-expanded]="!isCollapsed"
         aria-controls="collapseExample"
@@ -87,8 +75,8 @@
       <div>
         <input type="date" placeholder="Du" #dateO />
         <input type="date" placeholder="Au" #dateT />
-        <button class="m-1 btn btn-primary" (click)="doFilter(dateO, dateT)">
-          Filter
+        <button class="m-1 btn-filtre-depense" (click)="doFilter(dateO, dateT)">
+          Filtrer
         </button>
       </div>
     </div>
@@ -132,11 +120,11 @@
       </section>
       <app-match-media-query mediaQuery="(max-width: 992px)">
         <!--RETOUR TABLEAU DE BORD -->
-        <button class="btn btn-primary" routerLink="/tableauDeBord">
+        <button class="btn-som-complet" routerLink="/tableauDeBord">
           RETOUR AU TABLEAU DE BORD
         </button>
       </app-match-media-query>
     </app-match-media-query>
   </div>
-</div>
-
+</main>
+<app-footer></app-footer>
