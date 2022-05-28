@@ -1,19 +1,5 @@
-<div class="container">
-  <app-match-media-query mediaQuery="(max-width: 992px)">
-    <!--  balance  -->
-    <app-balance></app-balance>
-    <!-- NAVBAR en attendant  -->
-    <app-header></app-header>
-  </app-match-media-query>
-
-  <app-match-media-query mediaQuery="(max-width: 992px)">
-    <a [routerLink]="['/revenus-ajout']">
-      <button class="btn btn-success m-2">AJOUT REVENU</button></a
-    >
-    <a [routerLink]="['/depenses-ajout']">
-      <button class="btn btn-danger m-2">AJOUT DÉPENSE</button></a
-    >
-  </app-match-media-query>
+<app-header></app-header>
+<main class="container">
   <app-match-media-query mediaQuery="(min-width: 992px)">
     <ngb-accordion #acc="ngbAccordion">
       <ngb-panel title="Sommaire des transactions et des revenus">
@@ -77,4 +63,5 @@
       RETOUR AU TABLEAU DE BORD
     </button>
   </app-match-media-query>
-</div>
+</main>
+<app-footer></app-footer>
