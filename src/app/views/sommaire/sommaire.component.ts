@@ -22,15 +22,6 @@ export class SommaireComponent implements OnInit {
 
 
   ngOnInit() {
-    // * celle ci est la table détails.
-    this.canonicApiService.getIncomeExpenseList().subscribe(
-      (response: any) => {
-        console.log(response);
-        this.incomeExpenseList = response.data; 
-        
-      },
-      () => console.log('error')
-    );
 
   // * cette fonction permet d'ajouter les revenus via la table des revenus dans le sommaire des transactions
     this.canonicApiService.getSummaryIncome().subscribe(

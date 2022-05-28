@@ -56,7 +56,7 @@
                 <td class="d-none">{{ income._id }}</td>
                 <td>{{ income.description }}</td>
                 <td>{{ income.montant | currency }}</td>
-                <td>{{ income.date }}</td>
+                <td>{{ income.date  | date:'longDate':'undefined':'fr'  }}</td>
                 <td>
                   <i
                     class="fa fa-trash"
@@ -127,7 +127,7 @@
   
     <!--RETOUR TABLEAU DE BORD -->
     <button routerLink="/tableauDeBord">RETOUR AU TABLEAU DE BORD </button>
-    
+
       <app-charts height="20" width="20" [dataList]="incomeList"></app-charts>
     </app-match-media-query>
 
