@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Details } from 'src/app/interface/details';
 import { CanonicApiService } from 'src/app/services/canonic-api.service';
-import { Depense } from 'src/app/interface/depense';
-import { Revenu } from 'src/app/interface/revenu';
+import { Details } from 'src/app/interface/details';
 
 @Component({
   selector: 'app-tableau-de-bord',
@@ -11,43 +9,24 @@ import { Revenu } from 'src/app/interface/revenu';
 })
 export class TableauDeBordComponent implements OnInit {
   balance: number = 0;
-  expenseList: Depense[] = [];
-  incomeList: Revenu[] = [];
-  incomeExpenseList: Details[] = [];
+  expenseList!: Details[];
+  incomeList!: Details[];
 
+  constructor(private canonicApiService: CanonicApiService) { }
 
-
-  constructor(private canonicApiService: CanonicApiService) {
-    
-    // * pour l'affichage des données dans les graphiques
-    this.canonicApiService.getExpenseList().subscribe(
-      (response: any) => {
-        console.log(response);
-        this.expenseList = response.data; 
-      },
-      () => console.log('error')
-    );
-
+  ngOnInit(): void {
     this.canonicApiService.getIncomeList().subscribe(
       (response: any) => {
-        console.log(response);
-        this.incomeList = response.data; 
+        this.incomeList = response.data;
+      }, () => console.log('error')
+    );
+    this.canonicApiService.getExpenseList().subscribe(
+      (response: any) => {
+        this.expenseList = response.data;
       },
       () => console.log('error')
     );
-
   }
-
-    // ! voir pour  ajouter la function de la balance-@ Maxim
-    
-    
-      
-        
-      
-    
-
-  
-  ngOnInit(): void {}
 
 }
 function totalLeft() {

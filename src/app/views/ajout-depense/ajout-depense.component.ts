@@ -6,7 +6,7 @@ import { Details } from 'src/app/interface/details';
 import { StorageServiceService } from 'src/app/services/storage-service.service';
 import { environment } from 'src/environments/environment';
 import { CanonicApiService } from 'src/app/services/canonic-api.service';
-import { NgForm }   from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { Depense } from 'src/app/interface/depense';
 
 @Component({
@@ -21,14 +21,14 @@ export class AjoutDepenseComponent {
   balance: number = 0;
   expenseList: Depense[] = [];
 
-  constructor(private canonicApiService: CanonicApiService, private modalService: NgbModal) {}
+  constructor(private canonicApiService: CanonicApiService, private modalService: NgbModal) { }
 
   // * fonction pour afficher la liste des dépenses
   ngOnInit() {
     this.canonicApiService.getExpenseList().subscribe(
       (response: any) => {
         console.log(response);
-        this.depense = response.data; 
+        this.depense = response.data;
       },
       () => console.log('error')
     );
@@ -36,8 +36,8 @@ export class AjoutDepenseComponent {
 
   // * cette partie concerne l'ajout des dépenses.
 
-  @Input() depense: Depense = {_id:'', description:'', montant: 0, date: new Date, updatedAt: '', createdAt:'',}
-  @Output() majTableau = new EventEmitter() ;
+  @Input() depense: Depense = { _id: '', description: '', montant: 0, date: new Date, updatedAt: '', createdAt: '', }
+  @Output() majTableau = new EventEmitter();
 
 
   addExpense(): void {
@@ -46,22 +46,23 @@ export class AjoutDepenseComponent {
   }
 
 
-  
+
   onSave(addExpense: NgForm) {
     console.log(addExpense);
-    if(addExpense.valid) {
-      if(this.depense._id != null && this.depense._id != '') {
+    if (addExpense.valid) {
+      if (this.depense._id != null && this.depense._id != '') {
         this.canonicApiService.editExpense(this.depense).subscribe(_ => { this.majTableau.emit() });
-      } 
+      }
       else {
         this.addExpense();
         alert('Dépense ajoutée')
       }
-      
+
     }
     this.expenseList.push(this.depense);
-    location.reload(); // Pour reload le graphique
-    
+    // Pour reload le graphique ** Normalement on n'a plus besoin du reload pour recharger le graphique mm
+    // location.reload(); 
+
   }
 
   openCalculatorModal(content: any) {
