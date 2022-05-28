@@ -1,0 +1,52 @@
+// 1.FONT
+// 2.COULEURS
+// 3.POINTS DE RUPTURE
+
+
+    
+// .....................
+// 1. FONT
+// .............................................................   
+$body-font: 'Open Sans', sans-serif
+$button-font: 'Barlow Condensed', sans-serif
+// .....................
+// 2. VARIABLES DE COULEURS
+// .............................................................
+
+// COULEURS GÉNÉRALES DE L'INTERFACE / IMAGE DE MARQUE
+$blanc: #ffffff
+$grisPale: #dbdbdb
+$grisFonce: #a7a6a6
+
+$bleuBase: #215193
+$bleuHover: #031224
+
+$rougeConnexion: #a0001f
+
+// COULEURS REVENU
+$vertBase: #1e8922
+$vertHover: #0E4810
+
+// COULEURS DÉPENSE
+$rougeBase:#da1a32
+$rougeHover:#b51529
+
+
+// .....................
+// 3. POINTS DE RUPTURE
+// .............................................................
+$breakpoints: (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px,)
+
+
+// 4.MIXINS
+
+// BUTTON
+@mixin boutton($bg, $hover)
+    font-family: $button-font
+    padding: .5rem 2rem
+    border-radius: 5px
+    border: 0
+    background-color: $bg
+    color: #fff
+    &:hover
+        background-color: $hover	

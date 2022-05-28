@@ -13,7 +13,6 @@ import { StorageServiceService } from './services/storage-service.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CalculatriceComponent } from './components/calculatrice/calculatrice.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { CalendrierComponent } from './components/calendrier/calendrier.component';
 import { ExpenseComponentComponent } from './expense-component/expense-component.component';
 import { IncomeComponentComponent } from './income-component/income-component.component';
@@ -36,15 +35,18 @@ import { SommaireDepensesComponent } from './views/sommaire-depenses/sommaire-de
 import { SommaireRevenusComponent } from './views/sommaire-revenus/sommaire-revenus.component';
 import { AjoutDepenseComponent } from './views/ajout-depense/ajout-depense.component';
 import { AjoutRevenuComponent } from './views/ajout-revenu/ajout-revenu.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 import { CalendrierSommaireComponent } from './components/calendrier-sommaire/calendrier-sommaire.component';
 import { BalanceComponent } from './components/balance/balance.component';
+import { SortByDatesPipe } from './filters/sort-by-dates.pipe';
+import { MatchMediaQueryComponent } from './components/match-media-query/match-media-query.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CalculatriceComponent,
-    NavbarComponent,
     CalendrierComponent,
     ExpenseComponentComponent,
     IncomeComponentComponent,
@@ -57,8 +59,12 @@ import { BalanceComponent } from './components/balance/balance.component';
     SommaireRevenusComponent,
     AjoutDepenseComponent,
     AjoutRevenuComponent,
+    HeaderComponent,
+    FooterComponent,
     CalendrierSommaireComponent,
     BalanceComponent,
+    SortByDatesPipe,
+    MatchMediaQueryComponent,
   ],
   imports: [
     

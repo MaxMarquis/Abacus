@@ -1,7 +1,13 @@
+<app-match-media-query mediaQuery="(max-width: 992px)">
+  <!--  balance  -->
+  <app-balance></app-balance>
+  <!-- NAVBAR en attendant  -->
+  <app-header></app-header>
+</app-match-media-query>
+
 <body>
-    <!--  balance  -->
-    <app-balance></app-balance>
-    
+  <h1>Ajouter une dépense</h1>
+  <app-match-media-query mediaQuery="(max-width: 992px)">
     <section>
       <h2>Ajouter une dépense</h2>
       <!-- Graphique des dépenses-->
@@ -86,9 +92,16 @@
 <!-- Calc Modal -->
 <ng-template #content let-modal>
     <div class="modal-header">
-        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modal.dismiss()"
+      ></button>
     </div>
     <div class="modal-body">
-        <app-calculatrice></app-calculatrice>
+      <app-calculatrice></app-calculatrice>
     </div>
-</ng-template>
+  </ng-template>
+
+

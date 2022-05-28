@@ -12,6 +12,8 @@ import { StorageServiceService } from 'src/app/services/storage-service.service'
 export class SommaireRevenusComponent implements OnInit {
 
   incomeList: Details[] = [];
+  dateOne?: Date;
+  dateTwo?: Date;
 
 
   constructor(private canonicApiService: CanonicApiService) {}
@@ -25,6 +27,7 @@ export class SommaireRevenusComponent implements OnInit {
       () => console.log('error')
     );
   }
+  public isCollapsed = true;
 
     // Delete Income
     removeIncome(revenu: Revenu ): void {
@@ -43,4 +46,11 @@ export class SommaireRevenusComponent implements OnInit {
       this.incomeList = this.incomeList.filter((v, i) => i !== _id);
     }
     
+  doFilter(dateO: HTMLInputElement, dateT: HTMLInputElement): void {
+    this.dateOne = ((dateO.value.trim() == "") ? undefined : new Date(dateO.value));
+    this.dateTwo = ((dateT.value.trim() == "") ? undefined : new Date(dateT.value));
+  }
+
+  // Delete Income
+  
 }

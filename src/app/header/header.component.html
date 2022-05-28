@@ -1,0 +1,89 @@
+<!-- ENTÊTE -->
+
+<!-- NAV de ENTÊTE -->
+
+<nav id="menu" class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <!-- Route vers le tableau de bord -->
+    <a class="navbar-brand" routerLink="/tableauDeBord">
+      <!-- Logo horizontale d'Abacus -->
+      <img
+        height="100px"
+        src="../assets/img/abacus-logo_horizontal.svg"
+        alt="Logo d'abacus, application de budget personnel."
+        title="Logo d'abacus, application de budget personnel."
+      />
+    </a>
+
+    <!-- Menu hamburger -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- /Menu hamburger -->
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <!-- Route vers le tableau de bord -->
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            routerLink="/tableauDeBord"
+            >Tableau de bord</a
+          >
+        </li>
+        <!-- Route vers Sommaire complet -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/sommaire">Sommaire complet</a>
+        </li>
+
+        <!-- DÉPENSES - Ajout et sommaire -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/depenses-ajout"
+            >+Ajouter une dépense</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/depenses">Sommaire des dépenses</a>
+        </li>
+
+        <!-- REVENUS - Ajout et sommaire -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/revenus-ajout">+Ajouter un revenu</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/revenus">Sommaire des revenus</a>
+        </li>
+
+        <!-- MODALS - Calendrier et calculatrice -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/calendrier">Calendrier</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/calculatrice">Calculatrice</a>
+        </li>
+        <!-- Déconnexion -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/deconnexion">Déconnexion</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- /NAV de ENTÊTE -->
+
+<!-- BOUTONS ENTÊTE -->
+<!--! LES BOUTONS D'AJOUTS N'APPARAISSENT PAS DANS LES SECTIONS D'AJOUTS REVENUS ET DÉPENSES-->
+<!-- /BOUTONS ENTÊTE -->
+
+<!-- /ENTÊTE -->
+

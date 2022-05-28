@@ -13,10 +13,16 @@ var SommaireDepensesComponent = /** @class */ (function () {
         var _this = this;
         this.storageService = storageService;
         this.expenseList = [];
+        // collapse fermé pour input dates
+        this.isCollapsed = true;
         this.storageService.expenseList.subscribe(function (value) {
             _this.expenseList = value;
         });
     }
+    SommaireDepensesComponent.prototype.doFilter = function (dateO, dateT) {
+        this.dateOne = ((dateO.value.trim() == "") ? undefined : new Date(dateO.value));
+        this.dateTwo = ((dateT.value.trim() == "") ? undefined : new Date(dateT.value));
+    };
     // Delete Expense
     SommaireDepensesComponent.prototype.removeExpense = function (d) {
         if (confirm('Êtes-vous sur de vouloir supprimer cette donnée ?')) {
