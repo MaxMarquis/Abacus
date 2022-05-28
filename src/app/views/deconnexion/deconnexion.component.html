@@ -1,24 +1,75 @@
-<!--! J'AI MISE LE LOGO QUI EST PAS BLANC PARCE QUE POUR QUE JE PUISSE TESTER SI TOUT FONCTIONNAIS  -->
+<div class="authen vh-100">
+	<div class="row center">
 <!-- ENTÊTE -->
-<header>
-	<img src="../assets/img/abacus-logo_vertical.svg" alt="logo" class="logoMobile" /><br /><br />
-	<p>Vous vous êtes déconnecté de manière sécuritaire.</p>
-	<br /><br />
-</header>
+		<header>
+		<!-- LOGO ABACUS ANIMÉ -->
+			<div class="col-4 offset-4">
+				<img src="../assets/img/abacusAnime.svg" alt="logo" class="logoMobile" /><br /><br />
+				<p>Vous vous êtes déconnecté de manière sécuritaire.</p>
+			</div>
+		</header>
 <!-- FIN DE L'ENTÊTE -->
 
 <!-- CONTENU PRINCIPAL -->
-<main>
-	<!-- BOUTON DE CONNEXION -->
-	<!-- * Ajouter les méthodes pour le retour au login -->
-	<button type="button" routerLink="/">Se connecter</button>
-</main>
+		<main>
+			<div class="col-8 offset-2">
+			<!-- BOUTON DE CONNEXION -->
+			<!-- * Ajouter les méthodes pour le retour au login -->
+			<button type="button" routerLink="/">SE CONNECTER</button>
+			</div>
+		</main>
 <!-- FIN DU CONTENU PRINCIPAL -->
+	</div>
 
 <!-- PIED-DE-PAGE -->
 <footer>
-	<!-- AFFICHER LE COMPOSANT FOOTER -->
-	<app-footer></app-footer>
-	<!-- FIN DU COMPOSANT FOOTER -->
-</footer>
+	<!-- PIED-DE-PAGE -->
+	<!-- bordure rouge -->
+	<div class="bordure"></div>
+	
+	<div class="row">
+	<!-- Logo du CÉGEP de Trois-Rivières -->
+	<div class="col-3 offset-2">
+	<img
+	  src="../assets/img/cegep-trois-rivieres_logo.svg"
+	  alt="Logo du Cégep de Trois-Rivières."
+	  title="Logo du Cégep de Trois-Rivières."
+	/>
+	</div>
+	<div class="col-5 text-end">
+	<!-- Lien pour CÉGEP de Trois-Rivières -->
+	<p>VISITEZ LE <a href="https://www.cegeptr.qc.ca/">WWW.CEGEPTR.QC.CA</a></p>
+	</div>
+	<!-- NAV du PIED-DE-PAGE -->
+	<nav id="rs">
+	  <div class="row">
+		<div class="col-8 offset-2 d-flex justify-content-between">
+	  <!-- Lien la page Facebook du CÉGEP de Trois-Rivières -->
+	  <a href="https://www.facebook.com/cegeptr/">
+		<i class="fa-brands fa-facebook-square"></i>
+	  </a>
+	
+	  <!-- Lien du Twitter du CÉGEP de Trois-Rivières -->
+	  <a href="https://twitter.com/cegeptr">
+		<i class="fa-brands fa-twitter-square"></i>
+	  </a>
+	
+	  <!-- Lien du Youtube du CÉGEP de Trois-Rivières -->
+	  <a href="https://www.youtube.com/user/cegeptroisrivieres">
+		<i class="fa-brands fa-youtube-square"></i>
+	  </a>
+	
+	  <!-- Lien d'Instagram du CÉGEP de Trois-Rivières -->
+	  <a href="https://www.instagram.com/cegeptr/">
+		<i class="fa-brands fa-instagram-square"></i>
+	  </a>
+	</div>
+	</div>
+	</nav>
+	<!-- /NAV du PIED-DE-PAGE -->
+	</div>
+	<!-- /PIED-DE-PAGE -->
+	</footer>
+
 <!-- FIN PIED-DE-PAGE -->
+</div>
