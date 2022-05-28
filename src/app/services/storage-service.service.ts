@@ -99,7 +99,7 @@ export class StorageServiceService {
     let incomeList = this.getIncomeList();
 
     incomeList.filter((element: Details) => {
-      if (element.id === income.id) {
+      if (element._id === income._id) {
         incomeList.splice(incomeList.indexOf(element), 1);
       }
     });
@@ -117,7 +117,7 @@ export class StorageServiceService {
     let expenseList = this.getExpenseList();
 
     expenseList.filter((element: Details) => {
-      if (element.id === expense.id) {
+      if (element._id === expense._id) {
         expenseList.splice(expenseList.indexOf(element), 1);
       }
     });

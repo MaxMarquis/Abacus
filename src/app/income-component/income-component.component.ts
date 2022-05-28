@@ -1,12 +1,14 @@
 import { v4 as uuid } from 'uuid';
 
-import { Component, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { environment } from 'src/environments/environment';
 import { Details } from '../interface/details';
 import { StorageServiceService } from '../services/storage-service.service';
+import { CanonicApiService } from '../services/canonic-api.service';
+import { Revenu } from '../interface/revenu';
 
 @Component({
   selector: 'app-income-component',
@@ -17,63 +19,72 @@ import { StorageServiceService } from '../services/storage-service.service';
 export class IncomeComponentComponent {
   @ViewChild('fform') feedbackFormDirective: any;
   submitForm!: FormGroup;
-  details!: Details;
   isValidMontantError: string = "";
-  storageIncomeKey: string = environment.storageIncomeKey;
-  storageExpenseKey: string = environment.storageExpenseKey;
   balance: number = 0;
-  incomeList: Details[] = [];
+  incomeList: Revenu[] = [];
 
-  constructor(private fb: FormBuilder, private storageService: StorageServiceService, private modalService: NgbModal) {
-    this.createForm();
-    this.storageService.incomeList.subscribe(value => {
-      this.incomeList = value;
-    });
-    this.storageService.balanceValue.subscribe(value => {
-      this.balance = value;
-    });
+  constructor(private canonicApiService: CanonicApiService, private modalService: NgbModal) {
+
   }
+
+  
+    // * fonction pour afficher la liste des revenus
+  ngOnInit() {
+    this.canonicApiService.getIncomeList().subscribe(
+      (response: any) => {
+        console.log(response);
+        this.revenu = response.data; 
+      },
+      () => console.log('error')
+    );
+  }
+// ! ici c'etait @input() details: Details = ect...
+  @Input() revenu: Revenu = {_id:'', description:'', montant: 0, date: new Date, updatedAt: '', createdAt:'',}
+  @Output() majTableau = new EventEmitter() ;
+
+
 
   // Delete Income
-  removeIncome(d: Details): void {
-    if (confirm('Voulez vous supprimer votre revenu ?')) {
-      this.storageService.removeIncome(d);
+  removeIncome(revenu: Revenu): void {
+    if (confirm('Voulez vous supprimer ce revenu ?')){
+      this.canonicApiService.removeIncome(revenu._id)
+      .subscribe(_result => this.incomeList = this.incomeList.filter(r => r !== revenu));
     } else {
-     console.log('ne pas supprimer');
+      console.log('ne pas supprimer');
     }
-    
+    location.reload(); // Pour reload le graphique
+    }
+
+  addIncome(): void {
+    console.log(this.revenu);
+    this.canonicApiService.addIncome(this.revenu).subscribe();
   }
-
-  createForm(): void {
-    this.submitForm = this.fb.group({
-      description: ['', Validators.required],
-      montant: [0, [Validators.required, Validators.pattern("^[0-9-.]+[0-9-.]*$")]],
-      date: [Date.now, Validators.required]
-    });
-  }
-
-  onSubmit(): void {
-    this.details = this.submitForm.value;
-    this.details.id = uuid();
-    this.storageService.addIncome(this.details);
-
-    this.submitForm.reset({
-      description: '',
-      montant: 0,
-      date: new Date()
-    });
-
+  
+  onSave(addIncome: NgForm) {
+    console.log(addIncome);
+    if(addIncome.valid) {
+      alert('Revenu ajouter')
+      if(this.revenu._id != null && this.revenu._id != '') {
+        this.canonicApiService.editIncome(this.revenu).subscribe(_ => { this.majTableau.emit() });
+      } 
+      else {
+        this.addIncome();
+      }
+    }
     this.feedbackFormDirective.resetForm();
+    location.reload(); // Pour reload le graphique
 
-    // location.reload(); // Pour reload le graphique
+
   }
+
+  
 
   openCalculatorModal(content: any) {
     this.modalService.open(content);
   }
-  deleteIncome(id: number) {
+  deleteIncome(_id: number) {
 
-    this.incomeList = this.incomeList.filter((v, i) => i !== id);
+    this.incomeList = this.incomeList.filter((v, i) => i !== _id);
 
     alert("suppression");
     

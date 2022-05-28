@@ -1,6 +1,7 @@
 <app-header></app-header>
-<main class="container-fluid">
-  <h1>Sommaire des transactions</h1>
+<main class="container">
+
+  <!-- Full Screen -->
   <app-match-media-query mediaQuery="(min-width: 992px)">
     <ngb-accordion #acc="ngbAccordion">
       <ngb-panel title="Sommaire des transactions et des revenus">
@@ -14,14 +15,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr
-                *ngFor="let item of incomeExpenseList"
-                [ngClass]="
+              <tr *ngFor="let item of incomeExpenseList" [ngClass]="
                   item.isIncome
                     ? 'text-success font-weight-bold'
                     : 'text-danger font-weight-bold'
-                "
-              >
+                ">
                 <td>{{ item.description }}</td>
                 <td>{{ item.montant | currency }}</td>
                 <td>{{ item.date }}</td>
@@ -29,10 +27,14 @@
             </tbody>
           </table>
         </ng-template>
-      </ngb-panel></ngb-accordion
-    ></app-match-media-query
-  >
+      </ngb-panel>
+    </ngb-accordion>
+  </app-match-media-query>
+
+  <!-- Mobile -->
   <app-match-media-query mediaQuery="(max-width: 992px)">
+    <h1>Sommaire des transactions</h1>
+
     <table class="table">
       <thead>
         <tr>
@@ -42,27 +44,35 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          *ngFor="let item of incomeExpenseList"
-          [ngClass]="
-            item.isIncome
-              ? 'text-success font-weight-bold'
-              : 'text-danger font-weight-bold'
-          "
-        >
-          <td>{{ item.description }}</td>
-          <td>{{ item.montant | currency }}</td>
-          <td>{{ item.date }}</td>
+        <!-- * Table principale Détails -->
+        <tr *ngFor="let item of incomeExpenseList "
+          [ngClass]="item.isIncome ? 'text-success font-weight-bold' : 'text-danger font-weight-bold'">
+          <td>{{item.description}}</td>
+          <td>{{item.montant | currency}}</td>
+          <td>{{ item.date | date:'longDate':'undefined':'fr' }}</td>
+        </tr>
+
+        <!-- * Table secondaire revenu -->
+        <tr *ngFor="let income of SummaryIncome " [ngClass]="'text-success font-weight-bold'">
+          <td>{{income.description}}</td>
+          <td>{{income.montant | currency}}</td>
+          <td>{{ income.date | date:'longDate':'undefined':'fr' }}</td>
+        </tr>
+
+        <!-- * Table secondaire dépenses -->
+        <tr *ngFor="let expense of SummaryDepense "
+          [ngClass]="expense.isIncome ? 'text-success font-weight-bold' : 'text-danger font-weight-bold'">
+          <td>{{expense.description}}</td>
+          <td>{{expense.montant | currency}}</td>
+          <td>{{ expense.date | date:'longDate':'undefined':'fr' }}</td>
         </tr>
       </tbody>
     </table>
   </app-match-media-query>
 
-  <app-match-media-query mediaQuery="(max-width: 992px)">
-    <!--RETOUR TABLEAU DE BORD -->
-    <button class="btn-som-complet" routerLink="/tableauDeBord">
-      RETOUR AU TABLEAU DE BORD
-    </button>
-  </app-match-media-query>
+  <!--RETOUR TABLEAU DE BORD -->
+  <button class="btn-som-complet" routerLink="/tableauDeBord">
+    RETOUR AU TABLEAU DE BORD
+  </button>
 </main>
 <app-footer></app-footer>

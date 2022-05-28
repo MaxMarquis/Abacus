@@ -1,4 +1,3 @@
-
 <!-- NAVBAR en attendant  -->
 <app-match-media-query mediaQuery="(max-width: 992px)">
   <app-header></app-header>
@@ -7,37 +6,36 @@
 <app-match-media-query mediaQuery="(max-width: 992px)">
   <main class="container-fluid">
     <div class="col-12">
-     <h1>Portrait global</h1>
+      <h1>Portrait global</h1>
     </div>
     <!-- Portait des dépenses-->
 
+    <!-- Portait des dépenses-->
     <section>
       <h2>Portrait des dépenses</h2>
-      <!--graphique PORTRAIT-DEPENSES-->
-      <app-charts height="20" width="20" [dataList]="expenseList"></app-charts>
-      <!-- * LIEN VERS SOMMAIRE -->
-      <button class="btn-som-depense" routerLink="/depenses">SOMMAIRE</button>
+      <app-charts height="20" width="20" [dataDepense]="expenseList"></app-charts>
+      <!-- * LIEN VERS SOMMAIRE DÉPENSES -->
+      <button class="btn btn-danger" routerLink="/depenses">SOMMAIRE</button>
     </section>
 
     <!-- Portait des revenus-->
     <section>
       <h2>Portrait des revenus</h2>
-      <!--graphique PORTRAIT-REVENUS-->
-      <app-charts height="20" width="20" [dataList]="incomeList"></app-charts>
+      <app-charts height="20" width="20" [dataRevenu]="incomeList"></app-charts>
       <!-- * LIEN VERS SOMMAIRE REVENUS -->
-      <button class="btn-som-revenu" routerLink="/revenus">SOMMAIRE</button>
+      <button class="btn btn-success" routerLink="/revenus">SOMMAIRE</button>
     </section>
 
     <!-- * LIEN VERS SOMMAIRE COMPLET -->
     <button class="btn-som-complet" routerLink="/sommaire">
       SOMMAIRE COMPLET DES DÉPENSES ET REVENUS
     </button>
+
   </main>
   <app-footer></app-footer>
 </app-match-media-query>
 
 <!-- * FULL SCREEN -->
-
 <app-match-media-query mediaQuery="(min-width: 992px)">
   <main class="container">
     <app-ajout-depense></app-ajout-depense>
@@ -45,8 +43,8 @@
     <app-sommaire></app-sommaire>
     <app-sommaire-depenses></app-sommaire-depenses>
     <app-sommaire-revenus></app-sommaire-revenus>
-    <app-charts height="20" width="20" [dataList]="incomeList"></app-charts>
-    <app-charts height="20" width="20" [dataList]="expenseList"></app-charts>
+    <app-charts height="20" width="20" [dataRevenu]="incomeList"></app-charts>
+    <app-charts height="20" width="20" [dataDepense]="expenseList"></app-charts>
     <app-footer></app-footer>
   </main>
 </app-match-media-query>
