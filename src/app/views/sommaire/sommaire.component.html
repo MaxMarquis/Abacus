@@ -1,5 +1,6 @@
 <app-header></app-header>
 <main class="container">
+  <h1>Sommaire des transactions</h1>
   <app-match-media-query mediaQuery="(min-width: 992px)">
     <ngb-accordion #acc="ngbAccordion">
       <ngb-panel title="Sommaire des transactions et des revenus">
@@ -59,7 +60,7 @@
 
   <app-match-media-query mediaQuery="(max-width: 992px)">
     <!--RETOUR TABLEAU DE BORD -->
-    <button class="btn btn-primary" routerLink="/tableauDeBord">
+    <button class="btn-som-complet" routerLink="/tableauDeBord">
       RETOUR AU TABLEAU DE BORD
     </button>
   </app-match-media-query>

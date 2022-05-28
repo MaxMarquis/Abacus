@@ -1,17 +1,56 @@
 @import '../../sass/utils/variables'
     
 body
-    font-family: 'Poppins', sans-serif
+    font-family: $body-font
     font-weight: 400
     font-size: 0.875rem
     
     background-image: url('../../assets/img/stripes-light.png')
+main
+    margin: 50px 0
 
 .bordure
     margin: 20px 0 50px
     border-top: 15px solid $rougeBase
     border-bottom:  15px solid $rougeBase
     height: 40px
+
+// BUTTONS
+.btn-som-revenu
+    @include boutton($vertBase, $vertHover)
+    margin: 20px 0
+
+.btn-som-depense
+    @include boutton($rougeBase, $rougeHover)
+    margin: 20px 0
+
+.btn-som-complet
+    @include boutton($bleuBase, $bleuHover)
+    margin: 20px 0
+
+.btn-periode-revenu
+    @include boutton($blanc, $blanc)
+    color: $vertBase
+    border: 1px solid $vertBase
+    width: 80%
+    &:hover
+        color: $vertHover
+        border-color: $vertHover
+
+.btn-periode-depense
+    @include boutton($blanc, $blanc)
+    color: $rougeBase
+    border: 1px solid $rougeBase
+    width: 80%
+    &:hover
+        color: $rougeHover
+        border-color: $rougeHover
+
+.btn-filtre
+    @include boutton($vertBase, $vertHover)
+
+.btn-filtre-depense
+    @include boutton($rougeBase, $rougeHover)
 
 // FORM
 ::placeholder

@@ -1,13 +1,14 @@
 <app-match-media-query mediaQuery="(max-width: 992px)">
   <app-header></app-header>
 </app-match-media-query>
-<div class="container">
-<app-match-media-query mediaQuery="(min-width: 992px)">
+<main class="container-fluid">  
   <h1>Sommaire des revenus</h1>
+<app-match-media-query mediaQuery="(min-width: 992px)">
+
   <ngb-accordion #acc="ngbAccordion">
     <ngb-panel title="Sommaire des revenus">
       <ng-template ngbPanelContent>
-        <button type="button" class="btn btn-outline-success" (click)="collapse.toggle()"
+        <button type="button" class="btn bt" (click)="collapse.toggle()"
           [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
           Choisir la période désirée
         </button>
@@ -17,7 +18,7 @@
             <input type="date" placeholder="Du" #dateO />
             <input type="date" placeholder="Au" #dateT />
             <button class="m-1 btn btn-primary" (click)="doFilter(dateO, dateT)">
-              Filter
+              Filtrer
             </button>
           </div>
         </div>
@@ -48,7 +49,7 @@
 </app-match-media-query>
 
 <app-match-media-query mediaQuery="(max-width: 992px)">
-  <button type="button" class="btn btn-outline-success" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
+  <button type="button" class="btn-periode-revenu" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
     aria-controls="collapseExample">
     Choisir la période désirée
   </button>
@@ -57,8 +58,8 @@
     <div>
       <input type="date" placeholder="Du" #dateO />
       <input type="date" placeholder="Au" #dateT />
-      <button class="m-1 btn btn-primary" (click)="doFilter(dateO, dateT)">
-        Filter
+      <button class="m-1 btn-filtre" (click)="doFilter(dateO, dateT)">
+        Filtrer
       </button>
     </div>
   </div>
@@ -99,7 +100,7 @@
     </section>
     <app-match-media-query mediaQuery="(max-width: 992px)">
       <!--RETOUR TABLEAU DE BORD -->
-      <button class="btn btn-primary" routerLink="/tableauDeBord">
+      <button class="btn-som-complet" routerLink="/tableauDeBord">
         RETOUR AU TABLEAU DE BORD
       </button>
     </app-match-media-query>
@@ -107,5 +108,5 @@
   </app-match-media-query>
 </div>
 
-</div>
+</main>
 <app-footer></app-footer>

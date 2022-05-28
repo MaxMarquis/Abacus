@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="container">
+<main class="container">
   <app-match-media-query mediaQuery="(max-width: 992px)">
     <h1>Sommaire des dépenses</h1>
     <ngb-accordion #acc="ngbAccordion">
@@ -62,7 +62,7 @@
     <p>
       <button
         type="button"
-        class="btn btn-outline-success"
+        class="btn-periode-depense"
         (click)="collapse.toggle()"
         [attr.aria-expanded]="!isCollapsed"
         aria-controls="collapseExample"
@@ -75,8 +75,8 @@
       <div>
         <input type="date" placeholder="Du" #dateO />
         <input type="date" placeholder="Au" #dateT />
-        <button class="m-1 btn btn-primary" (click)="doFilter(dateO, dateT)">
-          Filter
+        <button class="m-1 btn-filtre-depense" (click)="doFilter(dateO, dateT)">
+          Filtrer
         </button>
       </div>
     </div>
@@ -123,11 +123,11 @@
       </section>
       <app-match-media-query mediaQuery="(max-width: 992px)">
         <!--RETOUR TABLEAU DE BORD -->
-        <button class="btn btn-primary" routerLink="/tableauDeBord">
+        <button class="btn-som-complet" routerLink="/tableauDeBord">
           RETOUR AU TABLEAU DE BORD
         </button>
       </app-match-media-query>
     </app-match-media-query>
   </div>
-</div>
+</main>
 <app-footer></app-footer>
