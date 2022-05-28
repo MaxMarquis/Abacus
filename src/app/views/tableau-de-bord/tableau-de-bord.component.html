@@ -20,7 +20,8 @@
 	<section>
 		<h2>Portrait des dépenses</h2>
 		<!--graphique PORTRAIT-DEPENSES-->
-		<app-charts height="20" width="20" [dataList]="expenseList"></app-charts>
+		<app-charts height="20" width="20" [dataDepense]="expenseList"></app-charts>
+
 		<!-- * LIEN VERS SOMMAIRE -->
 		<button class="btn btn-danger" routerLink="/depenses">SOMMAIRE</button>
 	</section>
@@ -30,7 +31,7 @@
 	<section>
 		<h2>Portrait des revenus</h2>
 		<!--graphique PORTRAIT-REVENUS-->
-		<app-charts height="20" width="20" [dataList]="incomeList"></app-charts>
+		<app-charts height="20" width="20" [dataRevenu]="incomeList"></app-charts>
 		<!-- * LIEN VERS SOMMAIRE REVENUS -->
     <button class="btn btn-success" routerLink="/revenus">SOMMAIRE</button>
 	</section>

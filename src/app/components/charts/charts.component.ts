@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ChartData, ChartType } from 'chart.js';
 import { Details } from 'src/app/interface/details';
+import { Revenu } from 'src/app/interface/revenu';
+import { Depense } from 'src/app/interface/depense';
 
 @Component({
   selector: 'app-charts',
@@ -12,7 +14,11 @@ export class ChartsComponent implements OnInit {
   // Récupère les props afin de personnaliser le graphique
   @Input() height = '25';
   @Input() width = '25';
-  @Input() dataList: Details[] = []
+
+  @Input() dataList: Details[] = []  // celle-ci peut ¸etre utilisée dans le cas ou on mettrai un graphique au sommaire des transactions/non applicable
+  @Input() dataRevenu: Revenu[] = [] // graphique du sommaire des revenus
+  @Input() datadepense: Depense[] = [] // graphique du sommaire des dépenses
+
 
   constructor() { }
 
@@ -22,7 +28,21 @@ export class ChartsComponent implements OnInit {
       this.doughnutChartLabels.push(x.description);
       this.doughnutChartData.datasets[0].data.push(x.montant);
     });
+
+    // * graphique pour les revenus
+    this.dataRevenu.map((y) => {
+      this.doughnutChartLabels.push(y.description);
+      this.doughnutChartData.datasets[0].data.push(y.montant);
+    });
+
+      // *graphique pour les dépenses
+    this.datadepense.map((z) => {
+      this.doughnutChartLabels.push(z.description);
+      this.doughnutChartData.datasets[0].data.push(z.montant);
+    });
   }
+
+
 
   // Création du graphique style Doughnut
   public doughnutChartLabels: String[] = [];
@@ -33,6 +53,7 @@ export class ChartsComponent implements OnInit {
   public doughnutChartType: ChartType = 'doughnut';
 
 
+  
 }
 
 

@@ -31,7 +31,7 @@
     <section>
       <h2>Revenus</h2>
       <!--graphique des revenus-->
-      <app-charts height="20" width="20" [dataList]="incomeList"></app-charts>
+      <app-charts height="20" width="20" [dataRevenu]="incomeList"></app-charts>
     </section>
   
     <!-- Tableau du sommaires des revenus -->
@@ -46,10 +46,10 @@
         </thead>
         <tbody>
           <tr *ngFor="let income of incomeList">
-            <td class="d-none">{{ income.id }}</td>
+            <td class="d-none">{{ income._id }}</td>
             <td>{{ income.description }}</td>
             <td>{{ income.montant | currency }}</td>
-            <td>{{ income.date }}</td>
+            <td>{{ income.date | date:'longDate':'undefined':'fr' }}</td>
             <td><i class="fa fa-trash" aria-hidden="true" (click)="removeIncome(income)"></i></td>
           </tr>
   

@@ -20,6 +20,12 @@ import { IncomeComponentComponent } from './income-component/income-component.co
 import { ChartsComponent } from './components/charts/charts.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { HttpClientModule } from '@angular/common/http';
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr);
+
 
 
 import { AuthentificationComponent } from './views/authentification/authentification.component';
@@ -55,6 +61,8 @@ import { BalanceComponent } from './components/balance/balance.component';
     BalanceComponent,
   ],
   imports: [
+    
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -72,7 +80,7 @@ import { BalanceComponent } from './components/balance/balance.component';
   ],
 
   providers: [StorageServiceService,
-    { provide: MAT_DATE_LOCALE, useValue: "fr-FR" }, /* POUR METTRE LES DATEPICKER EN FRANÇAIS */
+    { provide:  MAT_DATE_LOCALE, useValue: "fr-FR" }, /* POUR METTRE LES DATEPICKER EN FRANÇAIS */
     {
       provide: DateAdapter,
       useClass: MomentDateAdapter,

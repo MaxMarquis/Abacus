@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Details } from 'src/app/interface/details';
-import { StorageServiceService } from 'src/app/services/storage-service.service';
+import { CanonicApiService } from 'src/app/services/canonic-api.service';
+import { Depense } from 'src/app/interface/depense';
+import { Revenu } from 'src/app/interface/revenu';
 
 @Component({
   selector: 'app-tableau-de-bord',
@@ -9,22 +11,46 @@ import { StorageServiceService } from 'src/app/services/storage-service.service'
 })
 export class TableauDeBordComponent implements OnInit {
   balance: number = 0;
-  expenseList: Details[] = []
-  incomeList: Details[] = []
+  expenseList: Depense[] = [];
+  incomeList: Revenu[] = [];
+  incomeExpenseList: Details[] = [];
 
-  constructor(private storageService: StorageServiceService) {
-    this.storageService.expenseList.subscribe(value => {
-      this.expenseList = value;
-    });
-    this.storageService.incomeList.subscribe(value => {
-      this.incomeList = value;
-    });
-    this.storageService.balanceValue.subscribe(value => {
-      this.balance = value;
-    });
+
+
+  constructor(private canonicApiService: CanonicApiService) {
+    
+    // * pour l'affichage des données dans les graphiques
+    this.canonicApiService.getExpenseList().subscribe(
+      (response: any) => {
+        console.log(response);
+        this.expenseList = response.data; 
+      },
+      () => console.log('error')
+    );
+
+    this.canonicApiService.getIncomeList().subscribe(
+      (response: any) => {
+        console.log(response);
+        this.incomeList = response.data; 
+      },
+      () => console.log('error')
+    );
+
   }
 
-  ngOnInit(): void {
-  }
+    // ! voir pour  ajouter la function de la balance-@ Maxim
+    
+    
+      
+        
+      
+    
+
+  
+  ngOnInit(): void {}
 
 }
+function totalLeft() {
+  throw new Error('Function not implemented.');
+}
+

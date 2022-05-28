@@ -1,10 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { v4 as uuid } from 'uuid';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Details } from 'src/app/interface/details';
 import { StorageServiceService } from 'src/app/services/storage-service.service';
 import { environment } from 'src/environments/environment';
+import { CanonicApiService } from 'src/app/services/canonic-api.service';
+import { NgForm }   from '@angular/forms';
+import { Depense } from 'src/app/interface/depense';
 
 @Component({
   selector: 'app-ajout-depense',
@@ -14,50 +17,58 @@ import { environment } from 'src/environments/environment';
 export class AjoutDepenseComponent {
   @ViewChild('fform') feedbackFormDirective: any;
   submitForm!: FormGroup;
-  details!: Details;
   isValidMontantError: string = "";
-  storageIncomeKey: string = environment.storageIncomeKey;
-  storageExpenseKey: string = environment.storageExpenseKey;
   balance: number = 0;
-  expenseList: Details[] = [];
+  expenseList: Depense[] = [];
 
-  constructor(private fb: FormBuilder, private storageService: StorageServiceService, private modalService: NgbModal) {
-    this.createForm();
-    this.storageService.expenseList.subscribe(value => {
-      this.expenseList = value;
-    });
-    this.storageService.balanceValue.subscribe(value => {
-      this.balance = value;
-    });
+  constructor(private canonicApiService: CanonicApiService, private modalService: NgbModal) {}
+
+  // * fonction pour afficher la liste des dépenses
+  ngOnInit() {
+    this.canonicApiService.getExpenseList().subscribe(
+      (response: any) => {
+        console.log(response);
+        this.depense = response.data; 
+      },
+      () => console.log('error')
+    );
   }
 
-  createForm(): void {
-    this.submitForm = this.fb.group({
-      description: ['', Validators.required],
-      montant: [0, [Validators.required, Validators.pattern("^[0-9-.]+[0-9]*$")]],
-      date: [Date.now, Validators.required]
-    });
+  // * cette partie concerne l'ajout des dépenses.
+
+  @Input() depense: Depense = {_id:'', description:'', montant: 0, date: new Date, updatedAt: '', createdAt:'',}
+  @Output() majTableau = new EventEmitter() ;
+
+
+  addExpense(): void {
+    console.log(this.depense);
+    this.canonicApiService.addExpense(this.depense).subscribe();
   }
 
-  onSubmit(): void {
-    this.details = this.submitForm.value;
-    this.details.id = uuid();
-    this.storageService.addExpense(this.details);
 
-    this.submitForm.reset({
-      description: '',
-      montant: 0,
-      date: new Date(),
-      if : alert("Dépense ajoutée")
-
-    });
-
-    this.expenseList.push(this.details);
-    this.feedbackFormDirective.resetForm();
+  
+  onSave(addExpense: NgForm) {
+    console.log(addExpense);
+    if(addExpense.valid) {
+      if(this.depense._id != null && this.depense._id != '') {
+        this.canonicApiService.editExpense(this.depense).subscribe(_ => { this.majTableau.emit() });
+      } 
+      else {
+        this.addExpense();
+        alert('Dépense ajoutée')
+      }
+      
+    }
+    this.expenseList.push(this.depense);
     location.reload(); // Pour reload le graphique
+    
   }
 
   openCalculatorModal(content: any) {
     this.modalService.open(content);
+  }
+
+  deleteExpense(id: number) {
+    this.expenseList = this.expenseList.filter((v, i) => i !== id);
   }
 }

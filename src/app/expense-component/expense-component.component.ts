@@ -1,11 +1,16 @@
 import { v4 as uuid } from 'uuid';
-import { Component, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { filter } from 'rxjs/operators';
+import { FormsModule } from '@angular/forms';
+
 
 import { environment } from 'src/environments/environment';
 import { Details } from '../interface/details';
 import { StorageServiceService } from '../services/storage-service.service';
+import { CanonicApiService } from '../services/canonic-api.service';
+import { Depense } from '../interface/depense';
 
 @Component({
   selector: 'app-expense-component',
@@ -16,57 +21,77 @@ import { StorageServiceService } from '../services/storage-service.service';
 export class ExpenseComponentComponent {
   @ViewChild('fform') feedbackFormDirective: any;
   submitForm!: FormGroup;
-  details!: Details;
   isValidMontantError: string = "";
-  storageIncomeKey: string = environment.storageIncomeKey;
-  storageExpenseKey: string = environment.storageExpenseKey;
   balance: number = 0;
-  expenseList: Details[] = [];
 
-  constructor(private fb: FormBuilder, private storageService: StorageServiceService, private modalService: NgbModal) {
-    this.createForm();
-    this.storageService.expenseList.subscribe(value => {
-      this.expenseList = value;
-    });
-    this.storageService.balanceValue.subscribe(value => {
-      this.balance = value;
-    });
+  expenseList: Depense[] = [];
+
+  constructor(private canonicApiService: CanonicApiService, private modalService: NgbModal) {
+
   }
 
-  // Delete Expense
-  removeExpense(d: Details): void {
-    if (confirm('Voulez vous supprimer cette dépense ?')) {
-      this.storageService.removeExpense(d);(d);
+ 
+
+  // * fonction pour afficher la liste des dépenses
+  ngOnInit() {
+    this.canonicApiService.getExpenseList().subscribe(
+      (response: any) => {
+        console.log(response);
+        this.depense = response.data; 
+      },
+      () => console.log('error')
+    );
+  }
+
+  @Input() depense: Depense = {_id:'', description:'', montant: 0, date: new Date, updatedAt: '', createdAt:'',}
+  @Output() majTableau = new EventEmitter() ;
+
+
+
+  // * Supprime les depenses
+  removeExpense(depense: Depense): void {
+    if (confirm('Voulez vous supprimer cette dépense ?')){
+      this.canonicApiService.removeExpense(depense._id)
+      .subscribe(_result => this.expenseList = this.expenseList.filter(d => d !== depense));
+      console.log()
     } else {
-     console.log('ne pas supprimer');
+      console.log('ne pas supprimer');
     }
-    
+    location.reload(); // Pour reload le graphique
   }
 
-  createForm(): void {
-    this.submitForm = this.fb.group({
-      description: ['', Validators.required],
-      montant: [0, [Validators.required, Validators.pattern("^[0-9-.]+[0-9]*$")]],
-      date: [Date.now, Validators.required]
-    });
+  // *ajouter des dépenses
+  addExpense(): void {
+    console.log(this.depense);
+    this.canonicApiService.addExpense(this.depense).subscribe();
   }
 
-  onSubmit(): void {
-    this.details = this.submitForm.value;
-    this.details.id = uuid();
-    this.storageService.addExpense(this.details);
-
-    this.submitForm.reset({
-      description: '',
-      montant: 0,
-      date: new Date()
-    });
-
+  onSave(addExpense: NgForm) {
+    console.log(addExpense);
+    if(addExpense.valid) {
+      alert('Dépense ajouter')
+      if(this.depense._id != null && this.depense._id != '') {
+        this.canonicApiService.editExpense(this.depense).subscribe(_ => { this.majTableau.emit() });
+      } 
+      else {
+        this.addExpense();
+      }
+    }
     this.feedbackFormDirective.resetForm();
-    // location.reload(); // Pour reload le graphique
+    location.reload(); // Pour reload le graphique
+
   }
 
   openCalculatorModal(content: any) {
     this.modalService.open(content);
   }
+  
+  deleteExpense(_id: number) {
+
+    this.expenseList = this.expenseList.filter((v, i) => i !== _id);
+
+    alert("suppression");
+    
+  }
+
 }
