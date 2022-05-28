@@ -1,12 +1,6 @@
-import { v4 as uuid } from 'uuid';
-
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormGroup, NgForm } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
-import { environment } from 'src/environments/environment';
-import { Details } from 'src/app/interface/details';
-import { StorageServiceService } from 'src/app/services/storage-service.service';
 import { CanonicApiService } from 'src/app/services/canonic-api.service';
 import { Revenu } from 'src/app/interface/revenu';
 
@@ -21,7 +15,7 @@ export class AjoutRevenuComponent {
   submitForm!: FormGroup;
   isValidMontantError: string = "";
   balance: number = 0;
-  incomeList: Revenu[] = [];
+  incomeList!: Revenu[];
 
   constructor(private canonicApiService: CanonicApiService, private modalService: NgbModal) { }
 
@@ -30,7 +24,7 @@ export class AjoutRevenuComponent {
     this.canonicApiService.getIncomeList().subscribe(
       (response: any) => {
         console.log(response);
-        this.revenu = response.data;
+        this.incomeList = response.data;
       },
       () => console.log('error')
     );
@@ -57,13 +51,9 @@ export class AjoutRevenuComponent {
       }
     }
     this.incomeList.push(this.revenu);
-    // Pour reload le graphique ** Normalement on n'a plus besoin du reload pour recharger le graphique mm
-    // location.reload(); 
-
+    // Pour reload le graphique
+    location.reload();
   }
-
-
-
 
   openCalculatorModal(content: any) {
     this.modalService.open(content);
@@ -71,5 +61,4 @@ export class AjoutRevenuComponent {
   deleteIncome(id: number) {
     this.incomeList = this.incomeList.filter((v, i) => i !== id);
   }
-
 }
