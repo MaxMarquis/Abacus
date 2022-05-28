@@ -2,9 +2,14 @@
   <app-header></app-header>
 </app-match-media-query>
 <main class="container-fluid">  
+  <div class="row">
+    <div class="col-12">
   <h1>Sommaire des revenus</h1>
+</div>
+</div>
 <app-match-media-query mediaQuery="(min-width: 992px)">
-
+<div class="row">
+  <div class="col-12">
   <ngb-accordion #acc="ngbAccordion">
     <ngb-panel title="Sommaire des revenus">
       <ng-template ngbPanelContent>
@@ -45,7 +50,10 @@
         </table>
       </ng-template>
     </ngb-panel>
+
   </ngb-accordion>
+</div><!-- fin de col12-->
+</div><!-- fin de row -->
 </app-match-media-query>
 
 <app-match-media-query mediaQuery="(max-width: 992px)">
