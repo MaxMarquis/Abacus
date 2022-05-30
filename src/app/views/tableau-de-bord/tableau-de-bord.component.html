@@ -1,42 +1,68 @@
-<!-- NAVBAR en attendant  -->
-<app-match-media-query mediaQuery="(max-width: 992px)">
-  <app-header></app-header>
-</app-match-media-query>
+<!-- * NAVBAR en attendant.....................  -->
 
-<app-match-media-query mediaQuery="(max-width: 992px)">
+<app-match-media-query mediaQuery="(max-width: 992px)"> <!-- ! REQUÊTE -->
+  <app-header></app-header>
+
   <main class="container-fluid">
     <div class="col-12">
       <h1>Portrait global</h1>
     </div>
-    <!-- Portait des dépenses-->
 
-    <!-- Portait des dépenses-->
+<!-- * PORTRAIT DES DÉPENSES.....................-->
     <section>
-      <h2>Portrait des dépenses</h2>
-      <app-charts height="20" width="20" [dataDepense]="expenseList"></app-charts>
-      <!-- * LIEN VERS SOMMAIRE DÉPENSES -->
-      <button class="btn btn-danger" routerLink="/depenses">SOMMAIRE</button>
+      <!-- CARD DÉPENSES/CHART -->
+      <div class="card">
+        <!-- HEADER -->
+          <div class="card-header">
+            <h2>Portrait des dépenses</h2>
+          </div>
+          <!--BODY CHART-->
+          <div class="card-body">
+            <div *ngIf="expenseList">
+              <app-charts width="25" height="25" [expenseList]="expenseList" labelsPosition=""></app-charts>
+            </div>
+        </div>
+        <!-- FOOTER CHART-->
+        <div class="card-footer">
+        <!--  LIEN VERS SOMMAIRE DÉPENSES -->
+          <button class="btn-som-depense" routerLink="/depenses">SOMMAIRE</button>
+        </div>
+      </div>
     </section>
 
-    <!-- Portait des revenus-->
+<!-- * PORTRAIT DES REVENUS.....................-->
     <section>
-      <h2>Portrait des revenus</h2>
-      <app-charts height="20" width="20" [dataRevenu]="incomeList"></app-charts>
-      <!-- * LIEN VERS SOMMAIRE REVENUS -->
-      <button class="btn btn-success" routerLink="/revenus">SOMMAIRE</button>
+      <!-- CARD REVENU/CHART -->
+      <div class="card">
+        <!-- HEADER CHART -->
+        <div class="card-header">
+          <h2>Portrait des revenus</h2>
+        </div>
+      <!-- BODY CHART-->
+      <div class="card-body">
+      <div *ngIf="incomeList">
+        <app-charts width="25" height="25" [incomeList]="incomeList"></app-charts>
+      </div>
+    </div>
+    <!-- FOOTER CHART -->
+      <div class="card-footer">
+      <!-- LIEN VERS SOMMAIRE REVENUS -->
+      <button class="btn-som-revenu" routerLink="/revenus">SOMMAIRE</button>
+    </div>
+    </div>
     </section>
 
-    <!-- * LIEN VERS SOMMAIRE COMPLET -->
+<!-- * LIEN VERS SOMMAIRE COMPLET..................... -->
     <button class="btn-som-complet" routerLink="/sommaire">
       SOMMAIRE COMPLET DES DÉPENSES ET REVENUS
     </button>
-
   </main>
   <app-footer></app-footer>
 </app-match-media-query>
 
-<!-- * FULL SCREEN -->
-<app-match-media-query mediaQuery="(min-width: 992px)">
+<!-- * FULL SCREEN.......................................... -->
+<!-- ! REQUÊTE -->
+<!-- <app-match-media-query mediaQuery="(min-width: 992px)"> 
   <main class="container">
     <app-ajout-depense></app-ajout-depense>
     <app-ajout-revenu></app-ajout-revenu>
@@ -47,4 +73,4 @@
     <app-charts height="20" width="20" [dataDepense]="expenseList"></app-charts>
     <app-footer></app-footer>
   </main>
-</app-match-media-query>
+</app-match-media-query> -->

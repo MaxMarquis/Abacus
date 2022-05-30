@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Details } from 'src/app/interface/details';
 import { Revenu } from 'src/app/interface/revenu';
 import { CanonicApiService } from 'src/app/services/canonic-api.service';
-import { StorageServiceService } from 'src/app/services/storage-service.service';
 
 @Component({
   selector: 'app-sommaire-revenus',
@@ -11,20 +10,17 @@ import { StorageServiceService } from 'src/app/services/storage-service.service'
 })
 export class SommaireRevenusComponent implements OnInit {
 
-  incomeList: Details[] = [];
+  incomeList!: Details[];
   dateOne?: Date;
   dateTwo?: Date;
 
-
-  constructor(private canonicApiService: CanonicApiService) {}
+  constructor(private canonicApiService: CanonicApiService) { }
 
   ngOnInit() {
     this.canonicApiService.getIncomeList().subscribe(
       (response: any) => {
-        console.log(response);
-        this.incomeList = response.data; 
-      },
-      () => console.log('error')
+        this.incomeList = response.data;
+      }, () => console.log('error')
     );
   }
   public isCollapsed = true;
@@ -52,6 +48,4 @@ export class SommaireRevenusComponent implements OnInit {
     this.dateTwo = ((dateT.value.trim() == "") ? undefined : new Date(dateT.value));
   }
 
-  
-  
 }
