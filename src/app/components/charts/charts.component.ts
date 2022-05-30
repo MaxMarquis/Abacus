@@ -29,7 +29,7 @@ export class ChartsComponent implements OnInit {
       this.doughnutChartData.datasets[0].data.push(x.montant);
     });
 
-    // * graphique pour les revenus
+    // * graphique pour les revenusnpm 
     this.dataRevenu.map((y) => {
       this.doughnutChartLabels.push(y.description);
       this.doughnutChartData.datasets[0].data.push(y.montant);

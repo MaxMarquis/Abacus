@@ -3,6 +3,8 @@ import { Details } from 'src/app/interface/details';
 import { CanonicApiService } from 'src/app/services/canonic-api.service';
 import { Depense } from 'src/app/interface/depense';
 import { Revenu } from 'src/app/interface/revenu';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-tableau-de-bord',
@@ -17,7 +19,7 @@ export class TableauDeBordComponent implements OnInit {
 
 
 
-  constructor(private canonicApiService: CanonicApiService) {
+  constructor(private canonicApiService: CanonicApiService, private authService: AuthService, private router: Router) {
     
     // * pour l'affichage des données dans les graphiques
     this.canonicApiService.getExpenseList().subscribe(
@@ -39,15 +41,9 @@ export class TableauDeBordComponent implements OnInit {
   }
 
     // ! voir pour  ajouter la function de la balance-@ Maxim
-    
-    
-      
-        
-      
-    
-
   
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
 }
 function totalLeft() {

@@ -13,10 +13,19 @@ import { SommaireDepensesComponent } from './views/sommaire-depenses/sommaire-de
 import { SommaireRevenusComponent } from './views/sommaire-revenus/sommaire-revenus.component';
 import { AjoutDepenseComponent } from './views/ajout-depense/ajout-depense.component';
 import { AjoutRevenuComponent } from './views/ajout-revenu/ajout-revenu.component';
+import { LoginComponent } from './login/login.component';
+import { RegisteComponent } from './registe/registe.component';
 
 
 const routes: Routes = [
-  { path: '', component: AuthentificationComponent },
+
+  // ! test
+  { path: '', component: LoginComponent },
+  { path: 'registe', component: RegisteComponent },
+  { path: 'login', component: LoginComponent },
+
+
+  // { path: '', component: AuthentificationComponent },
   { path: 'tableauDeBord', component: TableauDeBordComponent },
   { path: 'sommaire', component: SommaireComponent },
   { path: 'depenses-ajout', component: AjoutDepenseComponent },

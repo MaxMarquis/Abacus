@@ -38,22 +38,23 @@ export class IncomeComponentComponent {
       () => console.log('error')
     );
   }
-// ! ici c'etait @input() details: Details = ect...
   @Input() revenu: Revenu = {_id:'', description:'', montant: 0, date: new Date, updatedAt: '', createdAt:'',}
   @Output() majTableau = new EventEmitter() ;
 
 
 
   // Delete Income
-  removeIncome(revenu: Revenu): void {
-    if (confirm('Voulez vous supprimer ce revenu ?')){
-      this.canonicApiService.removeIncome(revenu._id)
-      .subscribe(_result => this.incomeList = this.incomeList.filter(r => r !== revenu));
-    } else {
-      console.log('ne pas supprimer');
-    }
-    location.reload(); // Pour reload le graphique
-    }
+  removeIncome(revenu : Revenu): void {
+    this.canonicApiService.removeExpense(revenu)
+    .subscribe(_result => this.incomeList = this.incomeList)
+    if (confirm('Voulez vous supprimer cette dépense ?')){
+  } else {
+    console.log('ne pas supprimer');
+
+  }
+  
+  location.reload(); // Pour reload le graphique
+  }
 
   addIncome(): void {
     console.log(this.revenu);
@@ -82,12 +83,6 @@ export class IncomeComponentComponent {
   openCalculatorModal(content: any) {
     this.modalService.open(content);
   }
-  deleteIncome(_id: number) {
-
-    this.incomeList = this.incomeList.filter((v, i) => i !== _id);
-
-    alert("suppression");
-    
-  }
+  
 
 }

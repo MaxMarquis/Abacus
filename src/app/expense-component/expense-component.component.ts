@@ -45,23 +45,9 @@ export class ExpenseComponentComponent {
 
   @Input() depense: Depense = {_id:'', description:'', montant: 0, date: new Date, updatedAt: '', createdAt:'',}
   @Output() majTableau = new EventEmitter() ;
-
-
-
-  // * Supprime les depenses
-  removeExpense(depense: Depense): void {
-    if (confirm('Voulez vous supprimer cette dépense ?')){
-      this.canonicApiService.removeExpense(depense._id)
-      .subscribe(_result => this.expenseList = this.expenseList.filter(d => d !== depense));
-      console.log()
-    } else {
-      console.log('ne pas supprimer');
-    }
-    location.reload(); // Pour reload le graphique
-  }
-
-  // *ajouter des dépenses
-  addExpense(): void {
+    
+      // *ajouter des dépenses
+    addExpense(): void {
     console.log(this.depense);
     this.canonicApiService.addExpense(this.depense).subscribe();
   }
@@ -82,16 +68,21 @@ export class ExpenseComponentComponent {
 
   }
 
+  // * Supprime les depenses
+  removeExpense(depense: Depense): void {
+    if (confirm('Voulez vous supprimer cette dépense ?')){
+      this.canonicApiService.removeExpense(depense)
+      .subscribe(_result => this.expenseList = this.expenseList.filter(d => d !== depense));
+
+    } else {
+      console.log('ne pas supprimer');
+    }
+    location.reload(); // Pour reload le graphique
+  }
+
   openCalculatorModal(content: any) {
     this.modalService.open(content);
   }
   
-  deleteExpense(_id: number) {
-
-    this.expenseList = this.expenseList.filter((v, i) => i !== _id);
-
-    alert("suppression");
-    
-  }
 
 }

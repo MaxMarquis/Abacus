@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Details } from 'src/app/interface/details';
+import { Depense, DepenseDTO } from 'src/app/interface/depense';
+import { Details, DetailsDTO } from 'src/app/interface/details';
 import { Revenu } from 'src/app/interface/revenu';
 import { CanonicApiService } from 'src/app/services/canonic-api.service';
 import { StorageServiceService } from 'src/app/services/storage-service.service';
@@ -15,6 +16,7 @@ export class SommaireDepensesComponent implements OnInit {
   dateOne?: Date;
   dateTwo?: Date;
 
+
   constructor(private canonicApiService: CanonicApiService) {}
 
 
@@ -28,10 +30,13 @@ export class SommaireDepensesComponent implements OnInit {
     );
   }
 
-    removeExpense(revenu: Revenu): void {
-      if (confirm('Voulez vous supprimer cette dépense ?')){
-        this.canonicApiService.removeExpense(revenu._id)
-        .subscribe(_result => this.expenseList = this.expenseList.filter(d => d !== revenu));
+
+
+
+    removeExpense(depense : Depense): void {
+        this.canonicApiService.removeExpense(depense)
+        .subscribe(_result => this.expenseList = this.expenseList)
+        if (confirm('Voulez vous supprimer cette dépense ?')){
       } else {
         console.log('ne pas supprimer');
 
@@ -40,13 +45,6 @@ export class SommaireDepensesComponent implements OnInit {
       location.reload(); // Pour reload le graphique
       }
     
-      
-    
-    deleteExpense(_id: number) {
-
-      this.expenseList = this.expenseList.filter((v, i) => i !== _id);
-      
-    }
     
     // collapse fermé pour input dates
   
@@ -60,6 +58,7 @@ export class SommaireDepensesComponent implements OnInit {
 
   }
 }
+
 
 
   

@@ -20,6 +20,7 @@ export class CanonicApiService {
   revenuUrl = 'https://my-temp-project-26d60b.can.canonic.dev/api/revenus';
   depenseUrl = 'https://my-temp-project-26d60b.can.canonic.dev/api/depenses';
   
+  
 
 
   constructor(private http: HttpClient) { }
@@ -85,20 +86,20 @@ getIncomeList(): Observable<Revenu[]> {
   return this.http.get<Revenu[]>(this.revenuUrl);
 }
 
-
 addIncome(revenu: Revenu): Observable<Revenu> {
   return this.http.post<Revenu>(this.revenuUrl, this.createDTOObjectRevenu(revenu), httpOptions);
 }
-
 
 editIncome(revenu: Revenu): Observable<Revenu> {
 const url = `${this.revenuUrl}/${revenu._id}`;
 return this.http.put<Revenu>(this.revenuUrl, revenu, httpOptions);
 }
 
-removeIncome(_id: string): Observable<any> {
-  return this.http.delete<any>(`${this.revenuUrl}/${_id}`)
+removeIncome(revenu: Revenu): Observable<Revenu> {
+  const url = `${this.revenuUrl}/${revenu._id}`;
+  return this.http.delete<Revenu>(url);
 }
+
 
 
 // * toutes les fonctions CRUD pour les dépenses
@@ -108,14 +109,14 @@ getExpenseList(): Observable<Depense[]> {
   return this.http.get<Depense[]>(this.depenseUrl);
 }
   
-removeExpense(_id: string): Observable<any> {
-  return this.http.delete<any>(`${this.depenseUrl}/${_id}`)
+removeExpense(depense: Depense): Observable<Depense> {
+  const url = `${this.depenseUrl}/${depense._id}`;
+  return this.http.delete<Depense>(url);
 }
 
 addExpense(depense: Depense): Observable<Depense> {
   return this.http.post<Depense>(this.depenseUrl, this.createDTOObjectDepense(depense), httpOptions);
 }
-
 
 editExpense(depense: Depense): Observable<Depense> {
   const url = `${this.depenseUrl}/${depense._id}`;
@@ -141,7 +142,7 @@ getSummaryDepense(): Observable<Details[]> {
   return this.http.get<Details[]>(this.depenseUrl)
 }
 
-
+// * test pour supprimer des données du sommaire/pas deployé sur le HTML-Je l'avait utilisé comme test
 removeSummary(_id: string): Observable<any> {
     return this.http.delete<any>(`${this.detailsUrl}/${_id}`)
   

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Login } from 'src/app/interface/login';
 
 @Component({
   selector: 'app-authentification',
@@ -8,9 +10,15 @@ import { Router } from '@angular/router';
 })
 export class AuthentificationComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  
 
-  ngOnInit(): void { }
+  constructor(
+     
+    private router: Router,
+    private http: HttpClient,
+    ){ }
+
+
 
   valider(password: string, email: string) {
     if (email === '' || password === '') {
@@ -28,5 +36,14 @@ export class AuthentificationComponent implements OnInit {
     }
     return true
   }
+
+ngOnInit(): void {
+    
 }
+}
+
+
+
+
+
 
