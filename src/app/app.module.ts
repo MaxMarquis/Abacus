@@ -41,6 +41,8 @@ import { CalendrierSommaireComponent } from './components/calendrier-sommaire/ca
 import { BalanceComponent } from './components/balance/balance.component';
 import { SortByDatesPipe } from './filters/sort-by-dates.pipe';
 import { MatchMediaQueryComponent } from './components/match-media-query/match-media-query.component';
+import { LoginComponent } from './login/login.component';
+import { RegisteComponent } from './registe/registe.component';
 
 
 @NgModule({
@@ -65,6 +67,8 @@ import { MatchMediaQueryComponent } from './components/match-media-query/match-m
     BalanceComponent,
     SortByDatesPipe,
     MatchMediaQueryComponent,
+    LoginComponent,
+    RegisteComponent,
   ],
   imports: [
     

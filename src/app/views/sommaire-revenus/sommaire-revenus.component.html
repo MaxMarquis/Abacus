@@ -1,6 +1,10 @@
 <app-header></app-header>
 <div class="container">
-  <app-match-media-query mediaQuery="(max-width: 992px)">
+  <app-match-media-query mediaQuery="(max-width: 992px)">    <!--  balance  -->
+    <!-- NAVBAR en attendant  -->
+    <app-header></app-header>
+
+    
     <h1>Sommaire des revenus</h1>
   </app-match-media-query>
 
@@ -49,6 +53,7 @@
   </app-match-media-query>
 
   <app-match-media-query mediaQuery="(max-width: 992px)">
+    
     <button type="button" class="btn-periode-revenu" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
       aria-controls="collapseExample">
       Choisir la période désirée
@@ -76,7 +81,7 @@
       </div>
     </app-match-media-query>
 
-    <!-- Tableau du sommaires des dépenses -->
+    <!-- Tableau du sommaires des revenus -->
     <app-match-media-query mediaQuery="(max-width: 992px)">
       <section>
         <table class="table">
@@ -92,10 +97,8 @@
               <td class="d-none">{{ income._id }}</td>
               <td>{{ income.description }}</td>
               <td>{{ income.montant | currency }}</td>
-              <td>{{ income.date | date:'longDate':'undefined':'fr'}}</td>
-              <td>
-                <i class="fa fa-trash" aria-hidden="true" (click)="removeIncome(income)"></i>
-              </td>
+              <td>{{ income.date | date:'longDate':'undefined':'fr' }}</td>
+              <td><i class="fa fa-trash" aria-hidden="true" (click)="removeIncome(income)"></i></td>
             </tr>
           </tbody>
         </table>
@@ -108,6 +111,5 @@
       </app-match-media-query>
     </app-match-media-query>
   </div>
-</div>
 
 <app-footer></app-footer>

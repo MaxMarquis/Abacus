@@ -25,24 +25,27 @@ export class SommaireRevenusComponent implements OnInit {
   }
   public isCollapsed = true;
 
-  // Delete Income
-  removeIncome(revenu: Revenu): void {
-    if (confirm('Voulez vous supprimer ce revenu ?')) {
-      this.canonicApiService.removeIncome(revenu._id)
-        .subscribe(_result => this.incomeList = this.incomeList.filter(d => d !== revenu));
+
+
+    // Delete Income
+    removeIncome(revenu : Revenu): void {
+      this.canonicApiService.removeIncome(revenu)
+      .subscribe(_result => this.incomeList = this.incomeList)
+      if (confirm('Voulez vous supprimer ce revenu ?')){
     } else {
       console.log('ne pas supprimer');
+
     }
-    // Pour reload le graphique ** Normalement on n'a plus besoin du reload pour recharger le graphique mm
-    // location.reload(); 
-  }
+    
+    location.reload(); // Pour reload le graphique
+    }
 
-  deleteIncome(_id: number) {
-    this.incomeList = this.incomeList.filter((v, i) => i !== _id);
-  }
-
+      
+      
+    
   doFilter(dateO: HTMLInputElement, dateT: HTMLInputElement): void {
     this.dateOne = ((dateO.value.trim() == "") ? undefined : new Date(dateO.value));
     this.dateTwo = ((dateT.value.trim() == "") ? undefined : new Date(dateT.value));
   }
+
 }

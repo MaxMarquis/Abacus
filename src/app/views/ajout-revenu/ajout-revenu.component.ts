@@ -63,14 +63,15 @@ export class AjoutRevenuComponent {
   }
 
   // Delete Income
-  removeIncome(revenu: Revenu): void {
-    if (confirm('Voulez vous supprimer ce revenu ?')) {
-      this.canonicApiService.removeIncome(revenu._id)
-        .subscribe(_result => this.incomeList = this.incomeList.filter(d => d !== revenu));
-    } else {
-      console.log('ne pas supprimer');
-    }
-    // Pour reload le graphique
-    location.reload();
+  removeIncome(revenu : Revenu): void {
+    this.canonicApiService.removeIncome(revenu)
+    .subscribe(_result => this.incomeList = this.incomeList)
+    if (confirm('Voulez vous supprimer ce revenu ?')){
+  } else {
+    console.log('ne pas supprimer');
+
+  }
+  
+  location.reload(); // Pour reload le graphique
   }
 }
