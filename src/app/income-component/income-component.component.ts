@@ -45,7 +45,7 @@ export class IncomeComponentComponent {
 
   // Delete Income
   removeIncome(revenu : Revenu): void {
-    this.canonicApiService.removeExpense(revenu)
+    this.canonicApiService.removeIncome(revenu)
     .subscribe(_result => this.incomeList = this.incomeList)
     if (confirm('Voulez vous supprimer cette dépense ?')){
   } else {
