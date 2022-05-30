@@ -74,9 +74,11 @@
       <i class="fa-solid fa-calendar-days"></i>
 
       <h2>Dépenses</h2>
-      <!--graphique des revenus-->
-      <app-charts height="20" width="20" [dataDepense]="expenseList"></app-charts>
-    </app-match-media-query>
+      <!--graphique des dépenses-->
+      <div *ngIf="expenseList">
+        <app-charts width="20" height="20" [incomeList]="expenseList"></app-charts>
+      </div>
+    </app-match-media-query>   
       <!-- Tableau du sommaires des dépenses -->
       <h2>Dépenses</h2>
     <!-- Tableau du sommaires des dépenses -->
