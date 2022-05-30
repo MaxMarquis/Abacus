@@ -65,10 +65,10 @@ export class AjoutDepenseComponent implements OnInit {
     this.expenseList = this.expenseList.filter((v, i) => i !== id);
   }
 
-  removeExpense(revenu: Revenu): void {
+  removeExpense(depense: Depense): void {
     if (confirm('Voulez vous supprimer cette dépense ?')) {
-      this.canonicApiService.removeExpense(revenu._id)
-        .subscribe(_result => this.expenseList = this.expenseList.filter(d => d !== revenu));
+      this.canonicApiService.removeExpense(depense)
+        .subscribe(_result => this.expenseList = this.expenseList.filter(d => d !== depense));
     } else {
       console.log('ne pas supprimer');
     }

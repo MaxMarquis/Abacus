@@ -65,7 +65,7 @@ export class AjoutRevenuComponent {
   // Delete Income
   removeIncome(revenu: Revenu): void {
     if (confirm('Voulez vous supprimer ce revenu ?')) {
-      this.canonicApiService.removeIncome(revenu._id)
+      this.canonicApiService.removeIncome(revenu)
         .subscribe(_result => this.incomeList = this.incomeList.filter(d => d !== revenu));
     } else {
       console.log('ne pas supprimer');
