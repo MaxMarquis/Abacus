@@ -17,7 +17,7 @@ export class AuthService {
   private readonly storage = sessionStorage;
   private readonly key = 'user';
 
-  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {}
+  constructor(private http: HttpClient, public jwtHelper: JwtHelperService) {}
 
   private getUserFromStorage() {
     const userRaw = this.storage.getItem(this.key);
