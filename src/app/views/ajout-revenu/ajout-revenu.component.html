@@ -58,7 +58,7 @@
 
             <!-- * bouton action ajout -->
             <div>
-              <button class="btn btn-success" matSuffix type="submit" mat-raised-button
+              <button class="btn-som-revenu" matSuffix type="submit" mat-raised-button
                 [disabled]="!addIncome.form.valid" (click)="onSave(addIncome)">
                 <mat-icon>+ AJOUTER</mat-icon>
               </button>
@@ -91,9 +91,9 @@
 
 
           <!-- RETOUR SOMMAIRE COMPLET DES DÉPENSES / REVENUS  -->
-          <button class="btn btn-primary" routerLink="/sommaire">SOMMAIRE COMPLET DES DÉPENSES ET REVENUS</button>
+          <button class="btn-som-complet" routerLink="/sommaire">SOMMAIRE COMPLET DES DÉPENSES ET REVENUS</button><br>
           <!-- RETOUR TABLEAU DE BORD -->
-          <button class="btn btn-primary mt-5" routerLink="/tableauDeBord">RETOUR AU TABLEAU DE BORD </button>
+          <button class="btn-som-complet" routerLink="/tableauDeBord">RETOUR AU TABLEAU DE BORD </button>
 
           <!-- Calc Modal -->
           <ng-template #content let-modal>
