@@ -38,6 +38,8 @@ private createDTOObject(details: Details): CanonicDTO<DetailsDTO> {
     revenu: details.revenu,
     depense: details.depense,
     isIncome: false,
+    revenuBalance!: Number(details.revenuBalance),
+    depenseBalance!: Number(details.revenuBalance),
 
   }
 
@@ -52,6 +54,8 @@ private createDTOObjectDepense(depense: Depense): CanonicDTO<DepenseDTO> {
     montant: Number(depense.montant),
     description: depense.description,
     date: new Date(depense.date),
+    depenseBalance: Number(depense.depenseBalance),
+
 
   }
 
@@ -67,6 +71,7 @@ private createDTOObjectRevenu(revenu: Revenu): CanonicDTO<RevenuDTO> {
     montant: Number(revenu.montant),
     description: revenu.description,
     date: new Date(revenu.date),
+    revenuBalance: Number(revenu.revenuBalance),
 
   }
 
@@ -134,12 +139,12 @@ getIncomeExpenseList(): Observable<Details[]> {
   return this.http.get<Details[]>(this.detailsUrl)
 }
 
-getSummaryIncome(): Observable<Details[]> {
-  return this.http.get<Details[]>(this.revenuUrl)
+getSummaryIncome(): Observable<Revenu[]> {
+  return this.http.get<Revenu[]>(this.revenuUrl)
 }
 
-getSummaryDepense(): Observable<Details[]> {
-  return this.http.get<Details[]>(this.depenseUrl)
+getSummaryDepense(): Observable<Depense[]> {
+  return this.http.get<Depense[]>(this.depenseUrl)
 }
 
 // * test pour supprimer des données du sommaire/pas deployé sur le HTML-Je l'avait utilisé comme test

@@ -41,6 +41,7 @@
                 <td>{{ expense.description }}</td>
                 <td>{{ expense.montant | currency }}</td>
                 <td>{{ expense.date | date:'longDate':'undefined':'fr' }}</td>
+
                 <td>
                   <i class="fa fa-trash" aria-hidden="true" (click)="removeExpense(expense)"></i>
                 </td>
@@ -76,7 +77,7 @@
       <h2>Dépenses</h2>
       <!--graphique des dépenses-->
       <div *ngIf="expenseList">
-        <app-charts width="20" height="20" [incomeList]="expenseList"></app-charts>
+        <app-charts width="20" height="20" [expenseList]="expenseList"></app-charts>
       </div>
     </app-match-media-query>   
       <!-- Tableau du sommaires des dépenses -->

@@ -43,7 +43,7 @@ export class ExpenseComponentComponent {
     );
   }
 
-  @Input() depense: Depense = {_id:'', description:'', montant: 0, date: new Date, updatedAt: '', createdAt:'',}
+  @Input() depense: Depense = {_id:'', description:'', montant: 0, date: new Date, depenseBalance: 0, updatedAt: '', createdAt:'',}
   @Output() majTableau = new EventEmitter() ;
     
       // *ajouter des dépenses

@@ -49,8 +49,8 @@
             <form class="example-form">
               <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Date</mat-label>
-                <input type="text" name="date" [(ngModel)]="depense.date" name="date" #date="ngModel" min="2000-01-01"
-                  required matInput placeholder="Ex 2022-08-19">
+                <input type="date" name="date" [(ngModel)]="depense.date" name="date" #date="ngModel" min="2000-01-01"
+                  required matInput placeholder="Ex 2022/08/19">
                 <mat-error *ngIf="date.invalid && (date.dirty || date.touched) && date.hasError('required')">La date est
                   obligatoire.</mat-error>
                 <mat-error *ngIf="date.invalid && (date.dirty || date.touched) && date.hasError('minlength')">La date

@@ -10,7 +10,7 @@ import { CanonicApiService } from 'src/app/services/canonic-api.service';
 })
 export class SommaireRevenusComponent implements OnInit {
 
-  incomeList!: Details[];
+  incomeList: Details[] = [];
   dateOne?: Date;
   dateTwo?: Date;
 

@@ -92,7 +92,7 @@
           <td class="d-none">{{ income._id }}</td>
           <td>{{ income.description }}</td>
           <td>{{ income.montant | currency }}</td>
-          <td>{{ income.date }}</td>
+          <td>{{ income.date | date:'longDate':'undefined':'fr'  }}</td>
           <td><i class="fa fa-trash" aria-hidden="true" (click)="removeIncome(income)"></i></td>
         </tr>
       </tbody>
