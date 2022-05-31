@@ -1,37 +1,50 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CanonicApiService } from 'src/app/services/canonic-api.service';
 import { Revenu } from 'src/app/interface/revenu';
+import { IncomeService } from 'src/app/services/income.service';
 
 @Component({
   selector: 'app-ajout-revenu',
   templateUrl: './ajout-revenu.component.html',
-  styleUrls: ['./ajout-revenu.component.sass']
+  styleUrls: ['./ajout-revenu.component.sass'],
 })
-
 export class AjoutRevenuComponent {
+  constructor(
+    private canonicApiService: CanonicApiService,
+    private modalService: NgbModal,
+    private incomeService: IncomeService
+  ) {}
+
   @ViewChild('fform') feedbackFormDirective: any;
   submitForm!: FormGroup;
-  isValidMontantError: string = "";
+  isValidMontantError: string = '';
   balance: number = 0;
-  incomeList!: Revenu[];
-
-  constructor(private canonicApiService: CanonicApiService, private modalService: NgbModal) { }
+  incomeList: Revenu[] = [];
 
   // * fonction pour afficher la liste des revenus
   ngOnInit() {
-    this.canonicApiService.getIncomeList().subscribe(
-      (response: any) => {
-        console.log(response);
-        this.incomeList = response.data;
-      },
-      () => console.log('error')
-    );
+    this.incomeService
+      .getIncomeList()
+      .subscribe((incomes) => (this.incomeList = incomes));
   }
 
   // * cette partie concerne l'ajout de revenu
-  @Input() revenu: Revenu = { _id: '', description: '', montant: 0, date: new Date, updatedAt: '', createdAt: '', }
+  @Input() revenu: Revenu = {
+    _id: '',
+    description: '',
+    montant: 0,
+    date: new Date(),
+    updatedAt: '',
+    createdAt: '',
+  };
   @Output() majTableau = new EventEmitter();
 
   addIncome(): void {
@@ -43,11 +56,12 @@ export class AjoutRevenuComponent {
     console.log(addIncome);
     if (addIncome.valid) {
       if (this.revenu._id != null && this.revenu._id != '') {
-        this.canonicApiService.editIncome(this.revenu).subscribe(_ => { this.majTableau.emit() });
-      }
-      else {
+        this.canonicApiService.editIncome(this.revenu).subscribe((_) => {
+          this.majTableau.emit();
+        });
+      } else {
         this.addIncome();
-        alert('Revenu ajouté')
+        alert('Revenu ajouté');
       }
     }
     this.incomeList.push(this.revenu);
@@ -63,15 +77,15 @@ export class AjoutRevenuComponent {
   }
 
   // Delete Income
-  removeIncome(revenu : Revenu): void {
-    this.canonicApiService.removeIncome(revenu)
-    .subscribe(_result => this.incomeList = this.incomeList)
-    if (confirm('Voulez vous supprimer ce revenu ?')){
-  } else {
-    console.log('ne pas supprimer');
+  removeIncome(revenu: Revenu): void {
+    this.canonicApiService
+      .removeIncome(revenu)
+      .subscribe((_result) => (this.incomeList = this.incomeList));
+    if (confirm('Voulez vous supprimer ce revenu ?')) {
+    } else {
+      console.log('ne pas supprimer');
+    }
 
-  }
-  
-  location.reload(); // Pour reload le graphique
+    location.reload(); // Pour reload le graphique
   }
 }
