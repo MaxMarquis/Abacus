@@ -1,4 +1,8 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+  NgModule,
+  CUSTOM_ELEMENTS_SCHEMA,
+  NO_ERRORS_SCHEMA,
+} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -7,8 +11,18 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClipboardModule } from 'ngx-clipboard';
 import { NgChartsModule } from 'ng2-charts';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { DateAdapter, MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatRippleModule } from '@angular/material/core';
-import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import {
+  DateAdapter,
+  MatNativeDateModule,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+  MatRippleModule,
+} from '@angular/material/core';
+import {
+  MAT_MOMENT_DATE_FORMATS,
+  MomentDateAdapter,
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+} from '@angular/material-moment-adapter';
 import { StorageServiceService } from './services/storage-service.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,8 +38,6 @@ import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 registerLocaleData(localeFr);
-
-
 
 import { AuthentificationComponent } from './views/authentification/authentification.component';
 import { DeconnexionComponent } from './views/deconnexion/deconnexion.component';
@@ -43,7 +55,7 @@ import { SortByDatesPipe } from './filters/sort-by-dates.pipe';
 import { MatchMediaQueryComponent } from './components/match-media-query/match-media-query.component';
 import { LoginComponent } from './login/login.component';
 import { RegisteComponent } from './registe/registe.component';
-
+import { IncomeChartComponent } from './components/income-chart/income-chart.component';
 
 @NgModule({
   declarations: [
@@ -69,9 +81,9 @@ import { RegisteComponent } from './registe/registe.component';
     MatchMediaQueryComponent,
     LoginComponent,
     RegisteComponent,
+    IncomeChartComponent,
   ],
   imports: [
-    
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
@@ -86,20 +98,23 @@ import { RegisteComponent } from './registe/registe.component';
     MatFormFieldModule,
     MatInputModule,
     MatRippleModule,
-
   ],
 
-  providers: [StorageServiceService,
-    { provide:  MAT_DATE_LOCALE, useValue: "fr-FR" }, /* POUR METTRE LES DATEPICKER EN FRANÇAIS */
+  providers: [
+    StorageServiceService,
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'fr-FR',
+    } /* POUR METTRE LES DATEPICKER EN FRANÇAIS */,
     {
       provide: DateAdapter,
       useClass: MomentDateAdapter,
-      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
     },
-    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS }
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
   ],
 
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 })
-export class AppModule { }
+export class AppModule {}

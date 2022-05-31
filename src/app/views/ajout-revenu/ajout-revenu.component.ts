@@ -65,8 +65,6 @@ export class AjoutRevenuComponent {
       }
     }
     this.incomeList.push(this.revenu);
-    // Pour reload le graphique
-    location.reload();
   }
 
   openCalculatorModal(content: any) {
@@ -78,14 +76,10 @@ export class AjoutRevenuComponent {
 
   // Delete Income
   removeIncome(revenu: Revenu): void {
-    this.canonicApiService
-      .removeIncome(revenu)
-      .subscribe((_result) => (this.incomeList = this.incomeList));
+    this.incomeService.removeIncome(revenu);
     if (confirm('Voulez vous supprimer ce revenu ?')) {
     } else {
       console.log('ne pas supprimer');
     }
-
-    location.reload(); // Pour reload le graphique
   }
 }
