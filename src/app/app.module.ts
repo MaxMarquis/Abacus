@@ -29,12 +29,10 @@ import { AppComponent } from './app.component';
 import { CalculatriceComponent } from './components/calculatrice/calculatrice.component';
 import { CalendrierComponent } from './components/calendrier/calendrier.component';
 import { ExpenseComponentComponent } from './expense-component/expense-component.component';
-import { IncomeComponentComponent } from './income-component/income-component.component';
 import { ChartsComponent } from './components/charts/charts.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
-import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 registerLocaleData(localeFr);
@@ -64,7 +62,6 @@ import { IncomeTableComponent } from './components/income-table/income-table.com
     CalculatriceComponent,
     CalendrierComponent,
     ExpenseComponentComponent,
-    IncomeComponentComponent,
     ChartsComponent,
     AuthentificationComponent,
     DeconnexionComponent,

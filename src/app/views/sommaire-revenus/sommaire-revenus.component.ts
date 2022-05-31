@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Details } from 'src/app/interface/details';
 import { Revenu } from 'src/app/interface/revenu';
-import { CanonicApiService } from 'src/app/services/canonic-api.service';
 import { IncomeService } from 'src/app/services/income.service';
 
 @Component({
@@ -14,10 +12,7 @@ export class SommaireRevenusComponent implements OnInit {
   dateOne?: Date;
   dateTwo?: Date;
 
-  constructor(
-    private canonicApiService: CanonicApiService,
-    private incomeService: IncomeService
-  ) {}
+  constructor(private incomeService: IncomeService) {}
 
   ngOnInit() {
     this.incomeService.getIncomeList().subscribe((incomes) => {
@@ -28,10 +23,8 @@ export class SommaireRevenusComponent implements OnInit {
 
   // Delete Income
   removeIncome(revenu: Revenu): void {
-    this.canonicApiService
-      .removeIncome(revenu)
-      .subscribe((_result) => (this.incomeList = this.incomeList));
     if (confirm('Voulez vous supprimer ce revenu ?')) {
+      this.incomeService.removeIncome(revenu);
     } else {
       console.log('ne pas supprimer');
     }

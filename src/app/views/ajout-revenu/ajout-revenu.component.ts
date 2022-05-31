@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CanonicApiService } from 'src/app/services/canonic-api.service';
 import { Revenu } from 'src/app/interface/revenu';
 import { IncomeService } from 'src/app/services/income.service';
 
@@ -18,7 +17,6 @@ import { IncomeService } from 'src/app/services/income.service';
 })
 export class AjoutRevenuComponent {
   constructor(
-    private canonicApiService: CanonicApiService,
     private modalService: NgbModal,
     private incomeService: IncomeService
   ) {}
@@ -48,17 +46,15 @@ export class AjoutRevenuComponent {
   @Output() majTableau = new EventEmitter();
 
   addIncome(): void {
-    console.log(this.revenu);
-    this.canonicApiService.addIncome(this.revenu).subscribe();
+    this.incomeService.addIncome(this.revenu);
   }
 
   onSave(addIncome: NgForm) {
-    console.log(addIncome);
     if (addIncome.valid) {
       if (this.revenu._id != null && this.revenu._id != '') {
-        this.canonicApiService.editIncome(this.revenu).subscribe((_) => {
-          this.majTableau.emit();
-        });
+        this.incomeService
+          .editIncome(this.revenu)
+          .subscribe(() => this.majTableau.emit());
       } else {
         this.addIncome();
         alert('Revenu ajouté');

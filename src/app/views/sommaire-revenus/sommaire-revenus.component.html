@@ -70,11 +70,7 @@
 
       <!--graphique des revenus-->
       <div *ngIf="incomeList">
-        <app-charts
-          width="20"
-          height="20"
-          [incomeList]="incomeList"
-        ></app-charts>
+        <app-income-chart width="20" height="20"></app-income-chart>
       </div>
     </app-match-media-query>
 

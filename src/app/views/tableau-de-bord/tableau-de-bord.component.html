@@ -1,6 +1,7 @@
 <!-- * NAVBAR en attendant.....................  -->
 
-<app-match-media-query mediaQuery="(max-width: 992px)"> <!-- ! REQUÊTE -->
+<app-match-media-query mediaQuery="(max-width: 992px)">
+  <!-- ! REQUÊTE -->
   <app-header></app-header>
 
   <main class="container-fluid">
@@ -8,29 +9,36 @@
       <h1>Portrait global</h1>
     </div>
 
-<!-- * PORTRAIT DES DÉPENSES.....................-->
+    <!-- * PORTRAIT DES DÉPENSES.....................-->
     <section>
       <!-- CARD DÉPENSES/CHART -->
       <div class="card">
         <!-- HEADER -->
-          <div class="card-header">
-            <h2>Portrait des dépenses</h2>
+        <div class="card-header">
+          <h2>Portrait des dépenses</h2>
+        </div>
+        <!--BODY CHART-->
+        <div class="card-body">
+          <div *ngIf="expenseList">
+            <app-charts
+              width="25"
+              height="25"
+              [expenseList]="expenseList"
+              labelsPosition=""
+            ></app-charts>
           </div>
-          <!--BODY CHART-->
-          <div class="card-body">
-            <div *ngIf="expenseList">
-              <app-charts width="25" height="25" [expenseList]="expenseList" labelsPosition=""></app-charts>
-            </div>
         </div>
         <!-- FOOTER CHART-->
         <div class="card-footer">
-        <!--  LIEN VERS SOMMAIRE DÉPENSES -->
-          <button class="btn-som-depense" routerLink="/depenses">SOMMAIRE</button>
+          <!--  LIEN VERS SOMMAIRE DÉPENSES -->
+          <button class="btn-som-depense" routerLink="/depenses">
+            SOMMAIRE
+          </button>
         </div>
       </div>
     </section>
 
-<!-- * PORTRAIT DES REVENUS.....................-->
+    <!-- * PORTRAIT DES REVENUS.....................-->
     <section>
       <!-- CARD REVENU/CHART -->
       <div class="card">
@@ -38,21 +46,21 @@
         <div class="card-header">
           <h2>Portrait des revenus</h2>
         </div>
-      <!-- BODY CHART-->
-      <div class="card-body">
-      <div *ngIf="incomeList">
-        <app-charts width="25" height="25" [incomeList]="incomeList"></app-charts>
+        <!-- BODY CHART-->
+        <div class="card-body">
+          <div *ngIf="incomeList">
+            <app-income-chart width="25" height="25"></app-income-chart>
+          </div>
+        </div>
+        <!-- FOOTER CHART -->
+        <div class="card-footer">
+          <!-- LIEN VERS SOMMAIRE REVENUS -->
+          <button class="btn-som-revenu" routerLink="/revenus">SOMMAIRE</button>
+        </div>
       </div>
-    </div>
-    <!-- FOOTER CHART -->
-      <div class="card-footer">
-      <!-- LIEN VERS SOMMAIRE REVENUS -->
-      <button class="btn-som-revenu" routerLink="/revenus">SOMMAIRE</button>
-    </div>
-    </div>
     </section>
 
-<!-- * LIEN VERS SOMMAIRE COMPLET..................... -->
+    <!-- * LIEN VERS SOMMAIRE COMPLET..................... -->
     <button class="btn-som-complet" routerLink="/sommaire">
       SOMMAIRE COMPLET DES DÉPENSES ET REVENUS
     </button>
