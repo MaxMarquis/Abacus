@@ -56,6 +56,7 @@ import { MatchMediaQueryComponent } from './components/match-media-query/match-m
 import { LoginComponent } from './login/login.component';
 import { RegisteComponent } from './registe/registe.component';
 import { IncomeChartComponent } from './components/income-chart/income-chart.component';
+import { IncomeTableComponent } from './components/income-table/income-table.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { IncomeChartComponent } from './components/income-chart/income-chart.com
     LoginComponent,
     RegisteComponent,
     IncomeChartComponent,
+    IncomeTableComponent,
   ],
   imports: [
     HttpClientModule,
