@@ -56,6 +56,7 @@ import { SortByDatesPipe } from './filters/sort-by-dates.pipe';
 import { MatchMediaQueryComponent } from './components/match-media-query/match-media-query.component';
 import { LoginComponent } from './login/login.component';
 import { RegisteComponent } from './registe/registe.component';
+import { AuthOnVisibilityComponent } from './components/auth-on-visibility/auth-on-visibility.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { RegisteComponent } from './registe/registe.component';
     MatchMediaQueryComponent,
     LoginComponent,
     RegisteComponent,
+    AuthOnVisibilityComponent,
   ],
   imports: [
     HttpClientModule,
