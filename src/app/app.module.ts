@@ -43,6 +43,8 @@ import { SortByDatesPipe } from './filters/sort-by-dates.pipe';
 import { MatchMediaQueryComponent } from './components/match-media-query/match-media-query.component';
 import { LoginComponent } from './login/login.component';
 import { RegisteComponent } from './registe/registe.component';
+import { ToastService } from './services/toast/toast-service';
+import { ToastsContainer } from './services/toast/toasts-container.component';
 
 
 @NgModule({
@@ -69,9 +71,10 @@ import { RegisteComponent } from './registe/registe.component';
     MatchMediaQueryComponent,
     LoginComponent,
     RegisteComponent,
+    ToastsContainer
   ],
   imports: [
-    
+
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
@@ -89,8 +92,10 @@ import { RegisteComponent } from './registe/registe.component';
 
   ],
 
-  providers: [StorageServiceService,
-    { provide:  MAT_DATE_LOCALE, useValue: "fr-FR" }, /* POUR METTRE LES DATEPICKER EN FRANÇAIS */
+  providers: [
+    ToastService,
+    StorageServiceService,
+    { provide: MAT_DATE_LOCALE, useValue: "fr-FR" }, /* POUR METTRE LES DATEPICKER EN FRANÇAIS */
     {
       provide: DateAdapter,
       useClass: MomentDateAdapter,
