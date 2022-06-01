@@ -13,7 +13,7 @@ export class IncomeTableComponent implements OnInit {
   incomeList: Revenu[] = [];
 
   ngOnInit(): void {
-    this.incomeService.getIncomeList().subscribe((incomes) => {
+    this.incomeService.incomesList$.subscribe((incomes) => {
       this.incomeList = incomes;
     });
   }

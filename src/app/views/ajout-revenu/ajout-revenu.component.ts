@@ -29,9 +29,9 @@ export class AjoutRevenuComponent {
 
   // * fonction pour afficher la liste des revenus
   ngOnInit() {
-    this.incomeService
-      .getIncomeList()
-      .subscribe((incomes) => (this.incomeList = incomes));
+    this.incomeService.incomesList$.subscribe(
+      (incomes) => (this.incomeList = incomes)
+    );
   }
 
   // * cette partie concerne l'ajout de revenu

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ExpanseService } from './expanse.service';
+import { ExpenseService } from './expanse.service';
 
 describe('ExpanseService', () => {
-  let service: ExpanseService;
+  let service: ExpenseService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ExpanseService);
+    service = TestBed.inject(ExpenseService);
   });
 
   it('should be created', () => {

@@ -55,6 +55,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisteComponent } from './registe/registe.component';
 import { IncomeChartComponent } from './components/income-chart/income-chart.component';
 import { IncomeTableComponent } from './components/income-table/income-table.component';
+import { ExpenseTableComponent } from './components/expense-table/expense-table.component';
+import { ExpenseChartComponent } from './components/expense-chart/expense-chart.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +83,8 @@ import { IncomeTableComponent } from './components/income-table/income-table.com
     RegisteComponent,
     IncomeChartComponent,
     IncomeTableComponent,
+    ExpenseTableComponent,
+    ExpenseChartComponent,
   ],
   imports: [
     HttpClientModule,

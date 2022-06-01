@@ -7,7 +7,7 @@ import { CanonicDTO, Revenu, RevenuDTO } from '../interface/revenu';
 export class IncomeAdapterService {
   constructor() {}
 
-  public createDTOObjectRevenu(revenu: Revenu): CanonicDTO<RevenuDTO> {
+  public createDTO(revenu: Revenu): CanonicDTO<RevenuDTO> {
     const revenuDTO: RevenuDTO = {
       montant: Number(revenu.montant),
       description: revenu.description,

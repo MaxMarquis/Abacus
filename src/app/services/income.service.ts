@@ -17,9 +17,10 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class IncomeService {
-  constructor(private adapter: IncomeAdapterService, private http: HttpClient) {
-    this.getIncomeList();
-  }
+  constructor(
+    private adapter: IncomeAdapterService,
+    private http: HttpClient
+  ) {}
 
   private incomeUrl =
     'https://my-temp-project-26d60b.can.canonic.dev/api/revenus';
@@ -41,7 +42,7 @@ export class IncomeService {
     return this.http
       .post<ApiResponse<Revenu>>(
         this.incomeUrl,
-        this.adapter.createDTOObjectRevenu(revenu),
+        this.adapter.createDTO(revenu),
         httpOptions
       )
       .subscribe(() => {
@@ -53,7 +54,7 @@ export class IncomeService {
     const url = `${this.incomeUrl}/${revenu._id}`;
     return this.http.put<Revenu>(
       url,
-      this.adapter.createDTOObjectRevenu(revenu),
+      this.adapter.createDTO(revenu),
       httpOptions
     );
   }
