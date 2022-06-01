@@ -39,7 +39,7 @@ import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 registerLocaleData(localeFr);
-// import { JwtModule } from '@auth0/angular-jwt';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AuthentificationComponent } from './views/authentification/authentification.component';
 import { DeconnexionComponent } from './views/deconnexion/deconnexion.component';
@@ -94,13 +94,13 @@ import { ToastsContainer } from './services/toast/toasts-container.component';
   imports: [
 
     HttpClientModule,
-    // JwtModule.forRoot({
-    //   config: {
-    //     tokenGetter: () => {
-    //       return sessionStorage.getItem('token');
-    //     },
-    //   },
-    // }),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return sessionStorage.getItem('token');
+        },
+      },
+    }),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
