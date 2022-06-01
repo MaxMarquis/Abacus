@@ -3,6 +3,7 @@ import { FormGroup, NgForm } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CanonicApiService } from 'src/app/services/canonic-api.service';
 import { Revenu } from 'src/app/interface/revenu';
+import { ToastService } from 'src/app/services/toast/toast-service';
 
 @Component({
   selector: 'app-ajout-revenu',
@@ -17,7 +18,7 @@ export class AjoutRevenuComponent {
   balance: number = 0;
   incomeList: Revenu[] = [];
 
-  constructor(private canonicApiService: CanonicApiService, private modalService: NgbModal) { }
+  constructor(private canonicApiService: CanonicApiService, private modalService: NgbModal, public toastService: ToastService) { }
 
   // * fonction pour afficher la liste des revenus
   ngOnInit() {
@@ -54,8 +55,13 @@ export class AjoutRevenuComponent {
         this.canonicApiService.editIncome(this.formatRevenu()).subscribe(_ => { this.majTableau.emit() });
       }
       else {
-        this.addIncome();
-        alert('Revenu ajouté')
+        if (this.revenu.montant > 0 && this.revenu.description != '') {
+          this.incomeList.push(this.revenu);
+          this.addIncome();
+          this.toastService.show('Revenu ajouté', { classname: 'bg-success text-light', delay: 5000 });
+        } else {
+          this.toastService.show('Veullez remplir les champs ', { classname: 'bg-danger text-light', delay: 5000 });
+        }
       }
     }
     this.incomeList.push(this.formatRevenu());
@@ -71,15 +77,15 @@ export class AjoutRevenuComponent {
   }
 
   // Delete Income
-  removeIncome(revenu : Revenu): void {
+  removeIncome(revenu: Revenu): void {
     this.canonicApiService.removeIncome(revenu)
-    .subscribe(_result => this.incomeList = this.incomeList)
-    if (confirm('Voulez vous supprimer ce revenu ?')){
-  } else {
-    console.log('ne pas supprimer');
+      .subscribe(_result => this.incomeList = this.incomeList)
+    if (confirm('Voulez vous supprimer ce revenu ?')) {
+    } else {
+      console.log('ne pas supprimer');
 
-  }
-  
-  location.reload(); // Pour reload le graphique
+    }
+
+    location.reload(); // Pour reload le graphique
   }
 }

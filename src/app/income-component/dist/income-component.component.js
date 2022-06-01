@@ -7,67 +7,68 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 exports.__esModule = true;
 exports.IncomeComponentComponent = void 0;
-var uuid_1 = require("uuid");
 var core_1 = require("@angular/core");
-var forms_1 = require("@angular/forms");
-var environment_1 = require("src/environments/environment");
 var IncomeComponentComponent = /** @class */ (function () {
-    function IncomeComponentComponent(fb, storageService, modalService) {
-        var _this = this;
-        this.fb = fb;
-        this.storageService = storageService;
+    function IncomeComponentComponent(canonicApiService, modalService) {
+        this.canonicApiService = canonicApiService;
         this.modalService = modalService;
         this.isValidMontantError = "";
-        this.storageIncomeKey = environment_1.environment.storageIncomeKey;
-        this.storageExpenseKey = environment_1.environment.storageExpenseKey;
         this.balance = 0;
         this.incomeList = [];
-        this.createForm();
-        this.storageService.incomeList.subscribe(function (value) {
-            _this.incomeList = value;
-        });
-        this.storageService.balanceValue.subscribe(function (value) {
-            _this.balance = value;
-        });
+        this.revenu = { _id: '', description: '', montant: 0, date: new Date, updatedAt: '', createdAt: '' };
+        this.majTableau = new core_1.EventEmitter();
     }
+    // * fonction pour afficher la liste des revenus
+    IncomeComponentComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.canonicApiService.getIncomeList().subscribe(function (response) {
+            console.log(response);
+            _this.revenu = response.data;
+        }, function () { return console.log('error'); });
+    };
     // Delete Income
-    IncomeComponentComponent.prototype.removeIncome = function (d) {
-        if (confirm('Voulez vous supprimer votre revenu ?')) {
-            this.storageService.removeIncome(d);
+    IncomeComponentComponent.prototype.removeIncome = function (revenu) {
+        var _this = this;
+        this.canonicApiService.removeIncome(revenu)
+            .subscribe(function (_result) { return _this.incomeList = _this.incomeList; });
+        if (confirm('Voulez vous supprimer cette dépense ?')) {
         }
         else {
             console.log('ne pas supprimer');
         }
+        location.reload(); // Pour reload le graphique
     };
-    IncomeComponentComponent.prototype.createForm = function () {
-        this.submitForm = this.fb.group({
-            description: ['', forms_1.Validators.required],
-            montant: [0, [forms_1.Validators.required, forms_1.Validators.pattern("^[0-9-.]+[0-9-.]*$")]],
-            date: [Date.now, forms_1.Validators.required]
-        });
+    IncomeComponentComponent.prototype.addIncome = function () {
+        console.log(this.revenu);
+        this.canonicApiService.addIncome(this.revenu).subscribe();
     };
-    IncomeComponentComponent.prototype.onSubmit = function () {
-        this.details = this.submitForm.value;
-        this.details.id = uuid_1.v4();
-        this.storageService.addIncome(this.details);
-        this.submitForm.reset({
-            description: '',
-            montant: 0,
-            date: new Date()
-        });
+    IncomeComponentComponent.prototype.onSave = function (addIncome) {
+        var _this = this;
+        console.log(addIncome);
+        if (addIncome.valid) {
+            alert('Veuillez remplir les champs');
+            if (this.revenu._id != null && this.revenu._id != '') {
+                this.canonicApiService.editIncome(this.revenu).subscribe(function (_) { _this.majTableau.emit(); });
+            }
+            else {
+                this.addIncome();
+            }
+        }
         this.feedbackFormDirective.resetForm();
-        // location.reload(); // Pour reload le graphique
+        location.reload(); // Pour reload le graphique
     };
     IncomeComponentComponent.prototype.openCalculatorModal = function (content) {
         this.modalService.open(content);
     };
-    IncomeComponentComponent.prototype.deleteIncome = function (id) {
-        this.incomeList = this.incomeList.filter(function (v, i) { return i !== id; });
-        alert("suppression");
-    };
     __decorate([
         core_1.ViewChild('fform')
     ], IncomeComponentComponent.prototype, "feedbackFormDirective");
+    __decorate([
+        core_1.Input()
+    ], IncomeComponentComponent.prototype, "revenu");
+    __decorate([
+        core_1.Output()
+    ], IncomeComponentComponent.prototype, "majTableau");
     IncomeComponentComponent = __decorate([
         core_1.Component({
             selector: 'app-income-component',

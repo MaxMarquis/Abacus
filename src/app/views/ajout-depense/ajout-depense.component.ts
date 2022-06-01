@@ -5,6 +5,7 @@ import { CanonicApiService } from 'src/app/services/canonic-api.service';
 import { NgForm } from '@angular/forms';
 import { Depense } from 'src/app/interface/depense';
 import { Revenu } from 'src/app/interface/revenu';
+import { ToastService } from 'src/app/services/toast/toast-service';
 
 @Component({
   selector: 'app-ajout-depense',
@@ -18,7 +19,7 @@ export class AjoutDepenseComponent implements OnInit {
   balance: number = 0;
   expenseList: Depense[] = [];
 
-  constructor(private canonicApiService: CanonicApiService, private modalService: NgbModal) { }
+  constructor(private canonicApiService: CanonicApiService, private modalService: NgbModal, public toastService: ToastService) { }
 
   // * fonction pour afficher la liste des dépenses
   ngOnInit() {
@@ -56,8 +57,13 @@ export class AjoutDepenseComponent implements OnInit {
         this.canonicApiService.editExpense(this.formatDepense()).subscribe(_ => { this.majTableau.emit() });
       }
       else {
-        this.addExpense();
-        alert('Dépense ajoutée')
+        if (this.depense.montant > 0 && this.depense.description != '') {
+          this.expenseList.push(this.depense);
+          this.addExpense();
+          this.toastService.show('Dépense ajoutée ', { classname: 'bg-success text-light', delay: 5000 });
+        } else {
+          this.toastService.show('Veuillez remplir les champs', { classname: 'bg-danger text-light', delay: 5000 });
+        }
       }
 
     }
@@ -74,15 +80,15 @@ export class AjoutDepenseComponent implements OnInit {
     this.expenseList = this.expenseList.filter((v, i) => i !== id);
   }
 
-  removeExpense(depense : Depense): void {
+  removeExpense(depense: Depense): void {
     this.canonicApiService.removeExpense(depense)
-    .subscribe(_result => this.expenseList = this.expenseList)
-    if (confirm('Voulez vous supprimer cette dépense ?')){
-  } else {
-    console.log('ne pas supprimer');
+      .subscribe(_result => this.expenseList = this.expenseList)
+    if (confirm('Voulez vous supprimer cette dépense ?')) {
+    } else {
+      console.log('ne pas supprimer');
 
-  }
-  
-  location.reload(); // Pour reload le graphique
+    }
+
+    location.reload(); // Pour reload le graphique
   }
 }
