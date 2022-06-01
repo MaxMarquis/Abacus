@@ -10,7 +10,8 @@ exports.CalculatriceComponent = void 0;
 var core_1 = require("@angular/core");
 var copy_text_to_clipboard_1 = require("copy-text-to-clipboard");
 var CalculatriceComponent = /** @class */ (function () {
-    function CalculatriceComponent() {
+    function CalculatriceComponent(toastService) {
+        this.toastService = toastService;
         this.input = '';
         this.result = '';
     }
@@ -90,7 +91,7 @@ var CalculatriceComponent = /** @class */ (function () {
     };
     CalculatriceComponent.prototype.copyResult = function () {
         copy_text_to_clipboard_1["default"](this.result.toString());
-        alert("Montant copié");
+        this.toastService.show('Montant copié', { classname: 'bg-success text-light', delay: 5000 });
     };
     CalculatriceComponent = __decorate([
         core_1.Component({
