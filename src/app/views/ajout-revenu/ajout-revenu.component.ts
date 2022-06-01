@@ -16,7 +16,7 @@ export class AjoutRevenuComponent {
   submitForm!: FormGroup;
   isValidMontantError: string = "";
   balance: number = 0;
-  incomeList!: Revenu[];
+  incomeList: Revenu[] = [];
 
   constructor(private canonicApiService: CanonicApiService, private modalService: NgbModal, public toastService: ToastService) { }
 
@@ -25,6 +25,7 @@ export class AjoutRevenuComponent {
     this.canonicApiService.getIncomeList().subscribe(
       (response: any) => {
         console.log(response);
+        response.data.date = new Date(response.data.date);
         this.incomeList = response.data;
       },
       () => console.log('error')
@@ -32,20 +33,26 @@ export class AjoutRevenuComponent {
   }
 
   // * cette partie concerne l'ajout de revenu
-  @Input() revenu: Revenu = { _id: '', description: '', montant: 1, date: new Date, updatedAt: '', createdAt: '', }
+  @Input() revenu: Revenu = { _id: '', description: '', montant: 0, date: new Date(), revenuBalance: 0, updatedAt: '', createdAt: '', }
   @Output() majTableau = new EventEmitter();
 
   addIncome(): void {
-    this.canonicApiService.addIncome(this.revenu).subscribe();
-    location.reload();
+    console.log(this.revenu)
+    this.canonicApiService.addIncome(this.formatRevenu()).subscribe();
+  }
+
+  formatRevenu() {
+    const [year, month, date] = (this.revenu.date as unknown as string).split("-");
+    return {
+      ...this.revenu,
+      date: new Date(Number(year), Number(month) - 1, Number(date)),
+    }
   }
 
   onSave(addIncome: NgForm) {
-    console.log(addIncome);
     if (addIncome.valid) {
       if (this.revenu._id != null && this.revenu._id != '') {
-        this.canonicApiService.editIncome(this.revenu).subscribe(_ => { this.majTableau.emit() });
-        location.reload();
+        this.canonicApiService.editIncome(this.formatRevenu()).subscribe(_ => { this.majTableau.emit() });
       }
       else {
         if (this.revenu.montant > 0 && this.revenu.description != '') {
@@ -57,6 +64,9 @@ export class AjoutRevenuComponent {
         }
       }
     }
+    this.incomeList.push(this.formatRevenu());
+    // Pour reload le graphique
+    location.reload();
   }
 
   openCalculatorModal(content: any) {

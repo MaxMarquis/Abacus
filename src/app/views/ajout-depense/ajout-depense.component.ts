@@ -17,7 +17,7 @@ export class AjoutDepenseComponent implements OnInit {
   submitForm!: FormGroup;
   isValidMontantError: string = "";
   balance: number = 0;
-  expenseList!: Depense[];
+  expenseList: Depense[] = [];
 
   constructor(private canonicApiService: CanonicApiService, private modalService: NgbModal, public toastService: ToastService) { }
 
@@ -26,6 +26,7 @@ export class AjoutDepenseComponent implements OnInit {
     this.canonicApiService.getExpenseList().subscribe(
       (response: any) => {
         console.log(response);
+        response.data.date = new Date(response.data.date);
         this.expenseList = response.data;
       },
       () => console.log('error')
@@ -33,21 +34,27 @@ export class AjoutDepenseComponent implements OnInit {
   }
 
   // * cette partie concerne l'ajout des dépenses.
-  @Input() depense: Depense = { _id: '', description: '', montant: 1, date: new Date, updatedAt: '', createdAt: '', }
+  @Input() depense: Depense = { _id: '', description: '', montant: 0, date: new Date, depenseBalance: 0, updatedAt: '', createdAt: '', }
   @Output() majTableau = new EventEmitter();
 
+
+  formatDepense() {
+    const [year, month, date] = (this.depense.date as unknown as string).split("-");
+    return {
+      ...this.depense,
+      date: new Date(Number(year), Number(month) - 1, Number(date)),
+    }
+  }
   addExpense(): void {
-    this.canonicApiService.addExpense(this.depense).subscribe();
-    // Pour reload le graphique 
-    location.reload();
+    console.log(this.depense);
+    this.canonicApiService.addExpense(this.formatDepense()).subscribe();
   }
 
   onSave(addExpense: NgForm) {
     console.log(addExpense);
     if (addExpense.valid) {
       if (this.depense._id != null && this.depense._id != '') {
-        this.canonicApiService.editExpense(this.depense).subscribe(_ => { this.majTableau.emit() });
-        location.reload();
+        this.canonicApiService.editExpense(this.formatDepense()).subscribe(_ => { this.majTableau.emit() });
       }
       else {
         if (this.depense.montant > 0 && this.depense.description != '') {
@@ -60,7 +67,9 @@ export class AjoutDepenseComponent implements OnInit {
       }
 
     }
-
+    this.expenseList.push(this.formatDepense());
+    // Pour reload le graphique
+    location.reload();
   }
 
   openCalculatorModal(content: any) {

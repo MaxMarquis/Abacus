@@ -4,8 +4,10 @@ export class Revenu {
     description!:string;
     montant!: number;
     date!: Date;
+    revenuBalance!: number;
     createdAt!: string;
     updatedAt!: string;
+
 }
 
 // * Ce code est reservé à l'appel des données de l'api canonic

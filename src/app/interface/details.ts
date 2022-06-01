@@ -8,6 +8,9 @@ export class Details {
     isIncome: boolean = false;
     createdAt!: string;
     updatedAt!: string;
+    revenuBalance!: number;
+    depenseBalance!: number;
+
 }
 
 // * Ce code est reservé à l'appel des données de l'api canonic

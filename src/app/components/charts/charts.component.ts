@@ -14,33 +14,35 @@ export class ChartsComponent implements OnInit {
   // Récupère les données à afficher
   @Input() height = '40'
   @Input() width = '40'
-  @Input() incomeList!: Revenu[];
-  @Input() expenseList!: Depense[];
+  @Input() incomeList: Revenu[] = [];
+  @Input() expenseList: Depense[] = [];
 
   // Crée le tableau en fonction des données recu
   ngOnInit(): void {
-    if (this.incomeList) {
+    if (this.incomeList?.length) {
       this.createChart(this.incomeList)
-    } else {
+    } else if (this.expenseList?.length) {
       this.createChart(this.expenseList)
     }
   }
 
   // Met le tableau à jour lors que les données changent
   ngOnChanges(changes: SimpleChanges) {
-    // if (changes['incomeList']) {
-    //   this.createChart(this.incomeList)
-    // }
-    // if (changes['expense']) {
-    //   this.createChart(this.expenseList)
-    // }
+    console.log(changes);
+    if (changes['incomeList']) {
+      this.createChart(this.incomeList)
+    }
+    if (changes['expense']) {
+      this.createChart(this.expenseList)
+    }
   }
 
-  createChart(data: any[]): any {
+  createChart(data: (Revenu | Depense)[]): any {
+    console.log(data);
     // Récupère le data et envoie les descriptions dans doughnutChartLabels et les montants dans doughnutChartData
-    data.map((x) => {
-      this.doughnutChartLabels.push(x.description);
-      this.doughnutChartData.datasets[0].data.push(x.montant);
+    data.filter((incomeOrExpense) => incomeOrExpense._id).map((incomeOrExpense) => {
+      this.doughnutChartLabels.push(incomeOrExpense.description);
+      this.doughnutChartData.datasets[0].data.push(incomeOrExpense.montant);
     });
   }
 

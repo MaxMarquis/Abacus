@@ -34,13 +34,13 @@ export class IncomeComponentComponent {
     this.canonicApiService.getIncomeList().subscribe(
       (response: any) => {
         console.log(response);
-        this.revenu = response.data;
+        this.incomeList = response.data; 
       },
       () => console.log('error')
     );
   }
-  @Input() revenu: Revenu = { _id: '', description: '', montant: 0, date: new Date, updatedAt: '', createdAt: '', }
-  @Output() majTableau = new EventEmitter();
+  @Input() revenu: Revenu = {_id:'', description:'', montant: 0, date: new Date(), revenuBalance: 0, updatedAt: '', createdAt:'',}
+  @Output() majTableau = new EventEmitter() ;
 
 
 

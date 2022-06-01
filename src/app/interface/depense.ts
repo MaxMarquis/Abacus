@@ -4,6 +4,7 @@ export class Depense {
     description!:string;
     montant!: number;
     date!: Date;
+    depenseBalance!: number;
     createdAt!: string;
     updatedAt!: string;
 }
