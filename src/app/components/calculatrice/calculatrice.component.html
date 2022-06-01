@@ -4,7 +4,7 @@
     <!-- champs de texte indiquant les opérations en cours -->
 
     <div class="input-group input-group-lg mb-4 champsText">
-      <div class="form-control" type="text"> {{ input ? input : '&nbsp;' }} </div>
+      <div class="form-control" type="text">{{ input ? input : "&nbsp;" }}</div>
     </div>
     <!-- champs de texte indiquant le résultats des opérations en cours EST-IL NÉCESSAIRE? -->
     <!--     <div class="input-group input-group-lg champsText">
@@ -12,47 +12,74 @@
     </div>
  -->
 
-
     <!-- /champs de texte indiquant les opérations -->
 
     <!-- Première rangée C+-% -->
-    <button class="boutonDouble1 button-rouge" type="button" (click)="allClear()"> C </button>
+    <button
+      class="boutonDouble1 button-rouge"
+      type="button"
+      (click)="allClear()"
+    >
+      C
+    </button>
     <!--! FONCTION À PROGRAMMER-->
 
     <button class="button-ops" type="button">+/-</button>
-    <button class="button-ops" type="button"> % </button>
+    <button class="button-ops" type="button">%</button>
 
     <!-- Deuxième rangée : 789/-->
 
-    <button type="button" (click)="pressNum('7')"> 7 </button>
-    <button type="button" (click)="pressNum('8')"> 8 </button>
-    <button type="button" (click)="pressNum('9')"> 9 </button>
-    <button class="button-ops" type="button" (click)="pressOperator('/')"> ÷ </button>
+    <button type="button" (click)="pressNum('7')">7</button>
+    <button type="button" (click)="pressNum('8')">8</button>
+    <button type="button" (click)="pressNum('9')">9</button>
+    <button class="button-ops" type="button" (click)="pressOperator('/')">
+      ÷
+    </button>
 
     <!-- Troisième rangée : 456x -->
 
-    <button type="button" (click)="pressNum('4')"> 4 </button>
-    <button type="button" (click)="pressNum('5')"> 5 </button>
-    <button type="button" (click)="pressNum('6')"> 6 </button>
-    <button class="button-ops" type="button" (click)="pressOperator('*')"> x </button>
+    <button type="button" (click)="pressNum('4')">4</button>
+    <button type="button" (click)="pressNum('5')">5</button>
+    <button type="button" (click)="pressNum('6')">6</button>
+    <button class="button-ops" type="button" (click)="pressOperator('*')">
+      x
+    </button>
 
     <!-- Quatrième rangée : 123-  -->
 
-    <button type="button" (click)="pressNum('1')"> 1 </button>
-    <button type="button" (click)="pressNum('2')"> 2 </button>
-    <button type="button" (click)="pressNum('3')"> 3 </button>
-    <button class="button-ops" type="button" (click)="pressOperator('-')"> - </button>
+    <button type="button" (click)="pressNum('1')">1</button>
+    <button type="button" (click)="pressNum('2')">2</button>
+    <button type="button" (click)="pressNum('3')">3</button>
+    <button class="button-ops" type="button" (click)="pressOperator('-')">
+      -
+    </button>
 
     <!-- Cinquième rangée : 0,+  -->
 
-    <button class="boutonDouble1" type="button" (click)="pressNum('0')"> 0 </button>
-    <button type="button" (click)="pressNum('.')"> , </button>
-    <button class="button-ops" type="button" (click)="pressOperator('+')"> + </button>
+    <button class="boutonDouble1" type="button" (click)="pressNum('0')">
+      0
+    </button>
+    <button type="button" (click)="pressNum('.')">,</button>
+    <button class="button-ops" type="button" (click)="pressOperator('+')">
+      +
+    </button>
 
     <!-- Rangée total et copier -->
 
-    <button class="boutonDouble1 button-rouge" type="button" (click)="copyResult()"> COPIER </button>
-    <button class="boutonDouble2 button-ops" type="button" (click)="getAnswer()"> = </button>
-
+    <button
+      class="boutonDouble1 button-rouge"
+      type="button"
+      (click)="copyResult()"
+    >
+      COPIER
+    </button>
+    <button
+      class="boutonDouble2 button-ops"
+      type="button"
+      (click)="getAnswer()"
+    >
+      =
+    </button>
   </div>
 </div>
+<app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
