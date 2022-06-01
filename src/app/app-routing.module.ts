@@ -15,30 +15,60 @@ import { AjoutDepenseComponent } from './views/ajout-depense/ajout-depense.compo
 import { AjoutRevenuComponent } from './views/ajout-revenu/ajout-revenu.component';
 import { LoginComponent } from './login/login.component';
 import { RegisteComponent } from './registe/registe.component';
-
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
-
   // ! test
   { path: '', component: LoginComponent },
   { path: 'registe', component: RegisteComponent },
   { path: 'login', component: LoginComponent },
 
-
   // { path: '', component: AuthentificationComponent },
-  { path: 'tableauDeBord', component: TableauDeBordComponent },
-  { path: 'sommaire', component: SommaireComponent },
-  { path: 'depenses-ajout', component: AjoutDepenseComponent },
-  { path: 'depenses', component: SommaireDepensesComponent },
-  { path: 'revenus-ajout', component: AjoutRevenuComponent },
-  { path: 'revenus', component: SommaireRevenusComponent },
-  { path: 'calendrier', component: CalendrierComponent },
-  { path: 'calculatrice', component: CalculatriceComponent },
-  { path: 'deconnexion', component: DeconnexionComponent },
+  {
+    path: 'tableauDeBord',
+    component: TableauDeBordComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'sommaire', component: SommaireComponent, canActivate: [AuthGuard] },
+  {
+    path: 'depenses-ajout',
+    component: AjoutDepenseComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'depenses',
+    component: SommaireDepensesComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'revenus-ajout',
+    component: AjoutRevenuComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'revenus',
+    component: SommaireRevenusComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'calendrier',
+    component: CalendrierComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'calculatrice',
+    component: CalculatriceComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'deconnexion',
+    component: DeconnexionComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
