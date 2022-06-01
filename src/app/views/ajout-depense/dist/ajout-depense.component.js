@@ -8,55 +8,76 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.AjoutDepenseComponent = void 0;
 var core_1 = require("@angular/core");
-var uuid_1 = require("uuid");
-var forms_1 = require("@angular/forms");
-var environment_1 = require("src/environments/environment");
 var AjoutDepenseComponent = /** @class */ (function () {
-    function AjoutDepenseComponent(fb, storageService, modalService) {
-        var _this = this;
-        this.fb = fb;
-        this.storageService = storageService;
+    function AjoutDepenseComponent(canonicApiService, modalService, toastService) {
+        this.canonicApiService = canonicApiService;
         this.modalService = modalService;
+        this.toastService = toastService;
         this.isValidMontantError = "";
-        this.storageIncomeKey = environment_1.environment.storageIncomeKey;
-        this.storageExpenseKey = environment_1.environment.storageExpenseKey;
         this.balance = 0;
-        this.expenseList = [];
-        this.createForm();
-        this.storageService.expenseList.subscribe(function (value) {
-            _this.expenseList = value;
-        });
-        this.storageService.balanceValue.subscribe(function (value) {
-            _this.balance = value;
-        });
+        // * cette partie concerne l'ajout des dépenses.
+        this.depense = { _id: '', description: '', montant: 1, date: new Date, updatedAt: '', createdAt: '' };
+        this.majTableau = new core_1.EventEmitter();
     }
-    AjoutDepenseComponent.prototype.createForm = function () {
-        this.submitForm = this.fb.group({
-            description: ['', forms_1.Validators.required],
-            montant: [0, [forms_1.Validators.required, forms_1.Validators.pattern("^[0-9-.]+[0-9]*$")]],
-            date: [Date.now, forms_1.Validators.required]
-        });
+    // * fonction pour afficher la liste des dépenses
+    AjoutDepenseComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.canonicApiService.getExpenseList().subscribe(function (response) {
+            console.log(response);
+            _this.expenseList = response.data;
+        }, function () { return console.log('error'); });
     };
-    AjoutDepenseComponent.prototype.onSubmit = function () {
-        this.details = this.submitForm.value;
-        this.details.id = uuid_1.v4();
-        this.storageService.addExpense(this.details);
-        this.submitForm.reset({
-            description: '',
-            montant: 0,
-            date: new Date(),
-            "if": alert("Dépense ajoutée")
-        });
-        this.expenseList.push(this.details);
-        this.feedbackFormDirective.resetForm();
-        location.reload(); // Pour reload le graphique
+    AjoutDepenseComponent.prototype.addExpense = function () {
+        this.canonicApiService.addExpense(this.depense).subscribe();
+        // Pour reload le graphique 
+        location.reload();
+    };
+    AjoutDepenseComponent.prototype.onSave = function (addExpense) {
+        var _this = this;
+        console.log(addExpense);
+        if (addExpense.valid) {
+            if (this.depense._id != null && this.depense._id != '') {
+                this.canonicApiService.editExpense(this.depense).subscribe(function (_) { _this.majTableau.emit(); });
+                location.reload();
+            }
+            else {
+                if (this.depense.montant > 0 && this.depense.description != '') {
+                    this.expenseList.push(this.depense);
+                    this.addExpense();
+                    this.toastService.show('Dépense ajoutée ', { classname: 'bg-success text-light', delay: 5000 });
+                }
+                else {
+                    this.toastService.show('Veuillez remplir les champs', { classname: 'bg-danger text-light', delay: 5000 });
+                }
+            }
+        }
     };
     AjoutDepenseComponent.prototype.openCalculatorModal = function (content) {
         this.modalService.open(content);
     };
+    AjoutDepenseComponent.prototype.deleteExpense = function (id) {
+        this.expenseList = this.expenseList.filter(function (v, i) { return i !== id; });
+    };
+    AjoutDepenseComponent.prototype.removeExpense = function (depense) {
+        var _this = this;
+        this.canonicApiService.removeExpense(depense)
+            .subscribe(function (_result) { return _this.expenseList = _this.expenseList; });
+        if (confirm('Voulez vous supprimer cette dépense ?')) {
+        }
+        else {
+            console.log('ne pas supprimer');
+        }
+        location.reload(); // Pour reload le graphique
+    };
     __decorate([
         core_1.ViewChild('fform')
     ], AjoutDepenseComponent.prototype, "feedbackFormDirective");
+    __decorate([
+        core_1.Input()
+    ], AjoutDepenseComponent.prototype, "depense");
+    __decorate([
+        core_1.Output()
+    ], AjoutDepenseComponent.prototype, "majTableau");
     AjoutDepenseComponent = __decorate([
         core_1.Component({
             selector: 'app-ajout-depense',
