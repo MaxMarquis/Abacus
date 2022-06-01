@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { ChartData, ChartType } from 'chart.js';
+import { ChartData, ChartType, Legend } from 'chart.js';
 import { Depense } from 'src/app/interface/depense';
 import { Details } from 'src/app/interface/details';
 import { Revenu } from 'src/app/interface/revenu';
@@ -16,6 +16,11 @@ export class ChartsComponent implements OnInit {
   @Input() width = '40'
   @Input() incomeList!: Revenu[];
   @Input() expenseList!: Depense[];
+
+  legend = {
+    legend : "right"
+  }
+  
 
   // Crée le tableau en fonction des données recu
   ngOnInit(): void {
@@ -48,9 +53,18 @@ export class ChartsComponent implements OnInit {
   public doughnutChartLabels: string[] = [];
   public doughnutChartData: ChartData<'doughnut'> = {
     labels: this.doughnutChartLabels,
-    datasets: [
-      { data: [] }
-    ]
+    datasets: [{       
+      data: [         
+      ] 
+    }]
+    
   };
+
+
+
+  
+
+ 
+
   public doughnutChartType: ChartType = 'doughnut';
 }
