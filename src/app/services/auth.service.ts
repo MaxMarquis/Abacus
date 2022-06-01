@@ -1,23 +1,48 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserCredentials, UserDTO, User } from '../interface/auth';
-import { Observable } from "rxjs";
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  private registreURL =
+    'https://my-temp-project-cd6d4j.can.canonic.dev/api/users/signupWithPassword';
+  private loginUrl =
+    'https://my-temp-project-cd6d4j.can.canonic.dev/api/users/loginWithPassword';
+  private readonly refreshUserUrl =
+    'https://my-temp-project-cd6d4j.can.canonic.dev/api/users/authenticate';
 
-  private registreURL = 'https://my-temp-project-cd6d4j.can.canonic.dev/api/users/signupWithPassword';
-  private loginUrl = 'https://my-temp-project-cd6d4j.can.canonic.dev/api/users/loginWithPassword';
-  private readonly refreshUserUrl = 'https://my-temp-project-cd6d4j.can.canonic.dev/api/users/authenticate';
+  private readonly storage = sessionStorage;
+  private readonly key = 'user';
 
-  private readonly storage = localStorage;
-  private readonly key = "user";
+  constructor(private http: HttpClient, public jwtHelper: JwtHelperService) {}
 
-  constructor(private http: HttpClient) { }
+  private getUserFromStorage() {
+    const userRaw = this.storage.getItem(this.key);
 
-  storeUser({ data : { token, user: { email, username, _id } } }: UserDTO) {
+    if (!userRaw) return;
+
+    return JSON.parse(userRaw) as User;
+  }
+
+  isAuthenticated() {
+    const userRaw = this.storage.getItem(this.key);
+
+    if (!userRaw) return false;
+
+    const user: User = JSON.parse(userRaw);
+
+    return !this.jwtHelper.isTokenExpired(user.token);
+  }
+
+  storeUser({
+    data: {
+      token,
+      user: { email, username, _id },
+    },
+  }: UserDTO) {
     const newUser: User = {
       token,
       email,
@@ -30,13 +55,11 @@ export class AuthService {
 
   checkIfUserIsConnected(onRefreshedUser?: () => void) {
     try {
-      const userRaw = this.storage.getItem(this.key);
+      const user = this.getUserFromStorage();
 
-      if (!userRaw) return;
+      if (!user) return;
 
-      const user: User = JSON.parse(userRaw);
-
-      this.refreshUser(user.token, onRefreshedUser);
+      this.isAuthenticated() && this.refreshUser(user.token, onRefreshedUser);
     } catch (e) {
       const error = e as Error;
 
@@ -59,15 +82,17 @@ export class AuthService {
       this.storeUser(user);
 
       onUserLoggedIn && onUserLoggedIn();
-    })
+    });
   }
 
   refreshUser(token: string, onUserRefreshed?: () => void) {
-    this.http.post<UserDTO>(this.refreshUserUrl, { token: token }).subscribe((user) => {
-      this.storeUser(user);
+    this.http
+      .post<UserDTO>(this.refreshUserUrl, { token: token })
+      .subscribe((user) => {
+        this.storeUser(user);
 
-      onUserRefreshed && onUserRefreshed();
-    });
+        onUserRefreshed && onUserRefreshed();
+      });
   }
 
   disconnectUser(onUserDisconnected?: () => void) {

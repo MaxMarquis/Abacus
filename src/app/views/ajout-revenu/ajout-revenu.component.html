@@ -146,32 +146,7 @@
         </form>
 
         <!-- SOMMAIRE COMPLET DES REVENUS-->
-        <section>
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Catégorie</th>
-                <th scope="col">Montant</th>
-                <th scope="col">Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let income of incomeList" [ngClass]="'text-success'">
-                <td class="d-none">{{ income._id }}</td>
-                <td>{{ income.description }}</td>
-                <td>{{ income.montant | currency }}</td>
-                <td>{{ income.date | date: "longDate":"undefined":"fr" }}</td>
-                <td>
-                  <i
-                    class="fa fa-trash"
-                    aria-hidden="true"
-                    (click)="removeIncome(income)"
-                  ></i>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
+        <app-income-table></app-income-table>
 
         <!-- RETOUR SOMMAIRE COMPLET DES DÉPENSES / REVENUS  -->
         <button class="btn-som-complet" routerLink="/sommaire">
@@ -198,6 +173,9 @@
         </ng-template>
       </form>
     </form>
-  </form>
-</main>
+
+  </main>
+
+  <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+</app-match-media-query>
 <app-footer></app-footer>

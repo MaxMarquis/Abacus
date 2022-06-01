@@ -36,6 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 registerLocaleData(localeFr);
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AuthentificationComponent } from './views/authentification/authentification.component';
 import { DeconnexionComponent } from './views/deconnexion/deconnexion.component';
@@ -57,6 +58,9 @@ import { IncomeChartComponent } from './components/income-chart/income-chart.com
 import { IncomeTableComponent } from './components/income-table/income-table.component';
 import { ExpenseTableComponent } from './components/expense-table/expense-table.component';
 import { ExpenseChartComponent } from './components/expense-chart/expense-chart.component';
+import { AuthOnVisibilityComponent } from './components/auth-on-visibility/auth-on-visibility.component';
+import { ToastService } from './services/toast/toast-service';
+import { ToastsContainer } from './services/toast/toasts-container.component';
 
 @NgModule({
   declarations: [
@@ -85,9 +89,18 @@ import { ExpenseChartComponent } from './components/expense-chart/expense-chart.
     IncomeTableComponent,
     ExpenseTableComponent,
     ExpenseChartComponent,
+    AuthOnVisibilityComponent,
+    ToastsContainer,
   ],
   imports: [
     HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return sessionStorage.getItem('token');
+        },
+      },
+    }),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -104,6 +117,12 @@ import { ExpenseChartComponent } from './components/expense-chart/expense-chart.
   ],
 
   providers: [
+    StorageServiceService,
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'fr-FR',
+    } /* POUR METTRE LES DATEPICKER EN FRANÇAIS */,
+    ToastService,
     StorageServiceService,
     {
       provide: MAT_DATE_LOCALE,

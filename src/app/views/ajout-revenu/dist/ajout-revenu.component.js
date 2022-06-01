@@ -1,15 +1,3 @@
-// // validation form 
-
-// function validateForm(){
-//     let x = document.forms["income"][description].value;
-//     if (x == "") {
-//         alert('Vous avez oublié un champs')
-//         return false;
-//     }
-// }
-
-
-
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -19,49 +7,49 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 exports.__esModule = true;
 exports.AjoutRevenuComponent = void 0;
-var uuid_1 = require("uuid");
 var core_1 = require("@angular/core");
-var forms_1 = require("@angular/forms");
-var environment_1 = require("src/environments/environment");
 var AjoutRevenuComponent = /** @class */ (function () {
-    function AjoutRevenuComponent(fb, storageService, modalService) {
-        var _this = this;
-        this.fb = fb;
-        this.storageService = storageService;
+    function AjoutRevenuComponent(canonicApiService, modalService, toastService) {
+        this.canonicApiService = canonicApiService;
         this.modalService = modalService;
+        this.toastService = toastService;
         this.isValidMontantError = "";
-        this.storageIncomeKey = environment_1.environment.storageIncomeKey;
-        this.storageExpenseKey = environment_1.environment.storageExpenseKey;
         this.balance = 0;
-        this.incomeList = [];
-        this.createForm();
-        this.storageService.incomeList.subscribe(function (value) {
-            _this.incomeList = value;
-        });
-        this.storageService.balanceValue.subscribe(function (value) {
-            _this.balance = value;
-        });
+        // * cette partie concerne l'ajout de revenu
+        this.revenu = { _id: '', description: '', montant: 1, date: new Date, updatedAt: '', createdAt: '' };
+        this.majTableau = new core_1.EventEmitter();
     }
-    AjoutRevenuComponent.prototype.createForm = function () {
-        this.submitForm = this.fb.group({
-            description: ['', forms_1.Validators.required],
-            montant: [0, [forms_1.Validators.required, forms_1.Validators.pattern("^[0-9-.]+[0-9-.]*$")]],
-            date: [Date.now, forms_1.Validators.required]
-        });
+    // * fonction pour afficher la liste des revenus
+    AjoutRevenuComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.canonicApiService.getIncomeList().subscribe(function (response) {
+            console.log(response);
+            _this.incomeList = response.data;
+        }, function () { return console.log('error'); });
     };
-    AjoutRevenuComponent.prototype.onSubmit = function () {
-        this.details = this.submitForm.value;
-        this.details.id = uuid_1.v4();
-        this.storageService.addIncome(this.details);
-        this.submitForm.reset({
-            description: '',
-            montant: 0,
-            date: new Date(),
-            "if": alert("revenu ajouté")
-        });
-        this.incomeList.push(this.details);
-        this.feedbackFormDirective.resetForm();
-        location.reload(); // Pour reload le graphique
+    AjoutRevenuComponent.prototype.addIncome = function () {
+        this.canonicApiService.addIncome(this.revenu).subscribe();
+        location.reload();
+    };
+    AjoutRevenuComponent.prototype.onSave = function (addIncome) {
+        var _this = this;
+        console.log(addIncome);
+        if (addIncome.valid) {
+            if (this.revenu._id != null && this.revenu._id != '') {
+                this.canonicApiService.editIncome(this.revenu).subscribe(function (_) { _this.majTableau.emit(); });
+                location.reload();
+            }
+            else {
+                if (this.revenu.montant > 0 && this.revenu.description != '') {
+                    this.incomeList.push(this.revenu);
+                    this.addIncome();
+                    this.toastService.show('Revenu ajouté', { classname: 'bg-success text-light', delay: 5000 });
+                }
+                else {
+                    this.toastService.show('Veullez remplir les champs ', { classname: 'bg-danger text-light', delay: 5000 });
+                }
+            }
+        }
     };
     AjoutRevenuComponent.prototype.openCalculatorModal = function (content) {
         this.modalService.open(content);
@@ -69,9 +57,27 @@ var AjoutRevenuComponent = /** @class */ (function () {
     AjoutRevenuComponent.prototype.deleteIncome = function (id) {
         this.incomeList = this.incomeList.filter(function (v, i) { return i !== id; });
     };
+    // Delete Income
+    AjoutRevenuComponent.prototype.removeIncome = function (revenu) {
+        var _this = this;
+        this.canonicApiService.removeIncome(revenu)
+            .subscribe(function (_result) { return _this.incomeList = _this.incomeList; });
+        if (confirm('Voulez vous supprimer ce revenu ?')) {
+        }
+        else {
+            console.log('ne pas supprimer');
+        }
+        location.reload(); // Pour reload le graphique
+    };
     __decorate([
         core_1.ViewChild('fform')
     ], AjoutRevenuComponent.prototype, "feedbackFormDirective");
+    __decorate([
+        core_1.Input()
+    ], AjoutRevenuComponent.prototype, "revenu");
+    __decorate([
+        core_1.Output()
+    ], AjoutRevenuComponent.prototype, "majTableau");
     AjoutRevenuComponent = __decorate([
         core_1.Component({
             selector: 'app-ajout-revenu',

@@ -9,6 +9,7 @@ import { FormGroup, NgForm } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Revenu } from 'src/app/interface/revenu';
 import { IncomeService } from 'src/app/services/income.service';
+import { ToastService } from 'src/app/services/toast/toast-service';
 
 @Component({
   selector: 'app-ajout-revenu',
@@ -16,16 +17,17 @@ import { IncomeService } from 'src/app/services/income.service';
   styleUrls: ['./ajout-revenu.component.sass'],
 })
 export class AjoutRevenuComponent {
-  constructor(
-    private modalService: NgbModal,
-    private incomeService: IncomeService
-  ) {}
-
   @ViewChild('fform') feedbackFormDirective: any;
   submitForm!: FormGroup;
   isValidMontantError: string = '';
   balance: number = 0;
   incomeList: Revenu[] = [];
+
+  constructor(
+    private modalService: NgbModal,
+    public toastService: ToastService,
+    private incomeService: IncomeService
+  ) {}
 
   // * fonction pour afficher la liste des revenus
   ngOnInit() {
@@ -57,10 +59,17 @@ export class AjoutRevenuComponent {
           .subscribe(() => this.majTableau.emit());
       } else {
         this.addIncome();
-        alert('Revenu ajouté');
+        this.toastService.show('Revenu ajouté', {
+          classname: 'bg-success text-light',
+          delay: 5000,
+        });
       }
+    } else {
+      this.toastService.show('Veullez remplir les champs ', {
+        classname: 'bg-danger text-light',
+        delay: 5000,
+      });
     }
-    this.incomeList.push(this.revenu);
   }
 
   openCalculatorModal(content: any) {
