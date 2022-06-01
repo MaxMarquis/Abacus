@@ -33,7 +33,8 @@ import { IncomeComponentComponent } from './income-component/income-component.co
 import { ChartsComponent } from './components/charts/charts.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
@@ -56,10 +57,11 @@ import { SortByDatesPipe } from './filters/sort-by-dates.pipe';
 import { MatchMediaQueryComponent } from './components/match-media-query/match-media-query.component';
 import { LoginComponent } from './login/login.component';
 import { RegisteComponent } from './registe/registe.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { NetworkInterceptor } from './interceptors/network.interceptor';
 import { AuthOnVisibilityComponent } from './components/auth-on-visibility/auth-on-visibility.component';
 import { ToastService } from './services/toast/toast-service';
 import { ToastsContainer } from './services/toast/toasts-container.component';
-
 
 @NgModule({
   declarations: [
@@ -85,6 +87,7 @@ import { ToastsContainer } from './services/toast/toasts-container.component';
     MatchMediaQueryComponent,
     LoginComponent,
     RegisteComponent,
+    LoadingComponent,
     AuthOnVisibilityComponent,
     ToastsContainer,
   ],
@@ -110,6 +113,7 @@ import { ToastsContainer } from './services/toast/toasts-container.component';
     MatFormFieldModule,
     MatInputModule,
     MatRippleModule,
+    MatProgressSpinnerModule,
   ],
 
   providers: [
@@ -122,6 +126,7 @@ import { ToastsContainer } from './services/toast/toasts-container.component';
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
     },
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+    { provide: HTTP_INTERCEPTORS, useClass: NetworkInterceptor, multi: true },
   ],
 
   bootstrap: [AppComponent],
