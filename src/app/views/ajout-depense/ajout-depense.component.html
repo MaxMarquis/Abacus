@@ -6,7 +6,11 @@
       <section>
         <!-- Graphique des dépenses-->
         <div *ngIf="expenseList">
-          <app-charts height="20" width="20" [expenseList]="expenseList"></app-charts>
+          <app-charts
+            height="20"
+            width="20"
+            [expenseList]="expenseList"
+          ></app-charts>
         </div>
       </section>
 
@@ -16,27 +20,71 @@
         <form class="example-form">
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Description</mat-label>
-            <input name="description" ngModel pattern="[a-zA-Z ]*" [(ngModel)]="depense.description" name="description"
-              #description="ngModel" minlength="2" maxlength="25" matInput placeholder="Ex loyer" required>
+            <input
+              name="description"
+              ngModel
+              pattern="[a-zA-Z ]*"
+              [(ngModel)]="depense.description"
+              name="description"
+              #description="ngModel"
+              minlength="2"
+              maxlength="25"
+              matInput
+              placeholder="Ex loyer"
+              required
+            />
             <mat-error
-              *ngIf="description.invalid && (description.dirty || description.touched) && description.hasError('required')">
-              La description est obligatoire.</mat-error>
+              *ngIf="
+                description.invalid &&
+                (description.dirty || description.touched) &&
+                description.hasError('required')
+              "
+            >
+              La description est obligatoire.</mat-error
+            >
             <mat-error
-              *ngIf="description.invalid && (description.dirty || description.touched) && description.hasError('minlength')">
-              Doit contenir au moins 2 caractères.</mat-error>
+              *ngIf="
+                description.invalid &&
+                (description.dirty || description.touched) &&
+                description.hasError('minlength')
+              "
+            >
+              Doit contenir au moins 2 caractères.</mat-error
+            >
             <mat-error
-              *ngIf="description.invalid && (description.dirty || description.touched) && description.hasError('maxlength')">
-              Le nom doit contenir au maximum 50 caractères.</mat-error>
+              *ngIf="
+                description.invalid &&
+                (description.dirty || description.touched) &&
+                description.hasError('maxlength')
+              "
+            >
+              Le nom doit contenir au maximum 50 caractères.</mat-error
+            >
           </mat-form-field>
 
           <!--   *Ajout montant -->
           <form class="example-form">
             <mat-form-field class="example-full-width" appearance="fill">
               <mat-label>Montant</mat-label>
-              <input type="number" name="montant" [(ngModel)]="depense.montant" name="montant" #montant="ngModel"
-                matInput placeholder="Ex -150" required>
-              <mat-error *ngIf="montant.invalid && (montant.dirty || montant.touched) && montant.hasError('required')">
-                Le montant est obligatoire.</mat-error>
+              <input
+                type="number"
+                name="montant"
+                [(ngModel)]="depense.montant"
+                name="montant"
+                #montant="ngModel"
+                matInput
+                placeholder="Ex -150"
+                required
+              />
+              <mat-error
+                *ngIf="
+                  montant.invalid &&
+                  (montant.dirty || montant.touched) &&
+                  montant.hasError('required')
+                "
+              >
+                Le montant est obligatoire.</mat-error
+              >
               <span matSuffix>$&nbsp;</span>
             </mat-form-field>
 
@@ -49,24 +97,56 @@
             <form class="example-form">
               <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Date</mat-label>
-                <input type="text" name="date" [(ngModel)]="depense.date" name="date" #date="ngModel" min="2000-01-01"
-                  required matInput placeholder="Ex 2022-08-19">
-                <mat-error *ngIf="date.invalid && (date.dirty || date.touched) && date.hasError('required')">La date est
-                  obligatoire.</mat-error>
-                <mat-error *ngIf="date.invalid && (date.dirty || date.touched) && date.hasError('minlength')">La date
-                  doit être au format: 2022-05-10</mat-error>
-                <mat-error *ngIf="date.invalid && (date.dirty || date.touched) && date.hasError('maxlength')">
+                <input
+                  type="date"
+                  name="date"
+                  [(ngModel)]="depense.date"
+                  name="date"
+                  #date="ngModel"
+                  min="2000-01-01"
+                  required
+                  matInput
+                  placeholder="Ex 2022-08-19"
+                />
+                <mat-error
+                  *ngIf="
+                    date.invalid &&
+                    (date.dirty || date.touched) &&
+                    date.hasError('required')
+                  "
+                  >La date est obligatoire.</mat-error
+                >
+                <mat-error
+                  *ngIf="
+                    date.invalid &&
+                    (date.dirty || date.touched) &&
+                    date.hasError('minlength')
+                  "
+                  >La date doit être au format: 2022-05-10</mat-error
+                >
+                <mat-error
+                  *ngIf="
+                    date.invalid &&
+                    (date.dirty || date.touched) &&
+                    date.hasError('maxlength')
+                  "
+                >
                 </mat-error>
               </mat-form-field>
 
               <!-- * bouton action ajout -->
               <div>
-                <button class="btn btn-danger" matSuffix type="submit" mat-raised-button
-                  [disabled]="!addExpense.form.valid" (click)="onSave(addExpense)">
+                <button
+                  class="btn btn-danger"
+                  matSuffix
+                  type="submit"
+                  mat-raised-button
+                  [disabled]="!addExpense.form.valid"
+                  (click)="onSave(addExpense)"
+                >
                   <mat-icon>+ AJOUTER</mat-icon>
                 </button>
               </div>
-
             </form>
 
             <!-- Tableau liste dépenses -->
@@ -80,26 +160,46 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let expense of expenseList" [ngClass]="'text-danger'">
+                  <tr
+                    *ngFor="let expense of expenseList"
+                    [ngClass]="'text-danger'"
+                  >
                     <td class="d-none">{{ expense._id }}</td>
                     <td>{{ expense.description }}</td>
                     <td>{{ expense.montant | currency }}</td>
-                    <td>{{ expense.date | date:'longDate':'undefined':'fr' }}</td>
-                    <td><i class="fa fa-trash" aria-hidden="true" (click)="removeExpense(expense)"></i></td>
+                    <td>
+                      {{ expense.date | date: "longDate":"undefined":"fr" }}
+                    </td>
+                    <td>
+                      <i
+                        class="fa fa-trash"
+                        aria-hidden="true"
+                        (click)="removeExpense(expense)"
+                      ></i>
+                    </td>
                   </tr>
                 </tbody>
               </table>
             </section>
 
             <!-- RETOUR SOMMAIRE COMPLET DES DÉPENSES / REVENUS  -->
-            <button class="btn btn-primary" routerLink="/sommaire">SOMMAIRE COMPLET DES DÉPENSES ET REVENUS</button>
+            <button class="btn btn-primary" routerLink="/sommaire">
+              SOMMAIRE COMPLET DES DÉPENSES ET REVENUS
+            </button>
             <!-- RETOUR TABLEAU DE BORD -->
-            <button class="btn btn-primary mt-5" routerLink="/tableauDeBord">RETOUR AU TABLEAU DE BORD </button>
+            <button class="btn btn-primary mt-5" routerLink="/tableauDeBord">
+              RETOUR AU TABLEAU DE BORD
+            </button>
 
             <!-- Calc Modal -->
             <ng-template #content let-modal>
               <div class="modal-header">
-                <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+                <button
+                  type="button"
+                  class="btn-close"
+                  aria-label="Close"
+                  (click)="modal.dismiss()"
+                ></button>
               </div>
               <div class="modal-body">
                 <app-calculatrice></app-calculatrice>
@@ -110,5 +210,7 @@
       </form>
     </app-match-media-query>
   </main>
+
+  <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
 </app-match-media-query>
 <app-footer></app-footer>

@@ -13,66 +13,72 @@
 
 
   <!-- * Nouveau formualure d'ajout de revenu avec API Rest -->
-    
+
   <form #addIncome="ngForm" (ngSubmit)="onSave(addIncome)" novalidate>
     <!-- *Ajout description -->
-    <form class="example-form">
+    <!-- <form class="example-form"> -->
     <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Description</mat-label>
-    <input name="description" ngModel pattern="[a-zA-Z ]*" [(ngModel)]="revenu.description" name="description" #description="ngModel" required minlength="2" maxlength="25" matInput placeholder="Ex loyer">
-    <mat-error *ngIf="description.invalid && (description.dirty || description.touched) && description.hasError('required')">La description est obligatoire.</mat-error>
-    <mat-error *ngIf="description.invalid && (description.dirty || description.touched) && description.hasError('minlength')">Doit contenir au moins 2 caractères.</mat-error>
-    <mat-error *ngIf="description.invalid && (description.dirty || description.touched) && description.hasError('maxlength')">Le nom doit contenir au maximum 50 caractères.</mat-error>
-   </mat-form-field>
-
-
-
-
-  <!--   *Ajout montant -->
-  
-    <form class="example-form">
-    <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Montant</mat-label>
-    <input type="number" name="montant" [(ngModel)]="revenu.montant" name="montant" #montant="ngModel" matInput placeholder="Ex 150" required>
-    <mat-error *ngIf="montant.invalid && (montant.dirty || montant.touched) && montant.hasError('required')">Le montant est obligatoire.</mat-error>
-        <span matSuffix>$&nbsp;</span>
-
-        <!-- *Calculatrice -->
-        <div>
-          <button type="button" (click)="openCalculatorModal(content)">
-                <i class="fa-solid fa-calculator"></i>
-              </button>
-          </div>
+      <mat-label>Description</mat-label>
+      <input name="description" ngModel pattern="[a-zA-Z ]*" [(ngModel)]="revenu.description" name="description"
+        #description="ngModel" required minlength="2" maxlength="25" matInput placeholder="Ex loyer">
+      <mat-error
+        *ngIf="description.invalid && (description.dirty || description.touched) && description.hasError('required')">La
+        description est obligatoire.</mat-error>
+      <mat-error
+        *ngIf="description.invalid && (description.dirty || description.touched) && description.hasError('minlength')">
+        Doit contenir au moins 2 caractères.</mat-error>
+      <mat-error
+        *ngIf="description.invalid && (description.dirty || description.touched) && description.hasError('maxlength')">
+        Le nom doit contenir au maximum 50 caractères.</mat-error>
     </mat-form-field>
-    
-  
-    <!-- *Ajout date -->
-    <form class="example-form">
-    <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Date</mat-label>
-    <input type="date" name="date" [(ngModel)]="revenu.date" name="date" #date="ngModel" min="2000-01-01" required matInput placeholder="Ex 2022-08-19">
-    <mat-error *ngIf="date.invalid && (date.dirty || date.touched) && date.hasError('required')">La date est obligatoir.</mat-error>
-    <mat-error *ngIf="date.invalid && (date.dirty || date.touched) && date.hasError('minlength')">La date doit être au format: 2022-05-10</mat-error>
-    <mat-error *ngIf="date.invalid && (date.dirty || date.touched) && date.hasError('maxlength')"></mat-error>
 
-    </mat-form-field>
-  
-    
-  
-    <!-- * bouton action ajout -->
-  
-    <div>
-    <button
-          matSuffix
-          type="submit"
-          mat-raised-button
-          [disabled]="!addIncome.form.valid"
-          (click)="onSave(addIncome)"
-        >
-          <mat-icon>ajouter</mat-icon>
+
+
+
+    <!--   *Ajout montant -->
+
+    <!-- <form class="example-form"> -->
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Montant</mat-label>
+      <input type="number" name="montant" [(ngModel)]="revenu.montant" name="montant" #montant="ngModel" matInput
+        placeholder="Ex 150" required>
+      <mat-error *ngIf="montant.invalid && (montant.dirty || montant.touched) && montant.hasError('required')">Le
+        montant est obligatoire.</mat-error>
+      <span matSuffix>$&nbsp;</span>
+
+      <!-- *Calculatrice -->
+      <div>
+        <button type="button" (click)="openCalculatorModal(content)">
+          <i class="fa-solid fa-calculator"></i>
         </button>
+      </div>
+    </mat-form-field>
+
+
+    <!-- *Ajout date -->
+    <!-- <form class="example-form"> -->
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Date</mat-label>
+      <input type="date" name="date" [(ngModel)]="revenu.date" name="date" #date="ngModel" min="2000-01-01" required
+        matInput placeholder="Ex 2022-08-19">
+      <mat-error *ngIf="date.invalid && (date.dirty || date.touched) && date.hasError('required')">La date est
+        obligatoir.</mat-error>
+      <mat-error *ngIf="date.invalid && (date.dirty || date.touched) && date.hasError('minlength')">La date doit être au
+        format: 2022-05-10</mat-error>
+      <mat-error *ngIf="date.invalid && (date.dirty || date.touched) && date.hasError('maxlength')"></mat-error>
+
+    </mat-form-field>
+
+
+
+    <!-- * bouton action ajout -->
+
+    <div>
+      <button matSuffix type="submit" mat-raised-button [disabled]="!addIncome.form.valid" (click)="onSave(addIncome)">
+        <mat-icon>ajouter</mat-icon>
+      </button>
     </div>
-  
+
   </form>
 
 

@@ -39,6 +39,7 @@ import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 registerLocaleData(localeFr);
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AuthentificationComponent } from './views/authentification/authentification.component';
 import { DeconnexionComponent } from './views/deconnexion/deconnexion.component';
@@ -58,6 +59,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisteComponent } from './registe/registe.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { NetworkInterceptor } from './interceptors/network.interceptor';
+import { AuthOnVisibilityComponent } from './components/auth-on-visibility/auth-on-visibility.component';
+import { ToastService } from './services/toast/toast-service';
+import { ToastsContainer } from './services/toast/toasts-container.component';
 
 @NgModule({
   declarations: [
@@ -84,9 +88,18 @@ import { NetworkInterceptor } from './interceptors/network.interceptor';
     LoginComponent,
     RegisteComponent,
     LoadingComponent,
+    AuthOnVisibilityComponent,
+    ToastsContainer,
   ],
   imports: [
     HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return sessionStorage.getItem('token');
+        },
+      },
+    }),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -104,11 +117,9 @@ import { NetworkInterceptor } from './interceptors/network.interceptor';
   ],
 
   providers: [
+    ToastService,
     StorageServiceService,
-    {
-      provide: MAT_DATE_LOCALE,
-      useValue: 'fr-FR',
-    } /* POUR METTRE LES DATEPICKER EN FRANÇAIS */,
+    { provide: MAT_DATE_LOCALE, useValue: "fr-FR" }, /* POUR METTRE LES DATEPICKER EN FRANÇAIS */
     {
       provide: DateAdapter,
       useClass: MomentDateAdapter,
