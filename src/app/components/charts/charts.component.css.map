@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "charts.component.sass"
-    ],
-    "names": [],
-    "file": "charts.component.css"
-}
+{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"charts.component.css"}

@@ -183,52 +183,164 @@ footer p a:hover {
   color: #da1a32;
 }
 
-.fondBlanc {
+header {
+  background-image: url("../../assets/img/bg-header.png");
+  background-repeat: repeat-x;
   background-color: #ffffff;
+  box-shadow: 0 0 15px #000043;
+  padding-bottom: 15px;
 }
 
-::ng-deep .mat-calendar-arrow {
-  border-top-color: #da1a32 !important;
-}
-
-::ng-deep .mat-icon-button {
-  color: #da1a32 !important;
-}
-
-::ng-deep .mat-button-focus-overlay {
-  background: #da1a32 !important;
-}
-
-.bandes {
-  border-bottom: 0.75rem solid #da1a32;
-  margin-bottom: 0.25rem;
-}
-
-::ng-deep .mat-calendar-body-cell-content {
-  border-color: none;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #215193;
-}
-
-::ng-deep .mat-calendar-period-button {
-  font-weight: 700;
-  font-size: 2rem;
-  color: #215193;
-}
-
-::ng-deep .mat-calendar-body-label {
-  color: #ffffff;
-}
-
-::ng-deep .mat-calendar-body-today:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+button {
   border: none;
-  color: #ffffff;
-  background-color: #da1a32;
+  background-color: transparent;
+  color: #215193;
+  font-size: 30px;
+  padding-top: 25px;
 }
 
-::ng-deep .mat-calendar-table-header {
-  font-family: "Poppins", sans-serif;
+button:hover {
+  color: #b51529;
+}
+
+nav img {
+  width: 195px;
+}
+
+nav a#logo {
+  background-image: url("../../assets/img/abacus-logo_horizontal.svg");
+  background-repeat: no-repeat;
+  width: 195px;
+  height: 50px;
+}
+
+nav a#logo:hover {
+  background-image: url("../../assets/img/abacus-logo_horizontal-hover.svg");
+}
+
+.btn-revenu {
+  font-family: "Barlow Condensed", sans-serif;
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+  border: 0;
+  background-color: #1e8922;
+  color: #fff;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 15px 30px;
+  border-radius: 0px 0px 10px 10px;
+}
+.btn-revenu:hover {
+  background-color: #0E4810;
+}
+.btn-revenu:hover {
+  color: #ffffff;
+}
+
+.btn-depense {
+  font-family: "Barlow Condensed", sans-serif;
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+  border: 0;
+  background-color: #da1a32;
+  color: #fff;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 15px 30px;
+  border-radius: 0px 0px 10px 10px;
+}
+.btn-depense:hover {
+  background-color: #b51529;
+}
+.btn-depense:hover {
+  color: #ffffff;
+}
+
+.fa-solid {
+  font-size: 2.25rem;
+  line-height: 3rem;
+  padding-bottom: 0.75rem;
+  color: #215193;
+}
+.fa-solid:hover {
   color: #da1a32;
-}/*# sourceMappingURL=calendrier.component.css.map */
+}
+
+ul.navba-bar {
+  width: 200px;
+}
+
+a {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 3.25rem;
+  text-transform: uppercase;
+  padding-left: 1rem;
+}
+
+#tableauBord {
+  border-top: 4px solid #215193;
+  border-bottom: 4px solid #215193;
+  margin-bottom: 0.15rem;
+}
+
+#tableauBord li a {
+  color: #215193;
+  border-bottom: 1px solid #215193;
+  padding-left: 1rem;
+}
+#tableauBord li a:hover {
+  color: #ffffff;
+  background-color: #C7D3E4;
+}
+
+#depenses {
+  border-top: 4px solid #da1a32;
+  border-bottom: 4px solid #da1a32;
+  margin-bottom: 0.15rem;
+}
+
+#depenses li a {
+  color: #da1a32;
+  border-bottom: 1px solid #da1a32;
+  padding-left: 1rem;
+}
+#depenses li a:hover {
+  color: #ffffff;
+  background-color: #F6C5CB;
+}
+
+#revenus {
+  border-top: 4px solid #1e8922;
+  border-bottom: 4px solid #1e8922;
+  margin-bottom: 0.15rem;
+}
+
+#revenus li a {
+  color: #1e8922;
+  border-bottom: 1px solid #1e8922;
+  padding-left: 1rem;
+}
+#revenus li a:hover {
+  color: #ffffff;
+  background-color: #C6E1C7;
+}
+
+#fonctionnalites {
+  border-top: 4px solid #a7a6a6;
+  border-bottom: 4px solid #a7a6a6;
+  margin-bottom: 0.15rem;
+}
+
+#fonctionnalites li a {
+  color: #a7a6a6;
+  border-bottom: 1px solid #a7a6a6;
+  padding-left: 1rem;
+}
+#fonctionnalites li a:hover {
+  color: #ffffff;
+  background-color: #dbdbdb;
+}/*# sourceMappingURL=header.component.css.map */

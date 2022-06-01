@@ -183,52 +183,12 @@ footer p a:hover {
   color: #da1a32;
 }
 
-.fondBlanc {
-  background-color: #ffffff;
-}
-
-::ng-deep .mat-calendar-arrow {
-  border-top-color: #da1a32 !important;
-}
-
-::ng-deep .mat-icon-button {
-  color: #da1a32 !important;
-}
-
-::ng-deep .mat-button-focus-overlay {
-  background: #da1a32 !important;
-}
-
-.bandes {
-  border-bottom: 0.75rem solid #da1a32;
-  margin-bottom: 0.25rem;
-}
-
-::ng-deep .mat-calendar-body-cell-content {
-  border-color: none;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.25rem;
-  font-weight: 700;
+h1 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 30px;
   color: #215193;
-}
-
-::ng-deep .mat-calendar-period-button {
-  font-weight: 700;
-  font-size: 2rem;
-  color: #215193;
-}
-
-::ng-deep .mat-calendar-body-label {
-  color: #ffffff;
-}
-
-::ng-deep .mat-calendar-body-today:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
-  border: none;
-  color: #ffffff;
-  background-color: #da1a32;
-}
-
-::ng-deep .mat-calendar-table-header {
-  font-family: "Poppins", sans-serif;
-  color: #da1a32;
-}/*# sourceMappingURL=calendrier.component.css.map */
+  border-top: 8px double #215193;
+  border-bottom: 8px double #215193;
+  padding: 10px 0;
+  text-transform: uppercase;
+}/*# sourceMappingURL=tableau-de-bord.component.css.map */

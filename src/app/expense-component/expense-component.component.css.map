@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "expense-component.component.sass"
-    ],
-    "names": [],
-    "file": "expense-component.component.css"
-}
+{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"expense-component.component.css"}
