@@ -57,6 +57,9 @@ import { MatchMediaQueryComponent } from './components/match-media-query/match-m
 import { LoginComponent } from './login/login.component';
 import { RegisteComponent } from './registe/registe.component';
 import { AuthOnVisibilityComponent } from './components/auth-on-visibility/auth-on-visibility.component';
+import { ToastService } from './services/toast/toast-service';
+import { ToastsContainer } from './services/toast/toasts-container.component';
+
 
 @NgModule({
   declarations: [
@@ -83,6 +86,7 @@ import { AuthOnVisibilityComponent } from './components/auth-on-visibility/auth-
     LoginComponent,
     RegisteComponent,
     AuthOnVisibilityComponent,
+    ToastsContainer,
   ],
   imports: [
     HttpClientModule,
@@ -109,11 +113,9 @@ import { AuthOnVisibilityComponent } from './components/auth-on-visibility/auth-
   ],
 
   providers: [
+    ToastService,
     StorageServiceService,
-    {
-      provide: MAT_DATE_LOCALE,
-      useValue: 'fr-FR',
-    } /* POUR METTRE LES DATEPICKER EN FRANÇAIS */,
+    { provide: MAT_DATE_LOCALE, useValue: "fr-FR" }, /* POUR METTRE LES DATEPICKER EN FRANÇAIS */
     {
       provide: DateAdapter,
       useClass: MomentDateAdapter,

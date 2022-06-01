@@ -19,6 +19,7 @@ import { Revenu } from '../interface/revenu';
 export class IncomeComponentComponent {
   @ViewChild('fform') feedbackFormDirective: any;
   submitForm!: FormGroup;
+  details!: Details;
   isValidMontantError: string = "";
   balance: number = 0;
   incomeList: Revenu[] = [];
@@ -27,47 +28,47 @@ export class IncomeComponentComponent {
 
   }
 
-  
-    // * fonction pour afficher la liste des revenus
+
+  // * fonction pour afficher la liste des revenus
   ngOnInit() {
     this.canonicApiService.getIncomeList().subscribe(
       (response: any) => {
         console.log(response);
-        this.revenu = response.data; 
+        this.revenu = response.data;
       },
       () => console.log('error')
     );
   }
-  @Input() revenu: Revenu = {_id:'', description:'', montant: 0, date: new Date, updatedAt: '', createdAt:'',}
-  @Output() majTableau = new EventEmitter() ;
+  @Input() revenu: Revenu = { _id: '', description: '', montant: 0, date: new Date, updatedAt: '', createdAt: '', }
+  @Output() majTableau = new EventEmitter();
 
 
 
   // Delete Income
-  removeIncome(revenu : Revenu): void {
+  removeIncome(revenu: Revenu): void {
     this.canonicApiService.removeIncome(revenu)
-    .subscribe(_result => this.incomeList = this.incomeList)
-    if (confirm('Voulez vous supprimer cette dépense ?')){
-  } else {
-    console.log('ne pas supprimer');
+      .subscribe(_result => this.incomeList = this.incomeList)
+    if (confirm('Voulez vous supprimer cette dépense ?')) {
+    } else {
+      console.log('ne pas supprimer');
 
-  }
-  
-  location.reload(); // Pour reload le graphique
+    }
+
+    location.reload(); // Pour reload le graphique
   }
 
   addIncome(): void {
     console.log(this.revenu);
     this.canonicApiService.addIncome(this.revenu).subscribe();
   }
-  
+
   onSave(addIncome: NgForm) {
     console.log(addIncome);
-    if(addIncome.valid) {
-      alert('Revenu ajouter')
-      if(this.revenu._id != null && this.revenu._id != '') {
+    if (addIncome.valid) {
+      alert('Veuillez remplir les champs')
+      if (this.revenu._id != null && this.revenu._id != '') {
         this.canonicApiService.editIncome(this.revenu).subscribe(_ => { this.majTableau.emit() });
-      } 
+      }
       else {
         this.addIncome();
       }
@@ -78,11 +79,11 @@ export class IncomeComponentComponent {
 
   }
 
-  
+
 
   openCalculatorModal(content: any) {
     this.modalService.open(content);
   }
-  
+
 
 }
