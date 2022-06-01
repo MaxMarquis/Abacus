@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "match-media-query.component.sass"
-    ],
-    "names": [],
-    "file": "match-media-query.component.css"
-}
+{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"match-media-query.component.css"}

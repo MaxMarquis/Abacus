@@ -1,20 +1,19 @@
 @import '../../sass/utils/variables'
 @import '../../sass/utils/stylesGlobaux'
-    
+
 header
     background-image: url('../../assets/img/bg-header.png')
     background-repeat: repeat-x
     background-color: $blanc
     box-shadow: 0 0 15px $bleuBalance
     padding-bottom: 15px
-    
+
 button
     border: none
     background-color: transparent
     color: $bleuBase
     font-size: 30px
     padding-top: 25px
-
 
 button:hover
     color: $rougeHover
@@ -38,7 +37,7 @@ nav a#logo:hover
     padding: 15px 30px
     border-radius: 0px 0px 10px 10px
     &:hover
-        color:$blanc
+        color: $blanc
 
 .btn-depense
     @include boutton($rougeBase, $rougeHover)
@@ -47,4 +46,52 @@ nav a#logo:hover
     padding: 15px 30px
     border-radius: 0px 0px 10px 10px
     &:hover
-        color:$blanc
+        color: $blanc
+
+// NAV
+.fa-solid
+    font-size: 2.25rem
+    line-height: 3rem
+    padding-bottom: 0.75rem
+    color: $bleuBase
+    &:hover
+        color: $rougeBase
+
+ul.navba-bar
+    width: 200px
+
+a
+    font-family: $button-font
+    font-weight: 700
+    font-size: 1.5rem
+    line-height: 3.25rem
+    text-transform: uppercase
+    padding-left: 1rem
+
+// NAV TABLEAU DE BORD    
+#tableauBord
+    @include borderNav($bleuBase)
+
+#tableauBord li a
+    @include navItem($bleuBase, $bleuPale)
+
+// NAV DÉPENSES    
+#depenses
+    @include borderNav($rougeBase)
+
+#depenses li a
+    @include navItem($rougeBase, $rougePale)
+
+// NAV REVENUS   
+#revenus
+    @include borderNav($vertBase)
+
+#revenus li a
+    @include navItem($vertBase, $vertPale)
+
+// NAV FONCTIONNALITES  
+#fonctionnalites
+    @include borderNav($grisFonce)
+
+#fonctionnalites li a
+    @include navItem($grisFonce, $grisPale)

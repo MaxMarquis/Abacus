@@ -1,0 +1,50 @@
+@import '../../../sass/utils/stylesGlobaux'
+@import '../../../sass/utils/variables'
+
+.fondBlanc
+    background-color: $blanc
+
+//Petite flèche sélecteur pour le mois
+::ng-deep .mat-calendar-arrow
+    border-top-color: $rougeBase !important
+
+// Contrôle flèches sélecteurs de mois précédent ou suivant
+::ng-deep .mat-icon-button
+    color: $rougeBase !important
+
+::ng-deep .mat-button-focus-overlay
+    background: $rougeBase !important
+
+// Bandes rouges dans le bas du calendrier
+.bandes
+    border-bottom: 0.75rem solid $rougeBase
+    margin-bottom: 0.25rem
+
+// Affichage des chiffres de dates
+::ng-deep .mat-calendar-body-cell-content
+    border-color: none
+    font-family: $body-font
+    font-size: 1.25rem
+    font-weight: 700
+    color: $bleuBase
+
+// Affichage du mois et de l'année pour le sélecteur en haut
+::ng-deep .mat-calendar-period-button
+    font-weight: 700
+    font-size: 2rem
+    color: $bleuBase
+
+//Affichage du mois en cour (présentement caché avec la couleur de l'arrière-plan)    
+::ng-deep .mat-calendar-body-label
+    color: $blanc
+
+// Affichage du jour actuel   
+::ng-deep .mat-calendar-body-today:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical)
+    border: none
+    color: $blanc
+    background-color: $rougeBase
+
+//Gestion de thead calendrier
+::ng-deep .mat-calendar-table-header
+    font-family: $body-font
+    color: $rougeBase
