@@ -53,44 +53,6 @@ export class CanonicApiService {
     };
   }
 
-  // *Ce code correspond aux revenus/Canonic
-
-  private createDTOObjectRevenu(revenu: Revenu): CanonicDTO<RevenuDTO> {
-    const revenuDTO: RevenuDTO = {
-      montant: Number(revenu.montant),
-      description: revenu.description,
-      date: new Date(revenu.date),
-    };
-
-    return {
-      input: revenuDTO,
-    };
-  }
-
-  // * toutes les fonctions CRUD pour les dépenses
-
-  getExpenseList(): Observable<Depense[]> {
-    return this.http.get<Depense[]>(this.depenseUrl);
-  }
-
-  removeExpense(depense: Depense): Observable<Depense> {
-    const url = `${this.depenseUrl}/${depense._id}`;
-    return this.http.delete<Depense>(url);
-  }
-
-  addExpense(depense: Depense): Observable<Depense> {
-    return this.http.post<Depense>(
-      this.depenseUrl,
-      this.createDTOObjectDepense(depense),
-      httpOptions
-    );
-  }
-
-  editExpense(depense: Depense): Observable<Depense> {
-    const url = `${this.depenseUrl}/${depense._id}`;
-    return this.http.put<Depense>(this.depenseUrl, depense, httpOptions);
-  }
-
   // * Crud pour la gestion de la liste du sommaire globale pour les revenus et les dépenses ensemble
 
   getIncomeExpenseList(): Observable<Details[]> {

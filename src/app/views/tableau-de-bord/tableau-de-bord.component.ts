@@ -4,6 +4,7 @@ import { Depense } from 'src/app/interface/depense';
 import { Revenu } from 'src/app/interface/revenu';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { ExpenseService } from 'src/app/services/expanse.service';
 
 @Component({
   selector: 'app-tableau-de-bord',
@@ -12,19 +13,16 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class TableauDeBordComponent implements OnInit {
   balance: number = 0;
-  expenseList!: Depense[];
+  expenseList: Depense[] = [];
   incomeList!: Revenu[];
 
   constructor(
-    private canonicApiService: CanonicApiService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private expenseService: ExpenseService
   ) {
-    this.canonicApiService.getExpenseList().subscribe(
-      (response: any) => {
-        this.expenseList = response.data;
-      },
-      () => console.log('error')
+    this.expenseService.expensesList$.subscribe(
+      (expenses) => (this.expenseList = expenses)
     );
   }
 
