@@ -1,72 +1,75 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CanonicApiService } from 'src/app/services/canonic-api.service';
 import { Revenu } from 'src/app/interface/revenu';
+import { IncomeService } from 'src/app/services/income.service';
 import { ToastService } from 'src/app/services/toast/toast-service';
 
 @Component({
   selector: 'app-ajout-revenu',
   templateUrl: './ajout-revenu.component.html',
-  styleUrls: ['./ajout-revenu.component.sass']
+  styleUrls: ['./ajout-revenu.component.sass'],
 })
-
 export class AjoutRevenuComponent {
   @ViewChild('fform') feedbackFormDirective: any;
   submitForm!: FormGroup;
-  isValidMontantError: string = "";
+  isValidMontantError: string = '';
   balance: number = 0;
   incomeList: Revenu[] = [];
 
-  constructor(private canonicApiService: CanonicApiService, private modalService: NgbModal, public toastService: ToastService) { }
+  constructor(
+    private modalService: NgbModal,
+    public toastService: ToastService,
+    private incomeService: IncomeService
+  ) {}
 
   // * fonction pour afficher la liste des revenus
   ngOnInit() {
-    this.canonicApiService.getIncomeList().subscribe(
-      (response: any) => {
-        console.log(response);
-        response.data.date = new Date(response.data.date);
-        this.incomeList = response.data;
-      },
-      () => console.log('error')
+    this.incomeService.incomesList$.subscribe(
+      (incomes) => (this.incomeList = incomes)
     );
   }
 
   // * cette partie concerne l'ajout de revenu
-  @Input() revenu: Revenu = { _id: '', description: '', montant: 0, date: new Date(), revenuBalance: 0, updatedAt: '', createdAt: '', }
+  @Input() revenu: Revenu = {
+    _id: '',
+    description: '',
+    montant: 0,
+    date: new Date(),
+    updatedAt: '',
+    createdAt: '',
+  };
   @Output() majTableau = new EventEmitter();
 
   addIncome(): void {
-    console.log(this.revenu)
-    this.canonicApiService.addIncome(this.formatRevenu()).subscribe();
-  }
-
-  formatRevenu() {
-    const [year, month, date] = (this.revenu.date as unknown as string).split("-");
-    return {
-      ...this.revenu,
-      date: new Date(Number(year), Number(month) - 1, Number(date)),
-    }
+    this.incomeService.addIncome(this.revenu);
   }
 
   onSave(addIncome: NgForm) {
     if (addIncome.valid) {
       if (this.revenu._id != null && this.revenu._id != '') {
-        this.canonicApiService.editIncome(this.formatRevenu()).subscribe(_ => { this.majTableau.emit() });
+        this.incomeService
+          .editIncome(this.revenu)
+          .subscribe(() => this.majTableau.emit());
+      } else {
+        this.addIncome();
+        this.toastService.show('Revenu ajouté', {
+          classname: 'bg-success text-light',
+          delay: 5000,
+        });
       }
-      else {
-        if (this.revenu.montant > 0 && this.revenu.description != '') {
-          this.incomeList.push(this.revenu);
-          this.addIncome();
-          this.toastService.show('Revenu ajouté', { classname: 'bg-success text-light', delay: 5000 });
-        } else {
-          this.toastService.show('Veullez remplir les champs ', { classname: 'bg-danger text-light', delay: 5000 });
-        }
-      }
+    } else {
+      this.toastService.show('Veullez remplir les champs ', {
+        classname: 'bg-danger text-light',
+        delay: 5000,
+      });
     }
-    this.incomeList.push(this.formatRevenu());
-    // Pour reload le graphique
-    location.reload();
   }
 
   openCalculatorModal(content: any) {
@@ -78,14 +81,10 @@ export class AjoutRevenuComponent {
 
   // Delete Income
   removeIncome(revenu: Revenu): void {
-    this.canonicApiService.removeIncome(revenu)
-      .subscribe(_result => this.incomeList = this.incomeList)
     if (confirm('Voulez vous supprimer ce revenu ?')) {
+      this.incomeService.removeIncome(revenu);
     } else {
       console.log('ne pas supprimer');
-
     }
-
-    location.reload(); // Pour reload le graphique
   }
 }

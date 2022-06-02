@@ -4,17 +4,24 @@ import { Revenu } from 'src/app/interface/revenu';
 import { IncomeService } from 'src/app/services/income.service';
 
 @Component({
-  selector: 'app-charts',
-  templateUrl: './charts.component.html',
-  styleUrls: ['./charts.component.sass'],
+  selector: 'app-income-chart',
+  templateUrl: './income-chart.component.html',
+  styleUrls: ['./income-chart.component.sass'],
 })
-export class ChartsComponent implements OnInit {
+export class IncomeChartComponent implements OnInit {
   // Récupère les données à afficher
   @Input() height = '40';
   @Input() width = '40';
 
-  public incomeLabels: string[] = [];
-  public incomes: number[] = [];
+  public doughnutChartLabels: string[] = [];
+  public doughnutChartData: ChartData<'doughnut'> = {
+    datasets: [{ data: [] }],
+    labels: this.doughnutChartLabels,
+  };
+  public doughnutChartType: ChartType = 'doughnut';
+  public doughnutChartOptions = {
+    responsive: true,
+  };
 
   constructor(private income: IncomeService) {}
 
@@ -31,16 +38,4 @@ export class ChartsComponent implements OnInit {
       labels: incomes.map((income) => income.description),
     };
   }
-
-  // Doughnut
-  public doughnutChartLabels: string[] = [];
-  public doughnutChartData: ChartData<'doughnut'> = {
-    datasets: [{ data: [] }],
-    labels: this.doughnutChartLabels,
-  };
-  public doughnutChartType: ChartType = 'doughnut';
-  public doughnutChartOptions = {
-    responsive: true,
-  };
-  public hasData = this.doughnutChartData.datasets[0].data.length > 0;
 }

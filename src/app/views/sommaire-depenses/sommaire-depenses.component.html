@@ -1,112 +1,66 @@
-<div class="container">
-  <app-match-media-query mediaQuery="(max-width: 992px)">    <!--  balance  -->
-    <!-- NAVBAR en attendant  -->
+<div>
+  <!--  balance  -->
+  <!-- NAVBAR en attendant  -->
   <app-header></app-header>
 
   <h1>Sommaire des dépenses</h1>
-</app-match-media-query>
 
-  <app-match-media-query mediaQuery="(max-width: 992px)">
-    <ngb-accordion #acc="ngbAccordion">
-      <ngb-panel title="Sommaire des dépenses">
-        <ng-template ngbPanelContent>
-          <button type="button" class="btn btn-outline-success" (click)="collapse.toggle()"
-            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-            Choisir la période désirée
-          </button>
+  <ngb-accordion #acc="ngbAccordion">
+    <ngb-panel title="Sommaire des dépenses">
+      <ng-template ngbPanelContent>
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          (click)="collapse.toggle()"
+          [attr.aria-expanded]="!isCollapsed"
+          aria-controls="collapseExample"
+        >
+          Choisir la période désirée
+        </button>
 
-          <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-            <div>
-              <input type="date" placeholder="Du" #dateO />
-              <input type="date" placeholder="Au" #dateT />
-              <button class="m-1 btn btn-primary" (click)="doFilter(dateO, dateT)">
-                Filter
-              </button>
-            </div>
+        <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+          <div>
+            <input type="date" placeholder="Du" #dateO />
+            <input type="date" placeholder="Au" #dateT />
+            <button
+              class="m-1 btn btn-primary"
+              (click)="doFilter(dateO, dateT)"
+            >
+              Filter
+            </button>
           </div>
+        </div>
 
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Catégorie</th>
-                <th scope="col">Montant</th>
-                <th scope="col">Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="
-                  let expense of expenseList | sortByDates: dateOne:dateTwo
-                ">
-                <td class="d-none">{{ expense._id }}</td>
-                <td>{{ expense.description }}</td>
-                <td>{{ expense.montant | currency }}</td>
-                <td>{{ expense.date | date:'longDate':'undefined':'fr' }}</td>
+        <app-expense-table
+          [dateOne]="dateOne"
+          [dateTwo]="dateTwo"
+        ></app-expense-table>
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
 
-                <td>
-                  <i class="fa fa-trash" aria-hidden="true" (click)="removeExpense(expense)"></i>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </ng-template>
-      </ngb-panel>
-    </ngb-accordion>
-  </app-match-media-query>
+  <button
+    type="button"
+    class="btn-periode-depense"
+    (click)="collapse.toggle()"
+    [attr.aria-expanded]="!isCollapsed"
+    aria-controls="collapseExample"
+  >
+    Choisir la période désirée
+  </button>
 
-  <app-match-media-query mediaQuery="(max-width: 992px)">
-    
-      <button type="button" class="btn-periode-depense" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
-        aria-controls="collapseExample">
-        Choisir la période désirée
+  <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+    <div>
+      <input type="date" placeholder="Du" #dateO />
+      <input type="date" placeholder="Au" #dateT />
+      <button class="m-1 btn-filtre-depense" (click)="doFilter(dateO, dateT)">
+        Filtrer
       </button>
-    
-    <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-      <div>
-        <input type="date" placeholder="Du" #dateO />
-        <input type="date" placeholder="Au" #dateT />
-        <button class="m-1 btn-filtre-depense" (click)="doFilter(dateO, dateT)">
-          Filtrer
-        </button>
-      </div>
     </div>
-  </app-match-media-query>
+  </div>
   <div ngbDropdown class="d-inline-block">
-    <app-match-media-query mediaQuery="(max-width: 992px)">
-      <i class="fa-solid fa-calendar-days"></i>
+    <i class="fa-solid fa-calendar-days"></i>
 
-      <h2>Dépenses</h2>
-      <!--graphique des dépenses-->
-      <div *ngIf="expenseList">
-        <app-charts width="20" height="20" [expenseList]="expenseList"></app-charts>
-      </div>
-    </app-match-media-query>   
-      <!-- Tableau du sommaires des dépenses -->
-      <h2>Dépenses</h2>
-    <!-- Tableau du sommaires des dépenses -->
-    <app-match-media-query mediaQuery="(max-width: 992px)">
-      <section>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Catégorie</th>
-              <th scope="col">Montant</th>
-              <th scope="col">Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let expense of expenseList">
-              <td class="d-none">{{ expense._id }}</td>
-              <td>{{ expense.description }}</td>
-              <td>{{ expense.montant | currency }}</td>
-              <td>{{ expense.date | date:'longDate':'undefined':'fr' }}</td>
-              <td><i class="fa fa-trash" aria-hidden="true" (click)="removeExpense(expense)"></i></td>
-            </tr>
-          </tbody>
-        </table>
-      <app-match-media-query mediaQuery="(max-width: 992px)">
-        <!--RETOUR TABLEAU DE BORD -->
-        <button class="btn-som-complet" routerLink="/tableauDeBord">
-          RETOUR AU TABLEAU DE BORD
-        </button>
-      </app-match-media-query>
-<app-footer></app-footer>
+    <h2>Dépenses</h2>
+  </div>
+</div>

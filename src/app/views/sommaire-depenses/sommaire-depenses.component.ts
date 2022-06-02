@@ -1,64 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { Depense, DepenseDTO } from 'src/app/interface/depense';
-import { Details, DetailsDTO } from 'src/app/interface/details';
-import { Revenu } from 'src/app/interface/revenu';
-import { CanonicApiService } from 'src/app/services/canonic-api.service';
 
 @Component({
   selector: 'app-sommaire-depenses',
   templateUrl: './sommaire-depenses.component.html',
-  styleUrls: ['./sommaire-depenses.component.sass']
+  styleUrls: ['./sommaire-depenses.component.sass'],
 })
 export class SommaireDepensesComponent implements OnInit {
+  dateOne: Date = new Date(1979, 0, 1);
+  dateTwo: Date = new Date();
 
-  expenseList: Details[] = [];
-  dateOne?: Date;
-  dateTwo?: Date;
+  constructor() {}
 
-
-  constructor(private canonicApiService: CanonicApiService) {}
-
-
-  ngOnInit() {
-    this.canonicApiService.getExpenseList().subscribe(
-      (response: any) => {
-        this.expenseList = response.data;
-      },
-      () => console.log('error')
-    );
-  }
-
-
-    removeExpense(depense : Depense): void {
-        this.canonicApiService.removeExpense(depense)
-        .subscribe(_result => this.expenseList = this.expenseList)
-        if (confirm('Voulez vous supprimer cette dépense ?')){
-      } else {
-        console.log('ne pas supprimer');
-
-      }
-      
-      location.reload(); // Pour reload le graphique
-      }
-    
-    
+  ngOnInit() {}
 
   // collapse fermé pour input dates
   public isCollapsed = true;
 
   doFilter(dateO: HTMLInputElement, dateT: HTMLInputElement): void {
-    this.dateOne = ((dateO.value.trim() == "") ? undefined : new Date(dateO.value));
-    this.dateTwo = ((dateT.value.trim() == "") ? undefined : new Date(dateT.value));
+    this.dateOne =
+      dateO.value.trim() == '' ? this.dateOne : new Date(dateO.value);
+    this.dateTwo =
+      dateT.value.trim() == '' ? this.dateTwo : new Date(dateT.value);
   }
-
 }
-
-
-
-  
-
-  
-
-
-
-

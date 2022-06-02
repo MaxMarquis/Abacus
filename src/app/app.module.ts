@@ -29,7 +29,6 @@ import { AppComponent } from './app.component';
 import { CalculatriceComponent } from './components/calculatrice/calculatrice.component';
 import { CalendrierComponent } from './components/calendrier/calendrier.component';
 import { ExpenseComponentComponent } from './expense-component/expense-component.component';
-import { IncomeComponentComponent } from './income-component/income-component.component';
 import { ChartsComponent } from './components/charts/charts.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -57,6 +56,10 @@ import { SortByDatesPipe } from './filters/sort-by-dates.pipe';
 import { MatchMediaQueryComponent } from './components/match-media-query/match-media-query.component';
 import { LoginComponent } from './login/login.component';
 import { RegisteComponent } from './registe/registe.component';
+import { IncomeChartComponent } from './components/income-chart/income-chart.component';
+import { IncomeTableComponent } from './components/income-table/income-table.component';
+import { ExpenseTableComponent } from './components/expense-table/expense-table.component';
+import { ExpenseChartComponent } from './components/expense-chart/expense-chart.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { NetworkInterceptor } from './interceptors/network.interceptor';
 import { AuthOnVisibilityComponent } from './components/auth-on-visibility/auth-on-visibility.component';
@@ -69,7 +72,6 @@ import { ToastsContainer } from './services/toast/toasts-container.component';
     CalculatriceComponent,
     CalendrierComponent,
     ExpenseComponentComponent,
-    IncomeComponentComponent,
     ChartsComponent,
     AuthentificationComponent,
     DeconnexionComponent,
@@ -87,6 +89,10 @@ import { ToastsContainer } from './services/toast/toasts-container.component';
     MatchMediaQueryComponent,
     LoginComponent,
     RegisteComponent,
+    IncomeChartComponent,
+    IncomeTableComponent,
+    ExpenseTableComponent,
+    ExpenseChartComponent,
     LoadingComponent,
     AuthOnVisibilityComponent,
     ToastsContainer,
@@ -118,9 +124,17 @@ import { ToastsContainer } from './services/toast/toasts-container.component';
   ],
 
   providers: [
+    StorageServiceService,
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'fr-FR',
+    } /* POUR METTRE LES DATEPICKER EN FRANÇAIS */,
     ToastService,
     StorageServiceService,
-    { provide: MAT_DATE_LOCALE, useValue: "fr-FR" }, /* POUR METTRE LES DATEPICKER EN FRANÇAIS */
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'fr-FR',
+    } /* POUR METTRE LES DATEPICKER EN FRANÇAIS */,
     {
       provide: DateAdapter,
       useClass: MomentDateAdapter,

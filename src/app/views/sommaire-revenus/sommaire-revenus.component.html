@@ -1,10 +1,9 @@
-<app-header></app-header>
 <div class="container">
-  <app-match-media-query mediaQuery="(max-width: 992px)">    <!--  balance  -->
+  <app-match-media-query mediaQuery="(max-width: 992px)">
+    <!--  balance  -->
     <!-- NAVBAR en attendant  -->
     <app-header></app-header>
 
-    
     <h1>Sommaire des revenus</h1>
   </app-match-media-query>
 
@@ -12,8 +11,13 @@
     <ngb-accordion #acc="ngbAccordion">
       <ngb-panel title="Sommaire des revenus">
         <ng-template ngbPanelContent>
-          <button type="button" class="btn btn-outline-success" (click)="collapse.toggle()"
-            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+          <button
+            type="button"
+            class="btn btn-outline-success"
+            (click)="collapse.toggle()"
+            [attr.aria-expanded]="!isCollapsed"
+            aria-controls="collapseExample"
+          >
             Choisir la période désirée
           </button>
 
@@ -21,41 +25,29 @@
             <div>
               <input type="date" placeholder="Du" #dateO />
               <input type="date" placeholder="Au" #dateT />
-              <button class="m-1 btn btn-primary" (click)="doFilter(dateO, dateT)">
+              <button
+                class="m-1 btn btn-primary"
+                (click)="doFilter(dateO, dateT)"
+              >
                 Filter
               </button>
             </div>
           </div>
 
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Catégorie</th>
-                <th scope="col">Montant</th>
-                <th scope="col">Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let income of incomeList | sortByDates: dateOne:dateTwo">
-                <td class="d-none">{{ income._id }}</td>
-                <td>{{ income.description }}</td>
-                <td>{{ income.montant | currency }}</td>
-                <td>{{ income.date | date:'longDate':'undefined':'fr' }}</td>
-                <td>
-                  <i class="fa fa-trash" aria-hidden="true" (click)="removeIncome(income)"></i>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <app-income-table></app-income-table>
         </ng-template>
       </ngb-panel>
     </ngb-accordion>
   </app-match-media-query>
 
   <app-match-media-query mediaQuery="(max-width: 992px)">
-    
-    <button type="button" class="btn-periode-revenu" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
-      aria-controls="collapseExample">
+    <button
+      type="button"
+      class="btn-periode-revenu"
+      (click)="collapse.toggle()"
+      [attr.aria-expanded]="!isCollapsed"
+      aria-controls="collapseExample"
+    >
       Choisir la période désirée
     </button>
 
@@ -77,32 +69,13 @@
 
       <!--graphique des revenus-->
       <div *ngIf="incomeList">
-        <app-charts width="20" height="20" [incomeList]="incomeList"></app-charts>
+        <app-income-chart width="20" height="20"></app-income-chart>
       </div>
     </app-match-media-query>
 
     <!-- Tableau du sommaires des revenus -->
     <app-match-media-query mediaQuery="(max-width: 992px)">
-      <section>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Catégorie</th>
-              <th scope="col">Montant</th>
-              <th scope="col">Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let income of incomeList | sortByDates: dateOne:dateTwo">
-              <td class="d-none">{{ income._id }}</td>
-              <td>{{ income.description }}</td>
-              <td>{{ income.montant | currency }}</td>
-              <td>{{ income.date | date:'longDate':'undefined':'fr' }}</td>
-              <td><i class="fa fa-trash" aria-hidden="true" (click)="removeIncome(income)"></i></td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
+      <app-income-table></app-income-table>
       <app-match-media-query mediaQuery="(max-width: 992px)">
         <!--RETOUR TABLEAU DE BORD -->
         <button class="btn-som-complet" routerLink="/tableauDeBord">
@@ -112,4 +85,5 @@
     </app-match-media-query>
   </div>
 
-<app-footer></app-footer>
+  <app-footer></app-footer>
+</div>
