@@ -98,6 +98,7 @@ import { ToastsContainer } from './services/toast/toasts-container.component';
     ToastsContainer,
   ],
   imports: [
+
     HttpClientModule,
     JwtModule.forRoot({
       config: {

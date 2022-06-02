@@ -81,8 +81,8 @@ export class AjoutRevenuComponent {
 
   // Delete Income
   removeIncome(revenu: Revenu): void {
-    this.incomeService.removeIncome(revenu);
     if (confirm('Voulez vous supprimer ce revenu ?')) {
+      this.incomeService.removeIncome(revenu);
     } else {
       console.log('ne pas supprimer');
     }

@@ -25,21 +25,6 @@ export class CanonicApiService {
   // * C'est à dire que c'est l'api qui determine quel information utilisée pour appeller nos données.
   // * Un DTO est un Data transfert Objet: on l'utilise pour determiner le type et aussi juste les données dont on a besoin lors de l'appel de l'api pour pas l'alourdir.
 
-  private createDTOObject(details: Details): CanonicDTO<DetailsDTO> {
-    const detailsDTO: DetailsDTO = {
-      montant: Number(details.montant),
-      description: details.description,
-      date: new Date(details.date),
-      revenu: details.revenu,
-      depense: details.depense,
-      isIncome: false,
-    };
-
-    return {
-      input: detailsDTO,
-    };
-  }
-
   // *Ce code correspond aux dépenses/Canonic
   private createDTOObjectDepense(depense: Depense): CanonicDTO<DepenseDTO> {
     const depenseDTO: DepenseDTO = {

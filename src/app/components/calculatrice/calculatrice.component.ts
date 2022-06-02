@@ -1,5 +1,6 @@
 import { Component} from '@angular/core';
 import copy from 'copy-text-to-clipboard';
+import { ToastService } from 'src/app/services/toast/toast-service';
 
 @Component({
   selector: 'app-calculatrice',
@@ -10,7 +11,7 @@ export class CalculatriceComponent {
 input:string = '';
   result:string = '';
   
- 
+   constructor(public toastService: ToastService) { }
   pressNum(num: string) {
     
     //Do Not Allow . more than once
@@ -104,8 +105,7 @@ input:string = '';
   copyResult() {
      copy(this.result.toString());
 
-        alert("Montant copié");
-
-        
+          this.toastService.show('Montant copié', { classname: 'bg-success text-light', delay: 3000 });
+       
   }
 }

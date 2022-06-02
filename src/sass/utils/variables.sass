@@ -2,8 +2,6 @@
 // 2.COULEURS
 // 3.POINTS DE RUPTURE
 
-
-    
 // .....................
 // 1. FONT
 // .............................................................   
@@ -21,23 +19,26 @@ $grisFonce: #a7a6a6
 $bleuBase: #215193
 $bleuHover: #031224
 $bleuBalance: #000043
-
 $rougeConnexion: #a0001f
+
+// COULEURS CALCULATRICE / IMAGE DE MARQUE
+$bleuPale: #C7D3E4
+$bleuOps: rgba(33, 81, 147, 0.5)
 
 // COULEURS REVENU
 $vertBase: #1e8922
 $vertHover: #0E4810
+$vertPale: #C6E1C7
 
 // COULEURS DÉPENSE
-$rougeBase:#da1a32
-$rougeHover:#b51529
-
+$rougeBase: #da1a32
+$rougeHover: #b51529
+$rougePale: #F6C5CB
 
 // .....................
 // 3. POINTS DE RUPTURE
 // .............................................................
 $breakpoints: (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px,)
-
 
 // 4.MIXINS
 
@@ -51,7 +52,19 @@ $breakpoints: (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px,)
     color: #fff
     text-transform: uppercase
     &:hover
-        background-color: $hover	
+        background-color: $hover
+
+@mixin boutton-contour($color)
+    font-family: $button-font
+    padding: .5rem 2rem
+    border-radius: 5px
+    border: 1px solid $color
+    background-color: #fff
+    color: $border
+    text-transform: uppercase
+    &:hover
+        background-color: $color
+        color: $blanc
 
 // TITRES
 @mixin titre($color)
@@ -62,3 +75,17 @@ $breakpoints: (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px,)
     border-bottom: 8px double $color
     padding: 10px 0
     text-transform: uppercase
+
+// NAV
+@mixin borderNav($color)
+    border-top: 4px solid $color
+    border-bottom: 4px solid $color
+    margin-bottom: 0.15rem
+
+@mixin navItem($color, $hover)
+    color: $color
+    border-bottom: 1px solid $color
+    padding-left: 1rem
+    &:hover
+        color: $blanc
+        background-color: $hover

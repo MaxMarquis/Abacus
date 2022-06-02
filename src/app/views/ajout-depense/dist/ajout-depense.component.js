@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -15,8 +26,9 @@ var AjoutDepenseComponent = /** @class */ (function () {
         this.toastService = toastService;
         this.isValidMontantError = "";
         this.balance = 0;
+        this.expenseList = [];
         // * cette partie concerne l'ajout des dépenses.
-        this.depense = { _id: '', description: '', montant: 1, date: new Date, updatedAt: '', createdAt: '' };
+        this.depense = { _id: '', description: '', montant: 0, date: new Date, depenseBalance: 0, updatedAt: '', createdAt: '' };
         this.majTableau = new core_1.EventEmitter();
     }
     // * fonction pour afficher la liste des dépenses
@@ -24,21 +36,24 @@ var AjoutDepenseComponent = /** @class */ (function () {
         var _this = this;
         this.canonicApiService.getExpenseList().subscribe(function (response) {
             console.log(response);
+            response.data.date = new Date(response.data.date);
             _this.expenseList = response.data;
         }, function () { return console.log('error'); });
     };
+    AjoutDepenseComponent.prototype.formatDepense = function () {
+        var _a = this.depense.date.split("-"), year = _a[0], month = _a[1], date = _a[2];
+        return __assign(__assign({}, this.depense), { date: new Date(Number(year), Number(month) - 1, Number(date)) });
+    };
     AjoutDepenseComponent.prototype.addExpense = function () {
-        this.canonicApiService.addExpense(this.depense).subscribe();
-        // Pour reload le graphique 
-        location.reload();
+        console.log(this.depense);
+        this.canonicApiService.addExpense(this.formatDepense()).subscribe();
     };
     AjoutDepenseComponent.prototype.onSave = function (addExpense) {
         var _this = this;
         console.log(addExpense);
         if (addExpense.valid) {
             if (this.depense._id != null && this.depense._id != '') {
-                this.canonicApiService.editExpense(this.depense).subscribe(function (_) { _this.majTableau.emit(); });
-                location.reload();
+                this.canonicApiService.editExpense(this.formatDepense()).subscribe(function (_) { _this.majTableau.emit(); });
             }
             else {
                 if (this.depense.montant > 0 && this.depense.description != '') {
@@ -51,6 +66,9 @@ var AjoutDepenseComponent = /** @class */ (function () {
                 }
             }
         }
+        this.expenseList.push(this.formatDepense());
+        // Pour reload le graphique
+        location.reload();
     };
     AjoutDepenseComponent.prototype.openCalculatorModal = function (content) {
         this.modalService.open(content);

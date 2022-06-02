@@ -23,7 +23,7 @@ export class AjoutDepenseComponent implements OnInit {
   submitForm!: FormGroup;
   isValidMontantError: string = '';
   balance: number = 0;
-  expenseList!: Depense[];
+  expenseList: Depense[] = [];
 
   constructor(
     private expenseService: ExpenseService,
@@ -49,6 +49,15 @@ export class AjoutDepenseComponent implements OnInit {
   };
   @Output() majTableau = new EventEmitter();
 
+  formatDepense() {
+    const [year, month, date] = (this.depense.date as unknown as string).split(
+      '-'
+    );
+    return {
+      ...this.depense,
+      date: new Date(Number(year), Number(month) - 1, Number(date)),
+    };
+  }
   addExpense(): void {
     this.expenseService.addExpense(this.depense);
   }
@@ -84,12 +93,10 @@ export class AjoutDepenseComponent implements OnInit {
   }
 
   removeExpense(depense: Depense): void {
-    this.expenseService.removeExpense(depense);
     if (confirm('Voulez vous supprimer cette dépense ?')) {
+      this.expenseService.removeExpense(depense);
     } else {
       console.log('ne pas supprimer');
     }
-
-    location.reload(); // Pour reload le graphique
   }
 }

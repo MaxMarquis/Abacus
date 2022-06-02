@@ -1,0 +1,194 @@
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  background-image: url("../../assets/img/stripes-light.png");
+}
+
+main {
+  margin: 50px 0;
+}
+
+.bordure {
+  margin: 20px 0 50px;
+  border-top: 15px solid #da1a32;
+  border-bottom: 15px solid #da1a32;
+  height: 40px;
+}
+
+.btn-som-revenu {
+  font-family: "Barlow Condensed", sans-serif;
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+  border: 0;
+  background-color: #1e8922;
+  color: #fff;
+  text-transform: uppercase;
+  margin: 20px 0;
+}
+.btn-som-revenu:hover {
+  background-color: #0E4810;
+}
+
+.btn-som-depense {
+  font-family: "Barlow Condensed", sans-serif;
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+  border: 0;
+  background-color: #da1a32;
+  color: #fff;
+  text-transform: uppercase;
+  margin: 20px 0;
+}
+.btn-som-depense:hover {
+  background-color: #b51529;
+}
+
+.btn-som-complet {
+  font-family: "Barlow Condensed", sans-serif;
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+  border: 0;
+  background-color: #215193;
+  color: #fff;
+  text-transform: uppercase;
+  margin: 20px 0;
+}
+.btn-som-complet:hover {
+  background-color: #031224;
+}
+
+.btn-periode-revenu {
+  font-family: "Barlow Condensed", sans-serif;
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+  border: 0;
+  background-color: #ffffff;
+  color: #fff;
+  text-transform: uppercase;
+  color: #1e8922;
+  border: 1px solid #1e8922;
+  width: 80%;
+}
+.btn-periode-revenu:hover {
+  background-color: #ffffff;
+}
+.btn-periode-revenu:hover {
+  color: #0E4810;
+  border-color: #0E4810;
+}
+
+.btn-periode-depense {
+  font-family: "Barlow Condensed", sans-serif;
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+  border: 0;
+  background-color: #ffffff;
+  color: #fff;
+  text-transform: uppercase;
+  color: #da1a32;
+  border: 1px solid #da1a32;
+  width: 80%;
+}
+.btn-periode-depense:hover {
+  background-color: #ffffff;
+}
+.btn-periode-depense:hover {
+  color: #b51529;
+  border-color: #b51529;
+}
+
+.btn-filtre {
+  font-family: "Barlow Condensed", sans-serif;
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+  border: 0;
+  background-color: #1e8922;
+  color: #fff;
+  text-transform: uppercase;
+}
+.btn-filtre:hover {
+  background-color: #0E4810;
+}
+
+.btn-filtre-depense {
+  font-family: "Barlow Condensed", sans-serif;
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+  border: 0;
+  background-color: #da1a32;
+  color: #fff;
+  text-transform: uppercase;
+}
+.btn-filtre-depense:hover {
+  background-color: #b51529;
+}
+
+::placeholder {
+  color: #dbdbdb;
+  font-size: 0.875rem;
+}
+
+input {
+  color: #215193;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin: 10px 0 20px 0;
+}
+
+.input100 {
+  width: 100%;
+}
+
+footer {
+  padding: 50px 0;
+}
+
+footer img {
+  width: 96px;
+}
+
+footer p {
+  font-family: "Barlow Condensed", sans-serif;
+  padding-top: 45px;
+  color: #ffffff;
+}
+
+footer p a {
+  color: #ffffff;
+  text-decoration: none;
+}
+footer p a:hover {
+  color: #da1a32;
+}
+
+#rs {
+  margin-top: 20px;
+}
+
+#rs i.fa-brands {
+  font-size: 50px;
+  color: #ffffff;
+}
+#rs i.fa-brands:hover {
+  color: #da1a32;
+}
+
+.revenu {
+  color: #1e8922;
+}
+
+.depense {
+  color: #da1a32;
+}
+
+h1 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 30px;
+  color: #215193;
+  border-top: 8px double #215193;
+  border-bottom: 8px double #215193;
+  padding: 10px 0;
+  text-transform: uppercase;
+}/*# sourceMappingURL=tableau-de-bord.component.css.map */
