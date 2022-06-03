@@ -1,1 +1,17 @@
-<p>expense-chart works!</p>
+<secton class="income__chart">
+  <div>
+    <div
+      style="display: block"
+      [style.height.rem]="height"
+      [style.width.rem]="width"
+    >
+      <canvas
+        baseChart
+        [data]="doughnutChartData"
+        [type]="doughnutChartType"
+        [labels]="doughnutChartLabels"
+      >
+      </canvas>
+    </div>
+  </div>
+</secton>

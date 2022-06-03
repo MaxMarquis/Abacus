@@ -8,11 +8,7 @@
       <section>
         <!-- Graphique des dépenses-->
         <div *ngIf="expenseList">
-          <app-charts
-            height="20"
-            width="20"
-            [expenseList]="expenseList"
-          ></app-charts>
+          <app-expense-chart height="20" width="20"></app-expense-chart>
         </div>
       </section>
 

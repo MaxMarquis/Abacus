@@ -18,8 +18,8 @@
     <!-- ! affiche Mobile-->
     <div class="col-12">
       <h1>Portrait global</h1>
-    </div>
-  </app-match-media-query><!-- !fin requête mobile -->
+    </div> </app-match-media-query
+  ><!-- !fin requête mobile -->
   <!-- * PORTRAIT DES DÉPENSES.....................-->
   <div class="row">
     <section class="col-lg-3">
@@ -28,12 +28,14 @@
       <div class="card">
         <!-- HEADER -->
         <div class="card-header">
-          <h2 class="depensesCards"><span class="fondBlancCards">Portrait des dépenses</span></h2>
+          <h2 class="depensesCards">
+            <span class="fondBlancCards">Portrait des dépenses</span>
+          </h2>
         </div>
         <!--BODY CHART-->
         <div class="card-body">
           <div *ngIf="expenseList">
-            <app-charts width="auto" height="auto" [expenseList]="expenseList" labelsPosition=""></app-charts>
+            <app-expense-chart width="auto" height="auto"></app-expense-chart>
           </div>
         </div>
 
@@ -42,11 +44,14 @@
           <!-- FOOTER CHART-->
           <div class="card-footer">
             <!--  LIEN VERS SOMMAIRE DÉPENSES -->
-            <button class="btn-som-depense d-flex ms-auto" routerLink="/depenses">
+            <button
+              class="btn-som-depense d-flex ms-auto"
+              routerLink="/depenses"
+            >
               SOMMAIRE
             </button>
-          </div>
-        </app-match-media-query><!-- !fin requête mobile -->
+          </div> </app-match-media-query
+        ><!-- !fin requête mobile -->
       </div>
     </section>
 
@@ -57,12 +62,14 @@
       <div class="card">
         <!-- HEADER CHART -->
         <div class="card-header d-flex ms-auto">
-          <h2 class="revenusCards"><span class="fondBlancCards">Portrait des revenus</span></h2>
+          <h2 class="revenusCards">
+            <span class="fondBlancCards">Portrait des revenus</span>
+          </h2>
         </div>
         <!-- BODY CHART-->
         <div class="card-body">
-          <div *ngIf="incomeList">
-            <app-charts width="25" height="25" [incomeList]="incomeList"></app-charts>
+          <div>
+            <app-income-chart width="auto" height="auto"></app-income-chart>
           </div>
         </div>
         <app-match-media-query mediaQuery="(max-width: 992px)">
@@ -70,9 +77,11 @@
           <!-- FOOTER CHART -->
           <div class="card-footer">
             <!-- LIEN VERS SOMMAIRE REVENUS -->
-            <button class="btn-som-revenu" routerLink="/revenus">SOMMAIRE</button>
-          </div>
-        </app-match-media-query><!-- !fin requête mobile -->
+            <button class="btn-som-revenu" routerLink="/revenus">
+              SOMMAIRE
+            </button>
+          </div> </app-match-media-query
+        ><!-- !fin requête mobile -->
       </div>
     </section>
     <!-- todo match media tablette et écran accordéons sommaires-->
@@ -88,47 +97,13 @@
     <!-- * LIEN VERS SOMMAIRE COMPLET..................... -->
     <button class="btn-som-complet" routerLink="/sommaire">
       SOMMAIRE COMPLET DES DÉPENSES ET REVENUS
-    </button>
-  </app-match-media-query><!-- !fin requête mobile -->
-
-
-
-
-
-
-
+    </button> </app-match-media-query
+  ><!-- !fin requête mobile -->
 </main>
 
 <app-footer></app-footer>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- ........................OLD.......................................... -->
-
 
 <!-- * NAVBAR en attendant.....................  -->
 
