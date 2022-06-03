@@ -1,102 +1,117 @@
-
 <header class="container-fluid g-0">
   <app-balance></app-balance>
+  <!-- !match media - mobile seulement -->
+  <app-match-media-query mediaQuery="(max-width: 992px)">
+    <div class="container-xl g-0">
+      <!-- container -->
+      <!-- NAV de ENTÊTE -->
+      <nav id="menu" class="navbar navbar-expand-lg g-5">
+        <div class="container-fluid">
 
-
-<div class="container-xl g-0">
-  <!-- NAV de ENTÊTE -->
-  <nav id="menu" class="navbar navbar-expand-lg g-5">
-    <div class="container-fluid">
-
-      <!-- Route vers le tableau de bord -->
-      <a id="logo" class="navbar-brand" routerLink="/tableauDeBord"
-              alt="Logo d'abacus, application de budget personnel."
-              title="Logo d'abacus, application de budget personnel."> 
-      </a>
-<!-- !match media - mobile seulement -->
-<app-match-media-query mediaQuery="(max-width: 992px)">
-      <!-- Menu hamburger -->
-      <button class="float-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-      <!-- /Menu hamburger -->
-
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
           <!-- Route vers le tableau de bord -->
-          <div id="tableauBord">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" routerLink="/tableauDeBord">Tableau de bord</a>
-            </li>
-            <!-- Route vers Sommaire complet -->
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/sommaire">Sommaire complet</a>
-            </li>
-          </div>
-          <!-- DÉPENSES - Ajout et sommaire -->
-          <div id="depenses">
-            <div class="depenses">
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/depenses-ajout">+ Ajouter une dépense</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/depenses">Sommaire des dépenses</a>
-              </li>
-            </div>
-          </div>
-          <!-- REVENUS - Ajout et sommaire -->
-          <div id="revenus">
-            <div class="revenus">
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/revenus-ajout">+ Ajouter un revenu</a>
-              </li>
+          <a id="logo" class="navbar-brand" routerLink="/tableauDeBord"
+            alt="Logo d'abacus, application de budget personnel."
+            title="Logo d'abacus, application de budget personnel.">
+          </a>
 
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/revenus">Sommaire des revenus</a>
-              </li>
-            </div>
-          </div>
-          <!-- MODALS - Calendrier et calculatrice -->
-          <div id="fonctionnalites">
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/calendrier">Calendrier</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/calculatrice">Calculatrice</a>
-            </li>
-            <!-- Déconnexion -->
 
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/deconnexion">Déconnexion</a>
-            </li>
+          <!-- Menu hamburger -->
+          <button class="float-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <!-- /Menu hamburger -->
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <!-- Route vers le tableau de bord -->
+              <div id="tableauBord">
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" routerLink="/tableauDeBord">Tableau de bord</a>
+                </li>
+                <!-- Route vers Sommaire complet -->
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/sommaire">Sommaire complet</a>
+                </li>
+              </div>
+              <!-- DÉPENSES - Ajout et sommaire -->
+              <div id="depenses">
+                <div class="depenses">
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/depenses-ajout">+ Ajouter une dépense</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/depenses">Sommaire des dépenses</a>
+                  </li>
+                </div>
+              </div>
+              <!-- REVENUS - Ajout et sommaire -->
+              <div id="revenus">
+                <div class="revenus">
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/revenus-ajout">+ Ajouter un revenu</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" routerLink="/revenus">Sommaire des revenus</a>
+                  </li>
+                </div>
+              </div>
+              <!-- MODALS - Calendrier et calculatrice -->
+              <div id="fonctionnalites">
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/calendrier">Calendrier</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/calculatrice">Calculatrice</a>
+                </li>
+                <!-- Déconnexion -->
+
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/deconnexion">Déconnexion</a>
+                </li>
+              </div>
+            </ul>
           </div>
-        </ul>
-      </div>
-    </app-match-media-query>
-<!-- !fin match media mobile -->
+        </div><!-- 2e container -->
+      </nav>
     </div>
+  </app-match-media-query>
+  <!-- !fin match media mobile -->
+  <!-- todo match media tablette et écran......................... -->
+  <app-match-media-query mediaQuery="(min-width: 993px)">
+    <div class="container-xl g-0">
+      <!-- NAV de ENTÊTE -->
+      <nav id="menu" class="navbar navbar-expand-lg g-5">
+        <div class="container-fluid">
+
+          <!-- Route vers le tableau de bord -->
+          <a id="logo" class="navbar-brand" routerLink="/tableauDeBord"
+            alt="Logo d'abacus, application de budget personnel."
+            title="Logo d'abacus, application de budget personnel.">
+          </a>
 
 
-<!-- todo match media tablette et écran......................... -->
-<app-match-media-query mediaQuery="(min-width: 993px)">
-  <div class="me-md-5">
-    <a class="deconnexion" routerLink="/deconnexion">Déconnexion</a>
-  </div>
-</app-match-media-query>
-<!-- todo fin match media tablette et écran......................... -->
-  </nav>
+          <div class="me-md-5">
+            <a class="deconnexion" routerLink="/deconnexion">Déconnexion</a>
+          </div>
+        </div>
+      </nav>
+    </div><!-- container -->
+  </app-match-media-query>
+  <!-- todo fin match media tablette et écran......................... -->
+
   <!-- /NAV de ENTÊTE -->
-</div>
+
 </header>
 
 <!-- !match media - mobile seulement -->
 <app-match-media-query mediaQuery="(max-width: 992px)">
-<!-- BOUTONS ENTÊTE -->
-<div class="container text-center">
-  <button class="btn-revenu mx-2" [routerLink]="['/revenus-ajout']">AJOUT REVENU</button>
-  <button class="btn-depense mx-3" [routerLink]="['/depenses-ajout']">AJOUT DÉPENSE</button>
-</div>
+  <!-- BOUTONS ENTÊTE -->
+  <div class="container text-center">
+    <button class="btn-revenu mx-2" [routerLink]="['/revenus-ajout']">AJOUT REVENU</button>
+    <button class="btn-depense mx-3" [routerLink]="['/depenses-ajout']">AJOUT DÉPENSE</button>
+  </div>
 </app-match-media-query>
 <!-- !fin match media mobile -->
 <!-- /BOUTONS ENTÊTE -->
