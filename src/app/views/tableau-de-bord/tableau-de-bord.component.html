@@ -22,13 +22,13 @@
   </app-match-media-query><!-- !fin requête mobile -->
   <!-- * PORTRAIT DES DÉPENSES.....................-->
   <div class="row">
-    <section class=" col-lg-3">
+    <section class="col-lg-3">
       <!-- CARD DÉPENSES/CHART -->
 
       <div class="card">
         <!-- HEADER -->
         <div class="card-header">
-          <h2>Portrait des dépenses</h2>
+          <h2 class="depensesCards"><span class="fondBlancCards">Portrait des dépenses</span></h2>
         </div>
         <!--BODY CHART-->
         <div class="card-body">
@@ -42,7 +42,9 @@
           <!-- FOOTER CHART-->
           <div class="card-footer">
             <!--  LIEN VERS SOMMAIRE DÉPENSES -->
-            <button class="btn-som-depense" routerLink="/depenses">SOMMAIRE</button>
+            <button class="btn-som-depense d-flex ms-auto" routerLink="/depenses">
+              SOMMAIRE
+            </button>
           </div>
         </app-match-media-query><!-- !fin requête mobile -->
       </div>
@@ -54,8 +56,8 @@
 
       <div class="card">
         <!-- HEADER CHART -->
-        <div class="card-header">
-          <h2>Portrait des revenus</h2>
+        <div class="card-header d-flex ms-auto">
+          <h2 class="revenusCards"><span class="fondBlancCards">Portrait des revenus</span></h2>
         </div>
         <!-- BODY CHART-->
         <div class="card-body">
@@ -75,9 +77,9 @@
     </section>
     <!-- todo match media tablette et écran accordéons sommaires-->
     <app-match-media-query mediaQuery="(min-width: 992px)" class="col-md-6">
-        <app-sommaire></app-sommaire>
-        <app-sommaire-depenses></app-sommaire-depenses>
-        <app-sommaire-revenus></app-sommaire-revenus>
+      <app-sommaire></app-sommaire>
+      <app-sommaire-depenses></app-sommaire-depenses>
+      <app-sommaire-revenus></app-sommaire-revenus>
     </app-match-media-query>
     <!-- todo fin match media tablette et écran-->
   </div>
