@@ -1,211 +1,161 @@
 <app-header></app-header>
-
 <app-match-media-query mediaQuery="(max-width: 992px)">
-  <main class="container">
+  <main class="container-fluid px-4">
     <h1>Ajouter une dépense</h1>
 
     <app-match-media-query mediaQuery="(max-width: 992px)">
-      <section>
+      <section class="pb-5">
         <!-- Graphique des dépenses-->
-        <div *ngIf="expenseList">
-          <app-expense-chart height="20" width="20"></app-expense-chart>
+        <div class="card">
+          <!-- HEADER CHART -->
+          <div class="card-header">
+            <h2 class="depensesCards"><span class="fondBlancCards">Dépenses</span></h2>
+          </div>
+          <!-- BODY CHART-->
+          <div class="card-body">
+            <div *ngIf="expenseList">
+              <app-expense-chart height="auto" width="auto"></app-expense-chart>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- * nouveau tableau avec API Rest-->
       <form #addExpense="ngForm" (ngSubmit)="onSave(addExpense)" novalidate>
         <!-- *Ajout description -->
-        <form class="example-form">
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Description</mat-label>
-            <input
-              name="description"
-              ngModel
-              pattern="[a-zA-Z ]*"
-              [(ngModel)]="depense.description"
-              name="description"
-              #description="ngModel"
-              minlength="2"
-              maxlength="25"
-              matInput
-              placeholder="Ex loyer"
-              required
-            />
-            <mat-error
-              *ngIf="
+        <form class="row">
+          <div class="col-10">
+            <mat-form-field class="example-full-width">
+              <mat-label>Description</mat-label>
+              <input name="description" ngModel pattern="[a-zA-Z ]*" [(ngModel)]="depense.description"
+                name="description" #description="ngModel" minlength="2" maxlength="25" matInput placeholder="Ex loyer"
+                required />
+              <mat-error *ngIf="
                 description.invalid &&
                 (description.dirty || description.touched) &&
                 description.hasError('required')
-              "
-            >
-              La description est obligatoire.</mat-error
-            >
-            <mat-error
-              *ngIf="
+              ">
+                La description est obligatoire.</mat-error>
+              <mat-error *ngIf="
                 description.invalid &&
                 (description.dirty || description.touched) &&
                 description.hasError('minlength')
-              "
-            >
-              Doit contenir au moins 2 caractères.</mat-error
-            >
-            <mat-error
-              *ngIf="
+              ">
+                Doit contenir au moins 2 caractères.</mat-error>
+              <mat-error *ngIf="
                 description.invalid &&
                 (description.dirty || description.touched) &&
                 description.hasError('maxlength')
-              "
-            >
-              Le nom doit contenir au maximum 50 caractères.</mat-error
-            >
-          </mat-form-field>
+              ">
+                Le nom doit contenir au maximum 50 caractères.</mat-error>
+            </mat-form-field>
+          </div>
+        </form>
 
-          <!--   *Ajout montant -->
-          <form class="example-form">
+        <!--   *Ajout montant -->
+        <form class="example-form row">
+          <div class="col-10">
             <mat-form-field class="example-full-width" appearance="fill">
               <mat-label>Montant</mat-label>
-              <input
-                type="number"
-                name="montant"
-                [(ngModel)]="depense.montant"
-                name="montant"
-                #montant="ngModel"
-                matInput
-                placeholder="Ex -150"
-                required
-              />
-              <mat-error
-                *ngIf="
+              <input type="number" name="montant" [(ngModel)]="depense.montant" name="montant" #montant="ngModel"
+                matInput placeholder="Ex -150" required />
+              <mat-error *ngIf="
                   montant.invalid &&
                   (montant.dirty || montant.touched) &&
                   montant.hasError('required')
-                "
-              >
-                Le montant est obligatoire.</mat-error
-              >
+                ">
+                Le montant est obligatoire.</mat-error>
               <span matSuffix>$&nbsp;</span>
             </mat-form-field>
+          </div>
 
-            <!-- *Calculatrice -->
-            <button type="button" (click)="openCalculatorModal(content)">
+          <!-- *Calculatrice -->
+          <div class="col-2">
+            <button id="calculator" type="button" (click)="openCalculatorModal(content)">
               <i class="fa-solid fa-calculator"></i>
             </button>
+          </div>
+        </form>
 
-            <!-- *Ajout date -->
-            <form class="example-form">
-              <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Date</mat-label>
-                <input
-                  type="date"
-                  name="date"
-                  [(ngModel)]="depense.date"
-                  name="date"
-                  #date="ngModel"
-                  min="2000-01-01"
-                  required
-                  matInput
-                  placeholder="Ex 2022-08-19"
-                />
-                <mat-error
-                  *ngIf="
+        <!-- *Ajout date -->
+        <form class="example-form">
+          <div class="col-10">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Date</mat-label>
+              <input type="date" name="date" [(ngModel)]="depense.date" name="date" #date="ngModel" min="2000-01-01"
+                required matInput placeholder="Ex 2022-08-19" />
+              <mat-error *ngIf="
                     date.invalid &&
                     (date.dirty || date.touched) &&
                     date.hasError('required')
-                  "
-                  >La date est obligatoire.</mat-error
-                >
-                <mat-error
-                  *ngIf="
+                  ">La date est obligatoire.</mat-error>
+              <mat-error *ngIf="
                     date.invalid &&
                     (date.dirty || date.touched) &&
                     date.hasError('minlength')
-                  "
-                  >La date doit être au format: 2022-05-10</mat-error
-                >
-                <mat-error
-                  *ngIf="
+                  ">La date doit être au format: 2022-05-10</mat-error>
+              <mat-error *ngIf="
                     date.invalid &&
                     (date.dirty || date.touched) &&
                     date.hasError('maxlength')
-                  "
-                >
-                </mat-error>
-              </mat-form-field>
-
-              <!-- * bouton action ajout -->
-              <div>
-                <button
-                  class="btn btn-danger"
-                  matSuffix
-                  type="submit"
-                  mat-raised-button
-                  [disabled]="!addExpense.form.valid"
-                  (click)="onSave(addExpense)"
-                >
-                  <mat-icon>+ AJOUTER</mat-icon>
-                </button>
-              </div>
-            </form>
-
-            <!-- Tableau liste dépenses -->
-            <section>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Catégorie</th>
-                    <th scope="col">Montant</th>
-                    <th scope="col">Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr
-                    *ngFor="let expense of expenseList"
-                    [ngClass]="'text-danger'"
-                  >
-                    <td class="d-none">{{ expense._id }}</td>
-                    <td>{{ expense.description }}</td>
-                    <td>{{ expense.montant | currency }}</td>
-                    <td>
-                      {{ expense.date | date: "longDate":"undefined":"fr" }}
-                    </td>
-                    <td>
-                      <i
-                        class="fa fa-trash"
-                        aria-hidden="true"
-                        (click)="removeExpense(expense)"
-                      ></i>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </section>
-
-            <!-- RETOUR SOMMAIRE COMPLET DES DÉPENSES / REVENUS  -->
-            <button class="btn btn-primary" routerLink="/sommaire">
-              SOMMAIRE COMPLET DES DÉPENSES ET REVENUS
-            </button>
-            <!-- RETOUR TABLEAU DE BORD -->
-            <button class="btn btn-primary mt-5" routerLink="/tableauDeBord">
-              RETOUR AU TABLEAU DE BORD
-            </button>
-
-            <!-- Calc Modal -->
-            <ng-template #content let-modal>
-              <div class="modal-header">
-                <button
-                  type="button"
-                  class="btn-close"
-                  aria-label="Close"
-                  (click)="modal.dismiss()"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <app-calculatrice></app-calculatrice>
-              </div>
-            </ng-template>
-          </form>
+                  ">
+              </mat-error>
+            </mat-form-field>
+          </div>
         </form>
+
+        <!-- * bouton action ajout -->
+        <div>
+          <button class="btn-som-depense" matSuffix type="submit" mat-raised-button [disabled]="!addExpense.form.valid"
+            (click)="onSave(addExpense)">
+            <mat-icon>+ AJOUTER</mat-icon>
+          </button>
+        </div>
       </form>
+
+      <!-- Tableau liste dépenses -->
+      <section>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Catégorie</th>
+              <th scope="col">Montant</th>
+              <th scope="col">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let expense of expenseList" [ngClass]="'text-danger'">
+              <td class="d-none">{{ expense._id }}</td>
+              <td>{{ expense.description }}</td>
+              <td>{{ expense.montant | currency }}</td>
+              <td>
+                {{ expense.date | date: "longDate":"undefined":"fr" }}
+              </td>
+              <td>
+                <i class="fa fa-trash" aria-hidden="true" (click)="removeExpense(expense)"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- RETOUR SOMMAIRE COMPLET DES DÉPENSES / REVENUS  -->
+      <button class="btn-som-complet" routerLink="/sommaire">
+        SOMMAIRE COMPLET DES DÉPENSES ET REVENUS</button><br />
+      <!-- RETOUR TABLEAU DE BORD -->
+      <button class="btn-som-complet" routerLink="/tableauDeBord">
+        RETOUR AU TABLEAU DE BORD
+      </button>
+
+      <!-- Calc Modal -->
+      <ng-template #content let-modal>
+        <div class="modal-header">
+          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+        </div>
+        <div class="modal-body">
+          <app-calculatrice></app-calculatrice>
+        </div>
+      </ng-template>
     </app-match-media-query>
   </main>
 
