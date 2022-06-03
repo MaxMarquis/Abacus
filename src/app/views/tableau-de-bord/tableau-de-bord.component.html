@@ -1,17 +1,30 @@
-<!-- * NAVBAR en attendant.....................  -->
+<app-header></app-header>
 
-<app-match-media-query mediaQuery="(max-width: 992px)">
-  <!-- ! REQUÊTE -->
-  <app-header></app-header>
-
-  <main class="container-fluid">
+<main class="container-fluid container-xl mx-auto g-4">
+  <app-match-media-query mediaQuery="(min-width: 992px)">
+    <!-- ! affiche tablette-->
+    <!-- AJOUT DEPENSE -->
+    <div class="row">
+      <div class="col-xl-6 ajoutdepense">
+        <h2 class="depense">AJOUT D'UNE DÉPENSE</h2>
+      </div>
+      <!-- AJOUT REVENU -->
+      <div class="col-xl-6 ajoutrevenu">
+        <h2 class="revenu">AJOUT D'UNE DÉPENSE</h2>
+      </div>
+    </div>
+  </app-match-media-query>
+  <app-match-media-query mediaQuery="(max-width: 768px)">
+    <!-- ! affiche Mobile-->
     <div class="col-12">
       <h1>Portrait global</h1>
     </div>
-
-    <!-- * PORTRAIT DES DÉPENSES.....................-->
-    <section>
+  </app-match-media-query><!-- !fin requête mobile -->
+  <!-- * PORTRAIT DES DÉPENSES.....................-->
+  <div class="row">
+    <section class=" col-lg-3">
       <!-- CARD DÉPENSES/CHART -->
+
       <div class="card">
         <!-- HEADER -->
         <div class="card-header">
@@ -20,27 +33,25 @@
         <!--BODY CHART-->
         <div class="card-body">
           <div *ngIf="expenseList">
-            <app-charts
-              width="25"
-              height="25"
-              [expenseList]="expenseList"
-              labelsPosition=""
-            ></app-charts>
+            <app-charts width="auto" height="auto" [expenseList]="expenseList" labelsPosition=""></app-charts>
           </div>
         </div>
-        <!-- FOOTER CHART-->
-        <div class="card-footer">
-          <!--  LIEN VERS SOMMAIRE DÉPENSES -->
-          <button class="btn-som-depense" routerLink="/depenses">
-            SOMMAIRE
-          </button>
-        </div>
+
+        <app-match-media-query mediaQuery="(max-width: 992px)">
+          <!-- ! REQUÊTE Mobile-->
+          <!-- FOOTER CHART-->
+          <div class="card-footer">
+            <!--  LIEN VERS SOMMAIRE DÉPENSES -->
+            <button class="btn-som-depense" routerLink="/depenses">SOMMAIRE</button>
+          </div>
+        </app-match-media-query><!-- !fin requête mobile -->
       </div>
     </section>
 
     <!-- * PORTRAIT DES REVENUS.....................-->
-    <section>
+    <section class="col-md-3">
       <!-- CARD REVENU/CHART -->
+
       <div class="card">
         <!-- HEADER CHART -->
         <div class="card-header">
@@ -49,24 +60,143 @@
         <!-- BODY CHART-->
         <div class="card-body">
           <div *ngIf="incomeList">
-            <app-income-chart width="25" height="25"></app-income-chart>
+            <app-charts width="25" height="25" [incomeList]="incomeList"></app-charts>
           </div>
         </div>
-        <!-- FOOTER CHART -->
-        <div class="card-footer">
-          <!-- LIEN VERS SOMMAIRE REVENUS -->
-          <button class="btn-som-revenu" routerLink="/revenus">SOMMAIRE</button>
-        </div>
+        <app-match-media-query mediaQuery="(max-width: 992px)">
+          <!-- ! REQUÊTE Mobile-->
+          <!-- FOOTER CHART -->
+          <div class="card-footer">
+            <!-- LIEN VERS SOMMAIRE REVENUS -->
+            <button class="btn-som-revenu" routerLink="/revenus">SOMMAIRE</button>
+          </div>
+        </app-match-media-query><!-- !fin requête mobile -->
       </div>
     </section>
-
+    <!-- todo match media tablette et écran accordéons sommaires-->
+    <app-match-media-query mediaQuery="(min-width: 992px)" class="col-md-6">
+        <app-sommaire></app-sommaire>
+        <app-sommaire-depenses></app-sommaire-depenses>
+        <app-sommaire-revenus></app-sommaire-revenus>
+    </app-match-media-query>
+    <!-- todo fin match media tablette et écran-->
+  </div>
+  <app-match-media-query mediaQuery="(max-width: 992px)">
+    <!-- ! REQUÊTE Mobile-->
     <!-- * LIEN VERS SOMMAIRE COMPLET..................... -->
     <button class="btn-som-complet" routerLink="/sommaire">
       SOMMAIRE COMPLET DES DÉPENSES ET REVENUS
     </button>
+  </app-match-media-query><!-- !fin requête mobile -->
+
+
+
+
+
+
+
+</main>
+
+<app-footer></app-footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ........................OLD.......................................... -->
+
+
+<!-- * NAVBAR en attendant.....................  -->
+
+<!-- <app-match-media-query mediaQuery="(max-width: 992px)"> -->
+<!-- ! REQUÊTE -->
+<!-- <app-header></app-header> -->
+
+<!-- <main class="container-fluid">
+    <div class="col-12">
+      <h1>Portrait global</h1>
+    </div> -->
+
+<!-- * PORTRAIT DES DÉPENSES.....................-->
+<!-- <section> -->
+<!-- CARD DÉPENSES/CHART -->
+<!-- <div class="card"> -->
+<!-- HEADER -->
+<!-- <div class="card-header">
+          <h2>Portrait des dépenses</h2>
+        </div> -->
+<!--BODY CHART-->
+<!-- <div class="card-body">
+          <div *ngIf="expenseList">
+            <app-charts
+              width="25"
+              height="25"
+              [expenseList]="expenseList"
+              labelsPosition=""
+            ></app-charts>
+          </div>
+        </div> -->
+<!-- FOOTER CHART-->
+<!-- <div class="card-footer"> -->
+<!--  LIEN VERS SOMMAIRE DÉPENSES -->
+<!-- <button class="btn-som-depense" routerLink="/depenses">
+            SOMMAIRE
+          </button>
+        </div>
+      </div>
+    </section> -->
+
+<!-- * PORTRAIT DES REVENUS.....................-->
+<!-- <section> -->
+<!-- CARD REVENU/CHART -->
+<!-- <div class="card"> -->
+<!-- HEADER CHART -->
+<!-- <div class="card-header">
+          <h2>Portrait des revenus</h2> -->
+<!-- </div> -->
+<!-- BODY CHART-->
+<!-- <div class="card-body">
+          <div *ngIf="incomeList">
+            <app-income-chart width="25" height="25"></app-income-chart>
+          </div>
+        </div> -->
+<!-- FOOTER CHART -->
+<!-- <div class="card-footer"> -->
+<!-- LIEN VERS SOMMAIRE REVENUS -->
+<!-- <button class="btn-som-revenu" routerLink="/revenus">SOMMAIRE</button>
+        </div>
+      </div>
+    </section> -->
+
+<!-- * LIEN VERS SOMMAIRE COMPLET..................... -->
+<!-- <button class="btn-som-complet" routerLink="/sommaire">
+      SOMMAIRE COMPLET DES DÉPENSES ET REVENUS
+    </button>
   </main>
   <app-footer></app-footer>
-</app-match-media-query>
+</app-match-media-query> -->
 
 <!-- * FULL SCREEN.......................................... -->
 <!-- ! REQUÊTE -->

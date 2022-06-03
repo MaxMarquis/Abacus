@@ -1,86 +1,45 @@
-<!-- <div class="authen vh-100">
-    <main class="container">
-      <div class="row">
-      <section> -->
-
-        <!-- LOGO ABACUS ANIMÉ -->
-        <!-- <div class="col-12 center">
+<div class="authen vh-100">
+  <main class="container-fluid">
+    <div class="row">
+    <section>
+      <!-- LOGO ABACUS ANIMÉ -->
+      <div class="col-12 center">
           <img src="../../assets/img/abacusAnime.svg" alt="Logo de l'application de gestion de budget ABAC|US créé et offert par le Cégep de Trois-Rivières">
-        </div>
-        <div class="col-8 offset-2">
-        <form> -->
+      </div>
+<!-- FORMULAIRE D'ACCÈS -->
+      <div class="col-8 offset-2">
+        
             
-                    <!-- <label for="">Email</label>
-                        <input [(ngModel)]="loginUserData.email" name="email" type="text" class="form-control-rounded-0">
-                        
-                        
-                        <label for="">Username</label>
-                        <input [(ngModel)]="loginUserData.username" name="username" type="text" class="form-control-rounded-0">
-                        
-                        <!-- <label for="">password</label> -->
-                        <!-- <input [(ngModel)]="loginUserData.password" name="password" type="password" autocomplete="on" class="form-control-rounded-0">
-                        <div>
-                        <button (click)="loginUser()" type="button" class="btn btn-success float-right">Login</button>
-                        </div>
-                        </form>  -->
-                                            <!-- <br>
-                    <button routerLink="/registe">vous n'avez pas de compte-S'enregistrer</button></div> -->
-                <!-- LIEN POUR CRÉATION DE COMPTE ET MOT DE PASSE OUBLIÉ -->
-            <!-- <a href="#">Vous n'avez pas de compte&thinsp;?</a>
-            <br>
-            <a href="#">Mot de passe oublié&thinsp;?</a>
-            </section>
-        </div>
-    </main>
-</div>
-  <div class="bordure"></div> -->
-
-  <!-- ! test  -->
-
-  <div class="authen vh-100">
-    <main class="container">
-      <div class="row">
-      <section>
-        <!-- LOGO ABACUS ANIMÉ -->
-        <div class="col-12 center">
-            <img src="../../assets/img/abacusAnime.svg" alt="Logo de l'application de gestion de budget ABAC|US créé et offert par le Cégep de Trois-Rivières">
-        </div>
-  <!-- FORMULAIRE D'ACCÈS -->
-        <div class="col-8 offset-2">
-          
-              
-          <form>
-            <!-- ADRESSE COURRIEL -->
-            <label>Adresse courriel</label><br>
-            <input [(ngModel)]="loginUserData.email" name="email" type="text" class="form-control-rounded-0">
-            <!-- pattern="(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}"
-              placeholder="Inscrire votre adresse courriel" autocomplete="username" /> -->
-            <br>
-            <!-- UserName -->
-            <label for="">Username</label><br>
-            <input [(ngModel)]="loginUserData.username" name="username" type="text" class="form-control-rounded-0">
-            <br>
-            <!-- MOT DE PASSE -->
-            <label>Mot de passe</label><br>
-            <input [(ngModel)]="loginUserData.password" name="password" type="password" autocomplete="on" class="form-control-rounded-0">
-            
-           <br>
-            <!-- BOUTON SOUMETTRE -->
-            <button (click)="loginUser()" type="button" class="btn btn-success float-right">Se connecter</button>
-            
-          </form>
-            <br>
-            <button routerLink="/registe">vous n'avez pas de compte-S'enregistrer</button>
-
-          <!-- LIEN POUR CRÉATION DE COMPTE ET MOT DE PASSE OUBLIÉ -->
-          <a href="#">Vous n'avez pas de compte&thinsp;?</a>
+        <form>
+          <!-- ADRESSE COURRIEL -->
+          <label>Adresse courriel</label><br>
+          <input [(ngModel)]="loginUserData.email" name="email" type="text" class="input100">
+          <!-- pattern="(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}"
+            placeholder="Inscrire votre adresse courriel" autocomplete="username" /> -->
           <br>
-          <a href="#">Mot de passe oublié&thinsp;?</a>
-        </div>
-      </section>
-    </div>
-    </main>
-    <div class="bordure"></div>
+          <!-- UserName -->
+          <label for="">Username</label><br>
+          <input [(ngModel)]="loginUserData.username" name="username" type="text" class="input100">
+          <br>
+          <!-- MOT DE PASSE -->
+          <label>Mot de passe</label><br>
+          <input [(ngModel)]="loginUserData.password" name="password" type="password" autocomplete="on" class="input100">
+          
+         <br>
+          <!-- BOUTON SOUMETTRE -->
+          <button (click)="loginUser()" type="button">Se connecter</button>
+          
+        </form>
+        
+          <button routerLink="/registe" class="compte">Vous n'avez pas de compte - S'enregistrer</button>
+          <br>
+        <!-- LIEN POUR CRÉATION DE COMPTE ET MOT DE PASSE OUBLIÉ -->
+        <a href="#">Vous n'avez pas de compte&thinsp;?</a>
+        <br>
+        <a href="#">Mot de passe oublié&thinsp;?</a>
+      </div>
+    </section>
   </div>
-  
-  
+  </main>
+  <div class="bordure"></div>
+</div>

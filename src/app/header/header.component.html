@@ -1,29 +1,25 @@
-<!-- ENTÊTE -->
-<header>
+
+<header class="container-fluid g-0">
   <app-balance></app-balance>
 
 
-
+<div class="container-xl g-0">
   <!-- NAV de ENTÊTE -->
-  <nav id="menu" class="navbar navbar-expand-lg navbar-light">
+  <nav id="menu" class="navbar navbar-expand-lg g-5">
     <div class="container-fluid">
 
       <!-- Route vers le tableau de bord -->
-
-      <a id="logo" class="navbar-brand" routerLink="/tableauDeBord">
-        <!-- Logo horizontale d'Abacus -->
-        <!-- <img height="100px" src="../assets/img/abacus-logo_horizontal.svg"
+      <a id="logo" class="navbar-brand" routerLink="/tableauDeBord"
               alt="Logo d'abacus, application de budget personnel."
-              title="Logo d'abacus, application de budget personnel." /> -->
+              title="Logo d'abacus, application de budget personnel."> 
       </a>
-
+<!-- !match media - mobile seulement -->
+<app-match-media-query mediaQuery="(max-width: 992px)">
       <!-- Menu hamburger -->
-
-      <button type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
+      <button class="float-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
         aria-expanded="false" aria-label="Toggle navigation">
         <i class="fa-solid fa-bars"></i>
       </button>
-
       <!-- /Menu hamburger -->
 
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -77,21 +73,32 @@
           </div>
         </ul>
       </div>
+    </app-match-media-query>
+<!-- !fin match media mobile -->
     </div>
 
+
+<!-- todo match media tablette et écran......................... -->
+<app-match-media-query mediaQuery="(min-width: 993px)">
+  <div class="me-5">
+    <a class="deconnexion" routerLink="/deconnexion">Déconnexion</a>
+  </div>
+</app-match-media-query>
+<!-- todo fin match media tablette et écran......................... -->
   </nav>
   <!-- /NAV de ENTÊTE -->
+</div>
 </header>
+
+<!-- !match media - mobile seulement -->
+<app-match-media-query mediaQuery="(max-width: 992px)">
 <!-- BOUTONS ENTÊTE -->
 <div class="container text-center">
-
   <button class="btn-revenu mx-2" [routerLink]="['/revenus-ajout']">AJOUT REVENU</button>
-
-
   <button class="btn-depense mx-3" [routerLink]="['/depenses-ajout']">AJOUT DÉPENSE</button>
-
-
 </div>
+</app-match-media-query>
+<!-- !fin match media mobile -->
 <!-- /BOUTONS ENTÊTE -->
 
 <!-- /ENTÊTE -->
