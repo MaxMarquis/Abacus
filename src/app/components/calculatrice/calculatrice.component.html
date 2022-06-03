@@ -1,4 +1,6 @@
 <div class="container p-5">
+  <button type="button" class="btn-close close d-flex ms-auto" data-bs-dismiss="modal" aria-label="Close"
+    routerLink="/tableauDeBord"></button>
   <div class="grid-container">
     <!-- champs de texte indiquant les opérations -->
     <!-- champs de texte indiquant les opérations en cours -->
@@ -15,11 +17,7 @@
     <!-- /champs de texte indiquant les opérations -->
 
     <!-- Première rangée C+-% -->
-    <button
-      class="boutonDouble1 button-rouge"
-      type="button"
-      (click)="allClear()"
-    >
+    <button class="boutonDouble1 button-rouge" type="button" (click)="allClear()">
       C
     </button>
     <!--! FONCTION À PROGRAMMER-->
@@ -66,18 +64,10 @@
 
     <!-- Rangée total et copier -->
 
-    <button
-      class="boutonDouble1 button-rouge"
-      type="button"
-      (click)="copyResult()"
-    >
+    <button class="boutonDouble1 button-rouge" type="button" (click)="copyResult()">
       COPIER
     </button>
-    <button
-      class="boutonDouble2 button-ops"
-      type="button"
-      (click)="getAnswer()"
-    >
+    <button class="boutonDouble2 button-ops" type="button" (click)="getAnswer()">
       =
     </button>
   </div>
