@@ -1,45 +1,47 @@
-<div class="authen vh-100">
+<div class="authen">
   <main class="container-fluid">
     <div class="row">
-    <section>
-      <!-- LOGO ABACUS ANIMÉ -->
-      <div class="col-12 center">
-          <img src="../../assets/img/abacusAnime.svg" alt="Logo de l'application de gestion de budget ABAC|US créé et offert par le Cégep de Trois-Rivières">
-      </div>
-<!-- FORMULAIRE D'ACCÈS -->
-      <div class="col-8 offset-2">
-        
-            
-        <form>
-          <!-- ADRESSE COURRIEL -->
-          <label>Adresse courriel</label><br>
-          <input [(ngModel)]="loginUserData.email" name="email" type="text" class="input100">
-          <!-- pattern="(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}"
+      <section>
+        <!-- LOGO ABACUS ANIMÉ -->
+        <div class="col-12 center">
+          <img src="../../assets/img/abacusAnime.svg"
+            alt="Logo de l'application de gestion de budget ABAC|US créé et offert par le Cégep de Trois-Rivières">
+        </div>
+        <!-- FORMULAIRE D'ACCÈS -->
+        <div class="col-8 offset-2">
+
+
+          <form>
+            <!-- ADRESSE COURRIEL -->
+            <label>Adresse courriel</label><br>
+            <input [(ngModel)]="loginUserData.email" name="email" type="text" class="input100">
+            <!-- pattern="(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}"
             placeholder="Inscrire votre adresse courriel" autocomplete="username" /> -->
-          <br>
-          <!-- UserName -->
-          <label for="">Username</label><br>
-          <input [(ngModel)]="loginUserData.username" name="username" type="text" class="input100">
-          <br>
-          <!-- MOT DE PASSE -->
-          <label>Mot de passe</label><br>
-          <input [(ngModel)]="loginUserData.password" name="password" type="password" autocomplete="on" class="input100">
-          
-         <br>
-          <!-- BOUTON SOUMETTRE -->
-          <button (click)="loginUser()" type="button">Se connecter</button>
-          
-        </form>
-        
+            <br>
+            <!-- UserName -->
+            <label for="">Username</label><br>
+            <input [(ngModel)]="loginUserData.username" name="username" type="text" class="input100">
+            <br>
+            <!-- MOT DE PASSE -->
+            <label>Mot de passe</label><br>
+            <input [(ngModel)]="loginUserData.password" name="password" type="password" autocomplete="on"
+              class="input100">
+
+            <br>
+            <!-- BOUTON SOUMETTRE -->
+            <button (click)="loginUser()" type="button">Se connecter</button>
+
+          </form>
+
           <button routerLink="/registe" class="compte">Vous n'avez pas de compte - S'enregistrer</button>
           <br>
-        <!-- LIEN POUR CRÉATION DE COMPTE ET MOT DE PASSE OUBLIÉ -->
-        <a href="#">Vous n'avez pas de compte&thinsp;?</a>
-        <br>
-        <a href="#">Mot de passe oublié&thinsp;?</a>
-      </div>
-    </section>
-  </div>
+          <!-- LIEN POUR CRÉATION DE COMPTE ET MOT DE PASSE OUBLIÉ -->
+          <a href="#">Vous n'avez pas de compte&thinsp;?</a>
+          <br>
+          <a href="#">Mot de passe oublié&thinsp;?</a>
+        </div>
+      </section>
+    </div>
   </main>
   <div class="bordure"></div>
 </div>
