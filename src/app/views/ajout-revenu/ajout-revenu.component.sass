@@ -1,5 +1,37 @@
 @import '../../../sass/utils/variables'
 @import '../../../sass/utils/stylesGlobaux'
-    
+
 h1
     @include titre($vertBase)
+
+h2
+    display: inline-block
+    font-family: $button-font
+    font-weight: 700
+    font-size: 2rem
+    text-transform: uppercase
+    margin: 1.25rem 0
+
+input
+    line-height: 0.35rem
+    padding: 0.35rem
+    margin: 10px 0
+
+mat-form-field
+    width: 100%
+    font-family: $body-font
+    font-size: 1rem
+    color: $grisPale
+
+// Intérieur du input arrière-plan    
+::ng-deep .mat-form-field-flex
+    background-color: $blanc !important
+    border-radius: 1rem !important
+    border: 1px solid $bleuBase !important
+    padding: 0.25rem
+
+::ng-deep .mat-form-field-underline
+    display: none
+
+::ng-deep .mat-form-field-ripple
+    display: none
