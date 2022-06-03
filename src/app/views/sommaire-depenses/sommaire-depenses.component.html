@@ -4,7 +4,7 @@
 <main class="container-fluid">
 <app-match-media-query mediaQuery="(max-width: 992px)">
   <h1>Sommaire des dépenses</h1>
-
+     
 <!-- VERSION MOBILE -->
 
 <button type="button" class="btn-periode-depense mb-2 input100" (click)="collapse.toggle()"
@@ -20,13 +20,20 @@ Choisir la période désirée <i class="fa-solid fa-caret-down"></i>
     AFFICHER
   </button>
 </div>
-
 </div>
 </app-match-media-query>
+<!--graphique des dépenses non fonctionnel-->
+<!-- <div class="card">
+  <div *ngIf="expensesList">
+    <app-expense-chart width="auto" height="auto"></app-expense-chart>
+  </div>
+</div> -->
+
+
+<!-- /graphique -->
+
 <!-- ! affiche le range en mobile-->
 <app-expense-table [dateOne]="dateOne" [dateTwo]="dateTwo"></app-expense-table>
-
- 
 <!-- ! -->
 
 <!-- <div ngbDropdown class="d-inline-block">
