@@ -3,19 +3,19 @@
     <thead>
       <tr>
         <th scope="col">Catégorie</th>
-        <th scope="col">Montant</th>
-        <th scope="col">Date</th>
+        <th scope="col" class="text-end">Montant</th>
+        <th scope="col" class="text-end">Date</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let expense of expenses | sortByDates: dateOne:dateTwo">
         <td class="d-none">{{ expense._id }}</td>
-        <td>{{ expense.description }}</td>
-        <td>{{ expense.montant | currency }}</td>
-        <td>{{ expense.date | date: "longDate":"undefined":"fr" }}</td>
+        <td class="depense">{{ expense.description }}</td>
+        <td class="text-end depense">{{ expense.montant | currency }}</td>
+        <td class="text-end depense">{{ expense.date | date: "longDate":"undefined":"fr" }}</td>
         <td>
           <i
-            class="fa fa-trash"
+            class="fa fa-trash depense"
             aria-hidden="true"
             (click)="removeExpense(expense)"
           ></i>

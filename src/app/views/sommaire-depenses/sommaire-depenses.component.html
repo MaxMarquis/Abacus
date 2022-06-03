@@ -1,66 +1,64 @@
-<div>
-  <!--  balance  -->
-  <!-- NAVBAR en attendant  -->
-  <!-- <app-header></app-header> -->
-
+<app-match-media-query mediaQuery="(max-width: 992px)">
+  <app-header></app-header>
+</app-match-media-query>
+<main class="container-fluid">
+<app-match-media-query mediaQuery="(max-width: 992px)">
   <h1>Sommaire des dépenses</h1>
 
+<!-- VERSION MOBILE -->
+
+<button type="button" class="btn-periode-depense mb-2 input100" (click)="collapse.toggle()"
+[attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+Choisir la période désirée <i class="fa-solid fa-caret-down"></i>
+</button>
+
+<div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+<div>
+  <input type="date" placeholder="Du" #dateO />
+  <input type="date" placeholder="Au" #dateT />
+  <button class="m-1 btn-filtre-depense" (click)="doFilter(dateO, dateT)">
+    AFFICHER
+  </button>
+</div>
+
+</div>
+</app-match-media-query>
+<!-- ! affiche le range en mobile-->
+<app-expense-table [dateOne]="dateOne" [dateTwo]="dateTwo"></app-expense-table>
+
+ 
+<!-- ! -->
+
+<!-- <div ngbDropdown class="d-inline-block">
+
+</div> -->
+<!-- ACCORDÉON TABLETTE ET ÉCRAN -->
+<app-match-media-query mediaQuery="(min-width: 993px)">
   <ngb-accordion #acc="ngbAccordion">
     <ngb-panel title="Sommaire des dépenses">
       <ng-template ngbPanelContent>
-        <button
-          type="button"
-          class="btn btn-outline-success"
-          (click)="collapse.toggle()"
-          [attr.aria-expanded]="!isCollapsed"
-          aria-controls="collapseExample"
-        >
-          Choisir la période désirée
+        <button type="button" class="btn-periode-depense mb-2 input100" (click)="collapse.toggle()"
+          [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+          Choisir la période désirée <i class="fa-solid fa-caret-down"></i>
         </button>
 
         <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
           <div>
             <input type="date" placeholder="Du" #dateO />
             <input type="date" placeholder="Au" #dateT />
-            <button
-              class="m-1 btn btn-primary"
-              (click)="doFilter(dateO, dateT)"
-            >
-              Filter
+            <button class="m-1 btn-filtre-depense" (click)="doFilter(dateO, dateT)">
+              AFFICHER
             </button>
           </div>
         </div>
-
-        <app-expense-table
-          [dateOne]="dateOne"
-          [dateTwo]="dateTwo"
-        ></app-expense-table>
+<!-- ! affiche le range en tablette et écran -->
+        <app-expense-table [dateOne]="dateOne" [dateTwo]="dateTwo"></app-expense-table>
+<!-- ! -->
       </ng-template>
     </ngb-panel>
   </ngb-accordion>
-
-  <button
-    type="button"
-    class="btn-periode-depense"
-    (click)="collapse.toggle()"
-    [attr.aria-expanded]="!isCollapsed"
-    aria-controls="collapseExample"
-  >
-    Choisir la période désirée
-  </button>
-
-  <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-    <div>
-      <input type="date" placeholder="Du" #dateO />
-      <input type="date" placeholder="Au" #dateT />
-      <button class="m-1 btn-filtre-depense" (click)="doFilter(dateO, dateT)">
-        Filtrer
-      </button>
-    </div>
-  </div>
-  <div ngbDropdown class="d-inline-block">
-    <i class="fa-solid fa-calendar-days"></i>
-
-    <h2>Dépenses</h2>
-  </div>
-</div>
+</app-match-media-query>
+</main>
+<app-match-media-query mediaQuery="(max-width: 992px)">
+  <app-footer></app-footer>
+</app-match-media-query>
