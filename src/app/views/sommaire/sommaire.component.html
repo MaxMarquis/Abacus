@@ -1,7 +1,9 @@
-<!-- <app-header></app-header> -->
-<main class="container">
+<app-match-media-query mediaQuery="(max-width: 992px)">
+<app-header></app-header></app-match-media-query>
+<main class="container-fluid">
+
   <!-- Full Screen -->
-  <app-match-media-query mediaQuery="(min-width: 992px)">
+  <app-match-media-query mediaQuery="(min-width: 993px)">
     <ngb-accordion #acc="ngbAccordion">
       <ngb-panel title="Sommaire des transactions et des revenus">
         <ng-template ngbPanelContent>
@@ -18,8 +20,8 @@
                 *ngFor="let item of incomeExpenseList"
                 [ngClass]="
                   item.isIncome
-                    ? 'text-success font-weight-bold'
-                    : 'text-danger font-weight-bold'
+                    ? 'revenu'
+                    : 'depense'
                 "
               >
                 <td>{{ item.description }}</td>
@@ -41,8 +43,8 @@
       <thead>
         <tr>
           <th scope="col">DESCRIPTION</th>
-          <th scope="col">MONTANT</th>
-          <th scope="col">DATE</th>
+          <th scope="col" class="text-end">MONTANT</th>
+          <th scope="col" class="text-end">DATE</th>
         </tr>
       </thead>
       <tbody>
@@ -51,23 +53,23 @@
           *ngFor="let item of incomeExpenseList"
           [ngClass]="
             item.isIncome
-              ? 'text-success font-weight-bold'
-              : 'text-danger font-weight-bold'
+              ? 'revenu'
+              : 'depense'
           "
         >
           <td>{{ item.description }}</td>
-          <td>{{ item.montant | currency }}</td>
-          <td>{{ item.date | date: "longDate":"undefined":"fr" }}</td>
+          <td class="text-end">{{ item.montant | currency }}</td>
+          <td class="text-end">{{ item.date | date: "longDate":"undefined":"fr" }}</td>
         </tr>
 
         <!-- * Table secondaire revenu -->
         <tr
           *ngFor="let income of SummaryIncome"
-          [ngClass]="'text-success font-weight-bold'"
+          [ngClass]="'revenu'"
         >
           <td>{{ income.description }}</td>
-          <td>{{ income.montant | currency }}</td>
-          <td>{{ income.date | date: "longDate":"undefined":"fr" }}</td>
+          <td class="text-end">{{ income.montant | currency }}</td>
+          <td class="text-end">{{ income.date | date: "longDate":"undefined":"fr" }}</td>
         </tr>
 
         <!-- * Table secondaire dépenses -->
@@ -75,13 +77,13 @@
           *ngFor="let expense of SummaryDepense"
           [ngClass]="
             expense.isIncome
-              ? 'text-success font-weight-bold'
-              : 'text-danger font-weight-bold'
+              ? 'revenu'
+              : 'depense'
           "
         >
           <td>{{ expense.description }}</td>
-          <td>{{ expense.montant | currency }}</td>
-          <td>{{ expense.date | date: "longDate":"undefined":"fr" }}</td>
+          <td class="text-end">{{ expense.montant | currency }}</td>
+          <td class="text-end">{{ expense.date | date: "longDate":"undefined":"fr" }}</td>
         </tr>
       </tbody>
     </table>
@@ -91,5 +93,7 @@
   <button class="btn-som-complet" routerLink="/tableauDeBord">
     RETOUR AU TABLEAU DE BORD
   </button>
-</main>
-<!-- <app-footer></app-footer> -->
+
+  </main><app-match-media-query mediaQuery="(max-width: 992px)">
+  <app-footer></app-footer>
+</app-match-media-query>
