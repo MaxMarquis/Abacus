@@ -25,34 +25,28 @@
         minlength="2"
         maxlength="25"
         matInput
-        placeholder="Ex loyer"
-      />
+        placeholder="ex: loyer"/>
       <mat-error
         *ngIf="
           description.invalid &&
           (description.dirty || description.touched) &&
           description.hasError('required')
         "
-        >La description est obligatoire.</mat-error
-      >
+        >La description est obligatoire.</mat-error>
       <mat-error
         *ngIf="
           description.invalid &&
           (description.dirty || description.touched) &&
           description.hasError('minlength')
-        "
-      >
-        Doit contenir au moins 2 caractères.</mat-error
-      >
+        ">
+        Doit contenir au moins 2 caractères.</mat-error>
       <mat-error
         *ngIf="
           description.invalid &&
           (description.dirty || description.touched) &&
           description.hasError('maxlength')
-        "
-      >
-        Le nom doit contenir au maximum 50 caractères.</mat-error
-      >
+        ">
+        Le nom doit contenir au maximum 50 caractères.</mat-error>
     </mat-form-field>
 
     <!--   *Ajout montant -->
@@ -138,7 +132,7 @@
         [disabled]="!addIncome.form.valid"
         (click)="onSave(addIncome)"
       >
-        <mat-icon>ajouter</mat-icon>
+        <mat-icon>+ ajouter</mat-icon>
       </button>
     </div>
   </form>
